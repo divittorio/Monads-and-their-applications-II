@@ -27,6 +27,270 @@
 
 \mainmatter
 
-\backmatter 
+\chapter*{Introduction}
+
+These notes will focus on 2-dimensional monad theory, which can be viewed as the
+study of algebraic structures on 2-categories. Like in the one-dimensional case,
+after defining a 2-monad we concern ourselves with the categories of algebras it
+defines, however the higher dimension allows to relax the definitions and
+observe how different coherence conditions lead to different (and generally less
+well-behaved) objects.
+
+One may ask why we are keen to better understand 2-monads. One answer is
+that, similarly to the 1-dimensional case, this allows us to better understand
+other 2-categories, perhaps with additional structure (i.e.\ monoidal, braided,
+some kinds of limits, etc) by relating them to 2-categories of algebras.
+
+We now start recalling some relevant definitions and facts which we will need
+later on.
+
+In order to carry out our project we shall work with $\cV$-cosmos and
+presentability conditions.
+
+\begin{defn}
+    A cosmos $\cV$ is a complete, cocomplete symmetric monoidal closed category.
+\end{defn}
+
+\begin{defn}
+    An object $c$ in a $\cV$-category $\cC$ is $\kappa$-presentable if
+    $\cC(c,-)\colon\cC\rightarrow\cV$ preserves $\kappa$-filtered colimits. This
+    is equivalent to saying that the functor
+    $\cC(c,-)\colon\cC_0\rightarrow\cV_0$ is $\kappa$-accessible, where $\cC_0$
+    and $\cV_0$ are the underlying categories.
+\end{defn}
+
+\begin{thm}
+    Let $\cV$ be a lfp cosmos. Then $\cV$-$\Cat$ is a lfp cosmos and a lfp
+    2-category.
+\end{thm}
+
+By studying monads in this setting we achieve a great level of generality since
+our results will not depend on the underlying enrichment, thus unifying many
+contexts.
+
+But what is a 2-monad?
+
+\begin{defn}
+    A 2-monad is a monad in the 2-category 2-$\CAT$ of locally small
+    2-categories, 2-functors and (strict) 2-natural transformations.
+\end{defn}
+
+We will often construct them using presentations, that is via colimit
+constructions and free 2-monads on 2-endofunctors. This is achieved through the
+following results.
+
+\begin{thm}\label{lfpadj}
+    Let $\cV$ be a lfp cosmos, $\cC$ a locally $\kappa$-presentable
+    $\cV$-category. Then the forgetful functor
+    \[
+        \cV-\Mnd_\kappa(\cC)\rightarrow\cV-\CAT_\kappa(\cC,\cC)
+    \]
+    is monadic. Moreover, it preserves colimits.
+\end{thm}
+
+\begin{cor}
+    In the above situation, the functor
+    \[
+        (-)\Alg\colon\cV-\Mnd_\kappa(\cC)\rightarrow\cV-\CAT/\cC
+    \]
+    sends colimits to limits.
+\end{cor}
+
+\begin{rmk}
+    In general, $\cV-\Mnd_\kappa(\cC)$ is not a $\cV$-category. This is because
+    monads are monoids in a monoidal $\cV$-category of endofunctors, but monoids
+    in general do not define a $\cV$-category: for example, consider
+    $\Mon(\Ab)=\Ring$, which is not even additive.
+
+    This has to do with the non-existence of a ``diagonal'' $\cV$-functor
+    $\cV\rightarrow\cV\otimes\cV$. In particular, if $\cV$ is cartesian then
+    this problem does not arise and indeed for $\cV=\Cat$ we expect the
+    monadic adjunction~\ref{lfpadj} to be enriched.
+\end{rmk}
+
+Unfortunately, we can't apply the theorem above to show the corollary. Instead,
+we use it to give a presentation of a 2-monad whose algebras are 2-monads with
+rank $\kappa$.
+
+Given a monoidal 2-category $\cM$ (i.e.\ the associator $(A\otimes B)\otimes
+C\rightarrow A\otimes(B\otimes C)$ is 2-natural, satisfies the pentagon axioms,
+etc), we have a 2-category $\Mon(\cM)$ of monoids $(M,\mu\colon M\otimes
+M\rightarrow M,\eta\colon I\rightarrow M)$ in $\cM$ with 1-cells the monoid
+morphisms and 2-cells the 2-cells $\alpha\colon f\Rightarrow g\colon M
+\rightarrow N$ in $\cM$ s.t.\
+\[\begin{tikzcd}
+	{M\otimes M} & M & N & {=} & {M\otimes M} && {N\otimes N} & N
+	\arrow[""{name=0, anchor=center, inner sep=0}, "f", curve={height=-12pt}, from=1-2, to=1-3]
+	\arrow[""{name=1, anchor=center, inner sep=0}, "g"', curve={height=12pt}, from=1-2, to=1-3]
+	\arrow["{\mu_M}"', from=1-1, to=1-2]
+	\arrow["{\mu_N}"', from=1-7, to=1-8]
+	\arrow[""{name=2, anchor=center, inner sep=0}, "{g\otimes g}"', curve={height=12pt}, from=1-5, to=1-7]
+	\arrow[""{name=3, anchor=center, inner sep=0}, "{f\otimes f}", curve={height=-12pt}, from=1-5, to=1-7]
+	\arrow["\alpha", shorten <=3pt, shorten >=3pt, Rightarrow, from=0, to=1]
+	\arrow["\alpha\otimes\alpha", shorten <=3pt, shorten >=3pt, Rightarrow, from=3, to=2]
+\end{tikzcd},\]
+\[\begin{tikzcd}
+	I & M & N & {=} & {\id_{\eta_N}}
+	\arrow[""{name=0, anchor=center, inner sep=0}, "f", curve={height=-12pt}, from=1-2, to=1-3]
+	\arrow[""{name=1, anchor=center, inner sep=0}, "g"', curve={height=12pt}, from=1-2, to=1-3]
+	\arrow["{\eta_M}"', from=1-1, to=1-2]
+	\arrow["\alpha", shorten <=3pt, shorten >=3pt, Rightarrow, from=0, to=1]
+\end{tikzcd}\]
+hold.
+
+If $-\otimes-$ preserves $\kappa$-filtered colimits in each variable, then the
+2-functors $FM=M\otimes M$, $GM=(M\otimes M)\otimes M+M+M$ are
+$\kappa$-accessible and we have two natural ways to go from $F$-algebras to
+$G$-algebras.
+
+The coequalizer of the resulting pair of maps on the free monads
+$TG\rightrightarrows TF$ gives us a presentation of a 2-monad $T$ as a
+coequalizer. It has $T\Alg\cong\Mon(\cM)$ by construction if $\cM$ is locally
+$\kappa$-presentable as a 2-category.
+
+Let $\cK$ be a locally $\kappa$-presentable 2-category, i.e.\ $\cV-\Cat$ and
+specifically $\Cat$, and let $\cM=[\cK,\cK]_\kappa$. Then the category of
+$\kappa$-accessible endofunctors on $\cK$, that is $\cM$, is itself locally
+$\kappa$-presentable.
+
+Notice that the composition preserves $\kappa$-filtered colimits in each
+varible. Indeed, for $F^*$ it's clear and for $F_*$ is too since $F$ is
+$\kappa$-accessible.
+
+Monoids in $\cM$ are 2-monads!
+
+To show that $2-\Mnd_\kappa(\cK)\rightarrow 2-\Mnd(\cK)$ preserves colimits we
+need the following proposition.
+
+\begin{prop}
+    Let $F$ be a strong monoidal 2-adjoint $\cM\rightarrow\cM'$. Then the right
+    2-adjoint inherits a lax monoidal structure s.t.\ unit and counit are
+    monoidal. Both 2-functors lift to the 2-categories of monoids, so
+    $\Mon(F)\colon\Mon(\cM)\rightarrow\Mon(\cM')$ is a left 2-adjoint.
+\end{prop}
+\begin{proof}
+    Exercise.
+\end{proof}
+
+We can now prove what we stated earlier.
+
+\begin{thm}
+    Let $\cK$ be a locally $\kappa$-presentable 2-category. Then the forgetful
+    2-functor
+    \[
+        2-\Mnd_\kappa(\cK)\rightarrow[\cK,\cK]_\kappa
+    \]
+    is 2-monadic and $\kappa$-accessible. In particular, $2-\Mnd_\kappa(\cK)$ is
+    a locally $\kappa$-presentable 2-category.
+    Moreover, the inclusion
+    \[
+        2-\Mnd_\kappa(\cK)\rightarrow 2-\Mnd(\cK)
+    \]
+    preserves colimits and in fact it is a left adjoint.
+\end{thm}
+\begin{proof}
+    We have $2-\Mnd_\kappa(\cK)=\Mon([\cK,\cK]_\kappa)$, so the above discussion
+    shows that there is a $\kappa$-accessible 2-monad on $[\cK,\cK]_\kappa$ with
+    $T\Alg\cong 2-\Mnd_\kappa(\cK)$.
+
+    For the second part, recall that left Kan extensions along the inclusion
+    $J\colon\cK_\kappa\rightarrow\cK$ of $\kappa$-presentable objects gives an
+    equivalence of 2-categories $[\cK_\kappa,\cK]\rightarrow[\cK,\cK]_\kappa$
+    (this is true for a general lfp cosmos ----missing bit, it was 11:23----).
+
+    It follows that the inclusion $[\cK,\cK]_\kappa\rightarrow[\cK,\cK]$ is, up
+    to equivalence, given by the left Kan extension along $J$. (Check and finish
+    this proof)
+\end{proof}
+
+This allows us to write presentations of 2-monads for 2-categories such as
+$\bbR$-linear categories, simplicial categories, etc, which has two important
+consequences: firstly, when constructing a 2-monad from free monads we may also
+use weighted colimits; secondly, since 2-monads with rank $\kappa$ are algebras
+for a 2-monad with rank $\kappa$, any general theorem we prove about algebras
+gives a corresponding 2-monad with rank $\kappa$.
+
+As we mentioned earlier, we may be interested in less strict definitions
+compared to the 1-dimensional case. Here we start considering them by specifying
+new classes of morphisms of algebras.
+
+\begin{defn}
+    Let $T$ be a 2-monad, $(A,a)$, $(B,b)$ two $T$-algebras.
+
+    A lax $T$-morphism is a pair $(f,\overline{f})$ where $f\colon A\rightarrow
+    B$ is a 1-cell and $\overline{f}\colon b\cdot Tf\rightarrow f\cdot a$ is a
+    2-cell such that the equations
+    \[\begin{tikzcd}
+        {T^2A} & TA & A & {=} & {T^2A} & TA & A \\
+        {T^2B} & TB & B && {T^2B} & TB & B
+        \arrow["a", from=1-2, to=1-3]
+        \arrow["f", from=1-3, to=2-3]
+        \arrow["b"', from=2-2, to=2-3]
+        \arrow["Tf"{description}, from=1-2, to=2-2]
+        \arrow["{T^2f}"', from=1-1, to=2-1]
+        \arrow["{\mu_B}"', from=2-1, to=2-2]
+        \arrow["{\mu_A}", from=1-1, to=1-2]
+        \arrow["{\overline{f}}", shorten <=6pt, shorten >=6pt, Rightarrow, from=2-2, to=1-3]
+        \arrow[shorten <=8pt, shorten >=8pt, Rightarrow, no head, from=2-1, to=1-2]
+        \arrow["b"', from=2-6, to=2-7]
+        \arrow["f", from=1-7, to=2-7]
+        \arrow["Tf"{description}, from=1-6, to=2-6]
+        \arrow["Tb"', from=2-5, to=2-6]
+        \arrow["a", from=1-6, to=1-7]
+        \arrow["{T^2f}"', from=1-5, to=2-5]
+        \arrow["Ta", from=1-5, to=1-6]
+        \arrow["{\overline{f}}", shorten <=6pt, shorten >=6pt, Rightarrow, from=2-6, to=1-7]
+        \arrow["{T\overline{f}}", shorten <=6pt, shorten >=6pt, Rightarrow, from=2-5, to=1-6]
+    \end{tikzcd},\]
+    \[\begin{tikzcd}
+        A & TA & A & {=} & {\id_f} \\
+        B & TB & B
+        \arrow["f", from=1-3, to=2-3]
+        \arrow["Tf"{description}, from=1-2, to=2-2]
+        \arrow["f"', from=1-1, to=2-1]
+        \arrow["{\eta_B}"', from=2-1, to=2-2]
+        \arrow["b"', from=2-2, to=2-3]
+        \arrow["a", from=1-2, to=1-3]
+        \arrow["{\eta_A}", from=1-1, to=1-2]
+        \arrow["{\overline{f}}", shorten <=6pt, shorten >=6pt, Rightarrow, from=2-2, to=1-3]
+        \arrow[shorten <=8pt, shorten >=8pt, Rightarrow, no head, from=2-1, to=1-2]
+    \end{tikzcd}\]
+    hold.
+
+    A lax $T$-morphism is a pseudo $T$-morphism if $\overline{f}$ is an
+    isomorphism and it is strict if $\overline{f}=\id$.
+
+    A colax or oplax $T$-morphism is a lax $T$-morphism with the direction of
+    $\overline{f}$ reversed and the equations adapted.
+
+    A 2-cell between lax/pseudo/strict $T$-morphisms $\alpha\colon
+    (f,\overline{f})\Rightarrow(g,\overline{g})$ is a 2-cell $\alpha\colon
+    f\Rightarrow g$ s.t.\
+    \[\begin{tikzcd}
+        TA & A & {=} & TA & A \\
+        TB & B && TB & B
+        \arrow[""{name=0, anchor=center, inner sep=0}, "g", curve={height=-12pt}, from=1-2, to=2-2]
+        \arrow[""{name=1, anchor=center, inner sep=0}, "f"', curve={height=12pt}, from=1-2, to=2-2]
+        \arrow["b"', from=2-1, to=2-2]
+        \arrow["a", from=1-1, to=1-2]
+        \arrow[""{name=2, anchor=center, inner sep=0}, "Tf"', curve={height=12pt}, from=1-1, to=2-1]
+        \arrow[""{name=3, anchor=center, inner sep=0}, "g", curve={height=-12pt}, from=1-5, to=2-5]
+        \arrow["b"', from=2-4, to=2-5]
+        \arrow["a", from=1-4, to=1-5]
+        \arrow[""{name=4, anchor=center, inner sep=0}, curve={height=-12pt}, from=1-4, to=2-4]
+        \arrow[""{name=5, anchor=center, inner sep=0}, curve={height=12pt}, from=1-4, to=2-4]
+        \arrow["T\alpha", shorten <=5pt, shorten >=5pt, Rightarrow, from=5, to=4]
+        \arrow["\alpha", shorten <=5pt, shorten >=5pt, Rightarrow, from=1, to=0]
+        \arrow["{\overline{f}}", shorten <=13pt, shorten >=13pt, Rightarrow, from=2, to=1]
+        \arrow["{\overline{g}}", shorten <=13pt, shorten >=13pt, Rightarrow, from=4, to=3]
+    \end{tikzcd}\]
+
+    We write $T\Alg_S$, $T\Alg_P$ and $T\Alg_L$ for the 2-categories of
+    $T$-algebras, strict/pseudo/lax $T$-morphisms and 2-cells as above.
+\end{defn}
+
+(Other missing bit)
+
+\backmatter
 
 \end{document}
