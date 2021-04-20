@@ -16,8 +16,6 @@
 		\vspace{.2cm}
 		\Large	Nicola Di Vittorio\\
 		\Large	Matteo Durante\\
-
-		
 	\end{center}
 \end{titlepage}
 \thispagestyle{empty}\doclicenseThis
@@ -27,7 +25,9 @@
 
 \mainmatter
 
-\chapter*{Introduction}
+\chapter*{2-Monads and Their 2-Categories of Algebras}
+
+\section{Introduction}
 
 These notes will focus on 2-dimensional monad theory, which can be viewed as the
 study of algebraic structures on 2-categories. Like in the one-dimensional case,
@@ -203,7 +203,7 @@ We can now prove what we stated earlier.
     this proof)
 \end{proof}
 
-This allows us to write presentations of 2-monads for 2-categories such as
+This will allows us to write presentations of 2-monads for 2-categories such as
 $\bbR$-linear categories, simplicial categories, etc, which has two important
 consequences: firstly, when constructing a 2-monad from free monads we may also
 use weighted colimits; secondly, since 2-monads with rank $\kappa$ are algebras
@@ -290,6 +290,351 @@ new classes of morphisms of algebras.
 \end{defn}
 
 (Other missing bit)
+
+\section{Presentations of 2-Monads}
+
+We have defined two 2-categories $T\Alg_P$, $T\Alg_L$ of pseudo and lax
+morphisms respectively for a 2-monad $T$. We want to understand how to describe
+them when $T$ is given by a presentation.
+
+We remember that in a complete 2-category $\cK$ we have a 2-endofunctor
+$<A,B>\colon\cK\rightarrow\cK$ for each pair of objects $A$, $B$ in $\cK$ given
+by the right Kan extension of $B\colon *\rightarrow\cK$ along $A\colon
+*\rightarrow\cK$. In particular, $<A,B>C=B^{\cK(C,A)}$ and, if $A=B$, this
+defines a 2-monad, just like in the 1-dimensional case. Moreover, the 2-monad
+morphisms $T\Rightarrow<A,B>$ are in natural bijection with $T$-algebra
+structures on $A$.
+
+Now we can form for any pair of 1-cells $f,g\colon A\rightarrow B$ in $\cK$ the
+(iso???) comma object
+\[\begin{tikzcd}
+	{\{f,g\}_{p/l}} & {<A,A>} \\
+	{<B,B>} & {<A,B>}
+	\arrow["d"', from=1-1, to=2-1]
+	\arrow["{<A,f>}", from=1-2, to=2-2]
+	\arrow["c", from=1-1, to=1-2]
+	\arrow["{<g,B>}"', from=2-1, to=2-2]
+	\arrow["\lambda"', shorten <=10pt, shorten >=10pt, Rightarrow, from=1-2, to=2-1]
+\end{tikzcd}\]
+
+in $[\cK,\cK]$. If $f=g$, then this is again a 2-monad and 2-monad morphisms
+$T\rightarrow\{f,f\}_{p/l}$ correspond to (pseudo) lax $T$-morphism structures
+on the 1-cell $f$. More precisely, such a morphism corresponds to a $T$-algebra
+structure on $A$ and one on $B$, namely $c\cdot\gamma$ and $d\cdot\gamma$ and a
+(invertible) 2-cell $\overline{f}\colon Tf\cdot b\Rightarrow f\cdot a$
+corresponding to $\lambda\cdot\gamma$ s.t.\ $(f,\overline{f})$ is a lax (pseudo)
+$T$-morphism.
+\[\begin{tikzcd}
+	{[\rho,\rho]} & {\{f,f\}} \\
+	{\{g,g\}_l} & {\{f,g\}_l}
+	\arrow["{\{f,\rho\}_l}", from=1-2, to=2-2]
+	\arrow[from=1-1, to=1-2]
+	\arrow["{\{\rho,g\}_l}"', from=2-1, to=2-2]
+	\arrow[from=1-1, to=2-1]
+	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
+\end{tikzcd}\]
+which inherits a 2-monad structure for which a 2-monad morphism $T\Rightarrow
+[\rho,\rho]$ exists if and only if $\rho$ is a $T$-transformation between
+$(f,\overline{f})$ and $(g,\overline{g})$.
+
+These facts can be used to identify $T\Alg_P$ and $T\Alg_S$ is $T$ is given as a
+(weighted) colimit of free monads.
+
+\begin{exmp}
+    Let's consider the 2-monad of monads in a monoidal 2-category $\cM$ as
+    above, i.e.\ locally $\kappa$-presentable with $-\otimes-$ preserving
+    $\kappa$-filtered colimits in each variable. As we saw, we define
+    $FM=M\otimes M+I$, $GM=(M\otimes M)\otimes M+M+M$. Let's write $T(F)$,
+    $T(G)$ for the free 2-monads on these 2-endofunctors.
+
+    There is a natural 2-functor $T(F)\Alg_S\rightarrow T(G)\Alg_S$ sending
+    $(M,p,u)$ to $(M,p\cdot(p\otimes u),p\cdot(u\otimes M))$ and there is
+    another two functor mapping it to $(M,p\cdot(M\otimes p),\id_M,\id_M)$.
+    These correspond to 2-monad morphisms and the 2-monad for monoids is exactly
+    its coequalizer.
+\end{exmp}
+
+A relevant question: what would happen if we considered lax/pseudo
+$T$-morphisms in this case? The simple existence of $\{f,f\}_l$ tells us that
+this is some kind of equalizer, however there is a problem: what is $T(F)\Alg_l$
+and what does the 2-functor $T(F)\Alg_l\rightarrow T(G)\Alg_l$ look like?
+
+From $T(F) wiggly arrow \{f,f\}_l$ we get a morphism $T\rightarrow
+T(F)\rightarrow\{f,f\}_l$, which is however hard to analyze. This requires a bit
+of a detour.
+
+\begin{thm}[doctrinal adjunction]
+    Let $(f,\overline{f})\colon(A,a)\rightarrow(B,b)$ be a pseudo $T$-morphism
+    s.t.\ $f$ is a left adjoint to $u\colon B\rightarrow A$ with unit $\eta$ and
+    counit $\epsilon$. Then there exists a unique lax $T$-morphism structure
+    $\overline{u}$ on $u$ s.t.\ $\eta$ and $\epsilon$ are $T$-transormations.
+\end{thm}
+\begin{proof}
+    We shall prove uniqueness. For this, we observe that the equality
+    \[\begin{tikzcd}
+        TA & A &&& TA && A \\
+        && B & {=} && TB && B \\
+        TA & A &&& TA && A
+        \arrow["a", from=1-1, to=1-2]
+        \arrow["f", from=1-2, to=2-3]
+        \arrow[""{name=0, anchor=center, inner sep=0}, Rightarrow, no head, from=1-1, to=3-1]
+        \arrow[""{name=1, anchor=center, inner sep=0}, Rightarrow, no head, from=1-2, to=3-2]
+        \arrow["u", from=2-3, to=3-2]
+        \arrow["a", from=3-1, to=3-2]
+        \arrow["a"', from=3-5, to=3-7]
+        \arrow["a", from=1-5, to=1-7]
+        \arrow[""{name=2, anchor=center, inner sep=0}, Rightarrow, no head, from=1-5, to=3-5]
+        \arrow[""{name=3, anchor=center, inner sep=0}, "f", from=1-7, to=2-8]
+        \arrow[""{name=4, anchor=center, inner sep=0}, "u", from=2-8, to=3-7]
+        \arrow["b"{pos=0.3}, from=2-6, to=2-8]
+        \arrow[""{name=5, anchor=center, inner sep=0}, "Tf", from=1-5, to=2-6]
+        \arrow[""{name=6, anchor=center, inner sep=0}, "Tu", from=2-6, to=3-5]
+        \arrow[shorten <=13pt, shorten >=13pt, Rightarrow, no head, from=0, to=1]
+        \arrow["T\eta", shorten <=10pt, shorten >=10pt, Rightarrow, from=2, to=2-6]
+        \arrow["{\overline{b}}", shorten <=26pt, shorten >=26pt, Rightarrow, from=6, to=4]
+        \arrow["{\overline{f}}", shorten <=26pt, shorten >=26pt, Rightarrow, from=5, to=3]
+        \arrow["\eta", shorten <=10pt, shorten >=10pt, Rightarrow, from=1, to=2-3]
+    \end{tikzcd}\]
+    implies that (is the $\overline{f}$ inverted???)
+    \[\begin{tikzcd}
+        TA & TB & B & {=} & TA & TB \\
+        & TA & A && A & B \\
+        &&&&& A
+        \arrow[""{name=0, anchor=center, inner sep=0}, "u", from=1-3, to=2-3]
+        \arrow[""{name=1, anchor=center, inner sep=0}, "Tu"{description}, from=1-2, to=2-2]
+        \arrow["Tf", from=1-1, to=1-2]
+        \arrow["b", from=1-2, to=1-3]
+        \arrow["a"', from=2-2, to=2-3]
+        \arrow[""{name=2, anchor=center, inner sep=0}, Rightarrow, no head, from=1-1, to=2-2]
+        \arrow[""{name=3, anchor=center, inner sep=0}, Rightarrow, no head, from=2-5, to=3-6]
+        \arrow[""{name=4, anchor=center, inner sep=0}, "u", from=2-6, to=3-6]
+        \arrow["f", from=2-5, to=2-6]
+        \arrow[""{name=5, anchor=center, inner sep=0}, "b", from=1-6, to=2-6]
+        \arrow[""{name=6, anchor=center, inner sep=0}, "a", from=1-5, to=2-5]
+        \arrow["Tf", from=1-5, to=1-6]
+        \arrow["{\overline{u}}", shorten <=13pt, shorten >=13pt, Rightarrow, from=1, to=0]
+        \arrow["T\eta", shorten <=6pt, shorten >=6pt, Rightarrow, from=2, to=1]
+        \arrow["{\overline{f}^{-1}}", shorten <=13pt, shorten >=13pt, Rightarrow, from=6, to=5]
+        \arrow["\eta", shorten <=6pt, shorten >=6pt, Rightarrow, from=3, to=4]
+    \end{tikzcd}\]
+    and
+    \[\begin{tikzcd}
+        TB & B & {=} & draw \\
+        TA & A & {}
+        \arrow["b", from=1-1, to=1-2]
+        \arrow["a"', from=2-1, to=2-2]
+        \arrow[""{name=0, anchor=center, inner sep=0}, "u", from=1-2, to=2-2]
+        \arrow[""{name=1, anchor=center, inner sep=0}, "Tu"', from=1-1, to=2-1]
+        \arrow["{\overline{u}}", shorten <=13pt, shorten >=13pt, Rightarrow, from=1, to=0]
+    \end{tikzcd}\]
+    by the triangle identities for $Tf\dashv Tu$.
+
+    For existance, $(u,\overline{u})$ is a lax $T$-morphism with the desired
+    properties by exercise 13.4 from the previous course.
+\end{proof}
+
+We now study a kind of limit existing in $T\Alg_l$.
+
+\begin{defn}
+    Given a 2-category $\cK$ and an arrow $f\colon A\rightarrow B$ in it, it
+    colax limit is the universal 2-cell
+    \[\begin{tikzcd}
+        & C && {} \\
+        A && B
+        \arrow["q", from=1-2, to=2-3]
+        \arrow["p"', from=1-2, to=2-1]
+        \arrow[""{name=0, anchor=center, inner sep=0}, "f"', from=2-1, to=2-3]
+        \arrow["\lambda"', shorten <=6pt, shorten >=6pt, Rightarrow, from=1-2, to=0]
+    \end{tikzcd}\]
+    in $\cK$. This means that for each $a\colon X\rightarrow A$, $b\colon
+    X\rightarrow B$ and $\alpha\colon f\cdot a\rightarrow b$ there exists a
+    unique 1-cell $t\colon X\rightarrow C$ s.t.\
+    \[\begin{tikzcd}
+        & X && {=} && X \\
+        A && B &&& C \\
+        &&&& A && B
+        \arrow["b", from=1-2, to=2-3]
+        \arrow["a"', from=1-2, to=2-1]
+        \arrow[""{name=0, anchor=center, inner sep=0}, "f"', from=2-1, to=2-3]
+        \arrow["q", from=2-6, to=3-7]
+        \arrow["p"', from=2-6, to=3-5]
+        \arrow[""{name=1, anchor=center, inner sep=0}, "f"', from=3-5, to=3-7]
+        \arrow["t", from=1-6, to=2-6]
+        \arrow["\alpha"', shorten <=6pt, shorten >=6pt, Rightarrow, from=1-2, to=0]
+        \arrow["\lambda"', shorten <=6pt, shorten >=6pt, Rightarrow, from=2-6, to=1]
+    \end{tikzcd}\]
+    holds. The 2-dimensional universal property asserts that for all $a'\colon
+    A\rightarrow A$, $b'\colon X\rightarrow B$, $\alpha'\colon b'\rightarrow
+    f\cdot a'$ and 2-cells $\gamma\colon a\Rightarrow a'$, $\delta\colon
+    b\Rightarrow b'$ with
+    \[\begin{tikzcd}
+        && {} \\
+        X & {} &&& {} && X \\
+        && B & {=} & A \\
+        A &&&&&& B
+        \arrow[""{name=0, anchor=center, inner sep=0}, "{a'}"', curve={height=12pt}, from=2-1, to=4-1]
+        \arrow[""{name=1, anchor=center, inner sep=0}, "a", curve={height=-12pt}, from=2-1, to=4-1]
+        \arrow[""{name=2, anchor=center, inner sep=0}, "b", curve={height=-6pt}, from=2-1, to=3-3]
+        \arrow[""{name=3, anchor=center, inner sep=0}, "f"', curve={height=6pt}, from=4-1, to=3-3]
+        \arrow["{a'}"', curve={height=6pt}, from=2-7, to=3-5]
+        \arrow["f"', curve={height=6pt}, from=3-5, to=4-7]
+        \arrow[""{name=4, anchor=center, inner sep=0}, "b", curve={height=-12pt}, from=2-7, to=4-7]
+        \arrow[""{name=5, anchor=center, inner sep=0}, "{b'}"', curve={height=12pt}, from=2-7, to=4-7]
+        \arrow["\gamma"', shorten <=4pt, shorten >=4pt, Rightarrow, from=1, to=0]
+        \arrow["\alpha", shorten <=12pt, shorten >=12pt, Rightarrow, from=2, to=3]
+        \arrow["{\alpha'}"', shorten <=18pt, shorten >=18pt, Rightarrow, from=5, to=3-5]
+        \arrow["\delta"', shorten <=4pt, shorten >=4pt, Rightarrow, from=4, to=5]
+    \end{tikzcd}\]
+    there exists a unique 2-cell $\phi\colon t\Rightarrow t'$ s.t.\
+    $p\cdot\phi=\gamma$, $q\cdot\phi=\delta$.
+
+    Notice that this is precisely the comma object
+    \[\begin{tikzcd}
+        {\id\downarrow f} & B \\
+        A & B
+        \arrow[from=1-1, to=2-1]
+        \arrow["f", from=2-1, to=2-2]
+        \arrow[Rightarrow, no head, from=1-2, to=2-2]
+        \arrow[from=1-1, to=1-2]
+        \arrow[shorten <=9pt, shorten >=9pt, Rightarrow, from=1-2, to=2-1]
+    \end{tikzcd}\]
+    in $\cK$. This is a weighted limit in the enriched sense, hence defined via
+    an isomorphism of categories and not just an equivalence.
+
+    The pseudo limit of $f$ is the analogous construction with $\lambda$ and
+    $\alpha$ invertible. The lax limit has the direction of $\lambda$ reversed.
+\end{defn}
+
+We can now state the following.
+
+\begin{prop}
+    Let $\cK$ be a 2-category with colax limits of arrows and $T$ a 2-monad on
+    it. For any 1-cell $(f,\overline{f})\colon (A,a)\rightsquigarrow (B,b)$ in
+    $T\Alg_l$ there exists a unique $T$-algebra structure on the colax limit of
+    $f$ s.t.\ the projections are strict 2-morphisms. The 2-cell
+    \[\begin{tikzcd}
+        & C && {} \\
+        A && B
+        \arrow["q", from=1-2, to=2-3]
+        \arrow["p"', from=1-2, to=2-1]
+        \arrow[""{name=0, anchor=center, inner sep=0}, "f"', rightsquigarrow, from=2-1, to=2-3]
+        \arrow["\lambda"', shorten <=6pt, shorten >=6pt, Rightarrow, from=1-2, to=0]
+    \end{tikzcd}\]
+    is a $T$-transformation and $(G,\lambda)$ is a colax limit in $T\Alg_l$.
+    Moreover, $p$ and $q$ jointly detect strict morphisms, that is a 1-cell
+    $t\colon X\rightarrow C$ is strict if and only if $pt$ and $qt$ are strict.
+    In particular, the colax limit of $(f,\overline{f})$ exists and it is
+    strictly presented by the forgetful 2-functor $U_l\colon
+    T\Alg_l\rightarrow\cK$.
+\end{prop}
+\begin{proof}
+    There exists a unique 1-cell $c\colon TC\rightarrow C$ s.t.\ the equation
+    \[\begin{tikzcd}
+        & TA & A &&&& A \\
+        TC &&& {=} & TC & C \\
+        & TB & B &&&& B
+        \arrow[""{name=0, anchor=center, inner sep=0}, "Tq"', from=2-1, to=3-2]
+        \arrow["b"', from=3-2, to=3-3]
+        \arrow[""{name=1, anchor=center, inner sep=0}, "f", from=1-3, to=3-3]
+        \arrow[""{name=2, anchor=center, inner sep=0}, "Tf"{description}, from=1-2, to=3-2]
+        \arrow["a", from=1-2, to=1-3]
+        \arrow["Tp", from=2-1, to=1-2]
+        \arrow["f", from=1-7, to=3-7]
+        \arrow[""{name=3, anchor=center, inner sep=0}, "q"', from=2-6, to=3-7]
+        \arrow["p", from=2-6, to=1-7]
+        \arrow["c", from=2-5, to=2-6]
+        \arrow["T\lambda", shorten <=12pt, shorten >=12pt, Rightarrow, from=0, to=1-2]
+        \arrow["{\overline{f}}", shorten <=13pt, shorten >=13pt, Rightarrow, from=2, to=1]
+        \arrow["\lambda", shorten <=12pt, shorten >=12pt, Rightarrow, from=3, to=1-7]
+    \end{tikzcd}\]
+    holds. Note that the direction of $\lambda$ is important! Since $p\cdot
+    c=a\cdot Tp$, $q\cdot c=b\cdot Tq$, so if we can show that $(C,c)$ is a
+    $T$-algebra then $p$ and $q$ are strict $T$-morphisms. Similarly, the above
+    equation then says that $\lambda$ is a $T$-transformation.
+
+    Applying $T$ to the above equation and whiskering the result on the right
+    with $\overline{f}$ gives
+    \[\begin{tikzcd}
+        & {T^2A} & TA & A &&&& TA & A \\
+        {T^2C} &&&& {=} & {T^2C} & TC \\
+        & {T^2B} & TB & B &&&& TB & B
+        \arrow[""{name=0, anchor=center, inner sep=0}, "{T^2q}"', from=2-1, to=3-2]
+        \arrow["Tb"', from=3-2, to=3-3]
+        \arrow[""{name=1, anchor=center, inner sep=0}, "Tf"{description}, from=1-3, to=3-3]
+        \arrow[""{name=2, anchor=center, inner sep=0}, "{T^2f}"{description}, from=1-2, to=3-2]
+        \arrow["Ta", from=1-2, to=1-3]
+        \arrow["{T^2p}", from=2-1, to=1-2]
+        \arrow["b", from=3-3, to=3-4]
+        \arrow[""{name=3, anchor=center, inner sep=0}, "f", from=1-4, to=3-4]
+        \arrow["a", from=1-3, to=1-4]
+        \arrow[""{name=4, anchor=center, inner sep=0}, "f", from=1-9, to=3-9]
+        \arrow["b"', from=3-8, to=3-9]
+        \arrow[""{name=5, anchor=center, inner sep=0}, "Tf"{description}, from=1-8, to=3-8]
+        \arrow["a", from=1-8, to=1-9]
+        \arrow["Tp", from=2-7, to=1-8]
+        \arrow[""{name=6, anchor=center, inner sep=0}, "Tq"', from=2-7, to=3-8]
+        \arrow["Tc", from=2-6, to=2-7]
+        \arrow["{T^2\lambda}", shorten <=12pt, shorten >=12pt, Rightarrow, from=0, to=1-2]
+        \arrow["{T\overline{f}}", shorten <=13pt, shorten >=13pt, Rightarrow, from=2, to=1]
+        \arrow["{\overline{f}}", shorten <=13pt, shorten >=13pt, Rightarrow, from=1, to=3]
+        \arrow["{\overline{f}}", shorten <=13pt, shorten >=13pt, Rightarrow, from=5, to=4]
+        \arrow["T\lambda", shorten <=12pt, shorten >=12pt, Rightarrow, from=6, to=1-8]
+    \end{tikzcd}\]
+    Notice that the diagram on the right reduces to
+    \[\begin{tikzcd}
+        && {} & A \\
+        {T^2C} & TC & C \\
+        &&& B
+        \arrow["Tc", from=2-1, to=2-2]
+        \arrow["c", from=2-2, to=2-3]
+        \arrow[""{name=0, anchor=center, inner sep=0}, "q"', from=2-3, to=3-4]
+        \arrow["p", from=2-3, to=1-4]
+        \arrow["f", from=1-4, to=3-4]
+        \arrow["\lambda", shorten <=12pt, shorten >=12pt, Rightarrow, from=0, to=1-4]
+    \end{tikzcd}\]
+    and applying the axioms for a lax T-morphism and the 2-naturality of
+    $\mu\colon T^2\Rightarrow T$, we find that the left hand side above is
+    \[\begin{tikzcd}
+        && {T^2A} & TA & A \\
+        & {T^2C} \\
+        && {T^2B} & TB & B \\
+        &&& TA & A \\
+        {=} & {T^2C} & TC \\
+        &&& TB & B \\
+        &&&& A \\
+        {=} & {T^2C} & TC & C \\
+        &&&& B
+        \arrow[""{name=0, anchor=center, inner sep=0}, "{T^2q}"', from=2-2, to=3-3]
+        \arrow["a", from=1-4, to=1-5]
+        \arrow[""{name=1, anchor=center, inner sep=0}, "f", from=1-5, to=3-5]
+        \arrow["Tb"', from=3-3, to=3-4]
+        \arrow[""{name=2, anchor=center, inner sep=0}, "Tf"{description}, from=1-4, to=3-4]
+        \arrow["b", from=3-4, to=3-5]
+        \arrow[""{name=3, anchor=center, inner sep=0}, "{T^2f}"{description}, from=1-3, to=3-3]
+        \arrow["Ta", from=1-3, to=1-4]
+        \arrow["{T^2p}", from=2-2, to=1-3]
+        \arrow[""{name=4, anchor=center, inner sep=0}, "f", from=4-5, to=6-5]
+        \arrow["a", from=4-4, to=4-5]
+        \arrow["b"', from=6-4, to=6-5]
+        \arrow[""{name=5, anchor=center, inner sep=0}, "Tq"', from=5-3, to=6-4]
+        \arrow["Tp", from=5-3, to=4-4]
+        \arrow[""{name=6, anchor=center, inner sep=0}, "Tf"{description}, from=4-4, to=6-4]
+        \arrow["{\mu_C}", from=5-2, to=5-3]
+        \arrow["f", from=7-5, to=9-5]
+        \arrow[""{name=7, anchor=center, inner sep=0}, "q"', from=8-4, to=9-5]
+        \arrow["p", from=8-4, to=7-5]
+        \arrow["c", from=8-3, to=8-4]
+        \arrow["{\mu_C}", from=8-2, to=8-3]
+        \arrow["{\overline{f}}", shorten <=13pt, shorten >=13pt, Rightarrow, from=2, to=1]
+        \arrow["{T^2\lambda}", shorten <=12pt, shorten >=12pt, Rightarrow, from=0, to=1-3]
+        \arrow["{T\overline{f}}", shorten <=13pt, shorten >=13pt, Rightarrow, from=3, to=2]
+        \arrow["T\lambda", shorten <=12pt, shorten >=12pt, Rightarrow, from=5, to=4-4]
+        \arrow["{\overline{f}}", shorten <=13pt, shorten >=13pt, Rightarrow, from=6, to=4]
+        \arrow["\lambda", shorten <=12pt, shorten >=12pt, Rightarrow, from=7, to=7-5]
+    \end{tikzcd}\]
+    so from the 1-dimensional universal property it follows that
+    $c\cdot\mu_C=c\cdot Tc$.
+\end{proof}
 
 \backmatter
 
