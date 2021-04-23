@@ -654,8 +654,8 @@ in $T\Alg_l$. This is a $2$-cell $\alpha\colon h\Rightarrow fg$ in $\K$ subject 
 	\arrow["b"', from=3-2, to=3-3]
 	\arrow[""{name=1, anchor=center, inner sep=0}, "f", from=1-3, to=3-3]
 	\arrow[""{name=2, anchor=center, inner sep=0}, "Tf"{description}, from=1-2, to=3-2]
-	\arrow["{\bar{f}}", shorten <=6pt, shorten >=6pt, Rightarrow, from=2, to=1]
-	\arrow["T\alpha", shorten <=6pt, shorten >=6pt, Rightarrow, from=0, to=1-2]
+	\arrow["{\bar{f}}", shorten <=17pt, shorten >=17pt, Rightarrow, from=2, to=1]
+	\arrow["T\alpha", shorten <=17pt, shorten >=17pt, Rightarrow, from=0, to=1-2]
 \end{tikzcd}\]
 and the composite $\lambda\cdot t\cdot x$ corresponds to the $2$-cell 
 \[\begin{tikzcd}
@@ -667,9 +667,269 @@ and the composite $\lambda\cdot t\cdot x$ corresponds to the $2$-cell
 	\arrow["h"', from=2-2, to=3-3]
 	\arrow["f", from=1-3, to=3-3]
 \end{tikzcd}\]
-in $\K$. Since $\alpha$ is a $2$-cell in $T\Alg_l$, comparing the first of these with $\bar{g}\colon a\cdot Tg \Rightarrow g\cdot x$, we get the $2$-cell $\alpha\cdot x$ compared with $\bar{h}\colon b\cdot Th\Rightarrow h\cdot x$. In other words, $\bar{g}$ and $\bar{h}$ satisfy the defining equations for $2$-cells in the $2$-dimensional universal property of the colax limit of $f$. Thus there exists a unique $2$-cell $\bar{t}\colon c\cdot Tt \Rightarrow t\cdot x$ s.t.\ $p\cdot\bar{t} = \bar{g}$ and $q\cdot\bar{t}=\bar{h}$. If we can show that 
+in $\K$. Since $\alpha$ is a $2$-cell in $T\Alg_l$, comparing the first of these with $\bar{g}\colon a\cdot Tg \Rightarrow g\cdot x$, we get the $2$-cell $\alpha\cdot x$ compared with $\bar{h}\colon b\cdot Th\Rightarrow h\cdot x$. In other words, $\bar{g}$ and $\bar{h}$ satisfy the defining equations for $2$-cells in the $2$-dimensional universal property of the colax limit of $f$. Thus there exists a unique $2$-cell $\bar{t}\colon c\cdot Tt \Rightarrow t\cdot x$ s.t.\ $p\cdot\bar{t} = \bar{g}$ and $q\cdot\bar{t}=\bar{h}$. If we can show that $(t,\bar{t})$ is a lax $T$-morphism, then these last equations show $p\cdot (t,\bar{t})=(g,\bar{g})$ and $q\cdot (t,\bar{t})=(h,\bar{h})$ as $1$-cells in $T\Alg_l$. Conversely, the equations also show that $(t,\bar{t})$ is unique. As a diagram, the equation $p\bar{t}=\bar{g}$ looks like
+\[\begin{tikzcd}
+	& X &&&&& X \\
+	TX && C & A & {=} & TX & {} & A \\
+	& TC &&&&& TA \\
+	& TA
+	\arrow["x", from=2-1, to=1-2]
+	\arrow["t", from=1-2, to=2-3]
+	\arrow[""{name=0, anchor=center, inner sep=0}, "Tt"', from=2-1, to=3-2]
+	\arrow[""{name=1, anchor=center, inner sep=0}, "c"', from=3-2, to=2-3]
+	\arrow["Tp"', from=3-2, to=4-2]
+	\arrow[""{name=2, anchor=center, inner sep=0}, "Tg"', curve={height=12pt}, from=2-1, to=4-2]
+	\arrow[""{name=3, anchor=center, inner sep=0}, "g", curve={height=-12pt}, from=1-2, to=2-4]
+	\arrow["p"', from=2-3, to=2-4]
+	\arrow[""{name=4, anchor=center, inner sep=0}, "a"', curve={height=24pt}, from=4-2, to=2-4]
+	\arrow["{\bar{t}}"', shorten <=20pt, shorten >=20pt, Rightarrow, from=3-2, to=1-2]
+	\arrow["x", from=2-6, to=1-7]
+	\arrow["g", from=1-7, to=2-8]
+	\arrow["Tg"', from=2-6, to=3-7]
+	\arrow["a"', from=3-7, to=2-8]
+	\arrow[shorten <=20pt, shorten >=20pt, Rightarrow, from=3-7, to=1-7]
+	\arrow["{\bar{g}}"', shift left=4, Rightarrow, draw=none, from=3-7, to=1-7]
+	\arrow[shorten <=15pt, shorten >=15pt, Rightarrow, no head, from=1, to=4]
+	\arrow[shift left=3, shorten <=7pt, shorten >=5pt, Rightarrow, no head, from=0, to=2]
+	\arrow[shorten <=4pt, shorten >=4pt, Rightarrow, no head, from=3, to=2-3]
+\end{tikzcd}\]
+in $\K$. Applying $T$ to this equation and composing with $Tg$ we get 
+\[\begin{tikzcd}[column sep=5mm, row sep=5mm]
+	&& X \\
+	& TX && C &&&&& X \\
+	{T^2X} && TC && A & {=} && TX && A \\
+	& {T^2C} && TA &&& {T^2X} && TA \\
+	&& {T^2A} &&&&& {T^2A} & {}&.
+	\arrow["Tx", from=3-1, to=2-2]
+	\arrow["x", from=2-2, to=1-3]
+	\arrow["t", from=1-3, to=2-4]
+	\arrow["Tt", from=2-2, to=3-3]
+	\arrow["{T^2t}", from=3-1, to=4-2]
+	\arrow["Tc"', from=4-2, to=3-3]
+	\arrow["c"', from=3-3, to=2-4]
+	\arrow["p", from=2-4, to=3-5]
+	\arrow["Tp", from=3-3, to=4-4]
+	\arrow[""{name=0, anchor=center, inner sep=0}, "g", curve={height=-35pt}, from=1-3, to=3-5]
+	\arrow["{T^2p}", from=4-2, to=5-3]
+	\arrow["Ta"', from=5-3, to=4-4]
+	\arrow["{T\bar{t}}"', shorten <=15pt, shorten >=15pt, Rightarrow, from=4-2, to=2-2]
+	\arrow["{\bar{t}}"', shorten <=15pt, shorten >=15pt, Rightarrow, from=3-3, to=1-3]
+	\arrow[""{name=1, anchor=center, inner sep=0}, "{T^2g}"', curve={height=35pt}, from=3-1, to=5-3]
+	\arrow["Tx", from=4-7, to=3-8]
+	\arrow["x", from=3-8, to=2-9]
+	\arrow["g", from=2-9, to=3-10]
+	\arrow["{T^2g}"', from=4-7, to=5-8]
+	\arrow["{T\bar{g}}", shorten <=15pt, shorten >=15pt, Rightarrow, from=5-8, to=3-8]
+	\arrow["a"', from=4-4, to=3-5]
+	\arrow["Tg"', from=3-8, to=4-9]
+	\arrow["Ta"', from=5-8, to=4-9]
+	\arrow["a"', from=4-9, to=3-10]
+	\arrow["{\bar{g}}", shorten <=15pt, shorten >=15pt, Rightarrow, from=4-9, to=2-9]
+	\arrow[shorten <=18pt, shorten >=18pt, Rightarrow, no head, from=4-4, to=2-4]
+	\arrow[shorten <=18pt, shorten >=18pt, Rightarrow, no head, from=5-3, to=3-3]
+	\arrow[shorten >=6pt, Rightarrow, no head, from=2-4, to=0]
+	\arrow[shorten >=8pt, Rightarrow, no head, from=4-2, to=1]
+\end{tikzcd}\]
+Using the fact that $(g,\bar{g})$ is a lax $T$-morphism and the $2$-naturality of $\mu\colon T^2\Rightarrow T$ we find that the above $2$-cell is equal to
+\[\begin{tikzcd}[column sep=5mm, row sep=5mm]
+	&& X &&&&& X \\
+	& TX && A &&& TX && C & A \\
+	{T^2X} & TC & TA && {=^{\text{from}}_{p\bar{t}=\bar{g}}} & {T^2X} && TC \\
+	& {T^2C} & {T^2A} &&&& {T^2C} &&&.
+	\arrow["g", from=1-3, to=2-4]
+	\arrow["x", from=2-2, to=1-3]
+	\arrow[""{name=0, anchor=center, inner sep=0}, "Tg", from=2-2, to=3-3]
+	\arrow["a"', from=3-3, to=2-4]
+	\arrow["Tt"', from=2-2, to=3-2]
+	\arrow[""{name=1, anchor=center, inner sep=0}, "Tp"', from=3-2, to=3-3]
+	\arrow[""{name=2, anchor=center, inner sep=0}, "{\mu_X}", from=3-1, to=2-2]
+	\arrow[""{name=3, anchor=center, inner sep=0}, "{T^2t}"', from=3-1, to=4-2]
+	\arrow["{\mu_C}", from=4-2, to=3-2]
+	\arrow["{\mu_A}"', from=4-3, to=3-3]
+	\arrow["{\mu_X}", from=3-6, to=2-7]
+	\arrow["x", from=2-7, to=1-8]
+	\arrow["{T^2t}"', from=3-6, to=4-7]
+	\arrow["{\mu_C}"', from=4-7, to=3-8]
+	\arrow["c"', from=3-8, to=2-9]
+	\arrow["t", from=1-8, to=2-9]
+	\arrow["Tt"', from=2-7, to=3-8]
+	\arrow["p", from=2-9, to=2-10]
+	\arrow["{\bar{g}}"', shorten <=15pt, shorten >=15pt, Rightarrow, from=3-3, to=1-3]
+	\arrow[""{name=4, anchor=center, inner sep=0}, "{T^2p}"', from=4-2, to=4-3]
+	\arrow["{\bar{t}}"', shorten <=15pt, shorten >=15pt, Rightarrow, from=3-8, to=1-8]
+	\arrow[shorten <=20pt, shorten >=20pt, Rightarrow, no head, from=4-7, to=2-7]
+	\arrow[shorten <=1pt, shorten >=4pt, Rightarrow, no head, from=3-2, to=0]
+	\arrow[shift right=2, shorten <=15pt, shorten >=9pt, Rightarrow, no head, from=3, to=2]
+	\arrow[shorten <=12pt, shorten >=12pt, Rightarrow, no head, from=4, to=1]
+\end{tikzcd}\]
+A similar argument shows that the equality
+\[\begin{tikzcd}[column sep=5mm, row sep=5mm]
+	&& X & B &&&& X & B \\
+	& TX && C & {=} && TX && C \\
+	{T^2X} && TC && {} & {T^2X} && TC \\
+	& {T^2C} &&&&& {T^2C}
+	\arrow["Tx", from=3-1, to=2-2]
+	\arrow["x", from=2-2, to=1-3]
+	\arrow["t", from=1-3, to=2-4]
+	\arrow["Tt", from=2-2, to=3-3]
+	\arrow["c"', from=3-3, to=2-4]
+	\arrow["{T^2t}"', from=3-1, to=4-2]
+	\arrow["Tc"', from=4-2, to=3-3]
+	\arrow["q"', from=2-4, to=1-4]
+	\arrow["{\mu_X}", from=3-6, to=2-7]
+	\arrow["x", from=2-7, to=1-8]
+	\arrow["t", from=1-8, to=2-9]
+	\arrow["Tt"', from=2-7, to=3-8]
+	\arrow["c"', from=3-8, to=2-9]
+	\arrow["{T^2t}"', from=3-6, to=4-7]
+	\arrow["{\mu_C}"', from=4-7, to=3-8]
+	\arrow["q"', from=2-9, to=1-9]
+	\arrow["{T\bar{t}}"', shorten <=13pt, shorten >=13pt, Rightarrow, from=4-2, to=2-2]
+	\arrow["{\bar{t}}"', shorten <=13pt, shorten >=13pt, Rightarrow, from=3-3, to=1-3]
+	\arrow["{\bar{t}}"', shorten <=13pt, shorten >=13pt, Rightarrow, from=3-8, to=1-8]
+	\arrow[shorten <=13pt, shorten >=13pt, Rightarrow, no head, from=4-7, to=2-7]
+\end{tikzcd}\]
+holds. From the uniqueness part of the $2$-dimensional universal property it follows that the equation
+\[\begin{tikzcd}
+	{T^2X} & TX & X & {} & {T^2X} & TX & X \\
+	{T^2C} & TC & C & {} & {T^2C} & TC & C
+	\arrow["Tx", from=1-1, to=1-2]
+	\arrow["x", from=1-2, to=1-3]
+	\arrow[""{name=0, anchor=center, inner sep=0}, "t", from=1-3, to=2-3]
+	\arrow[""{name=1, anchor=center, inner sep=0}, "Tt"', from=1-2, to=2-2]
+	\arrow["c"', from=2-2, to=2-3]
+	\arrow[""{name=2, anchor=center, inner sep=0}, "{T^2t}"', from=1-1, to=2-1]
+	\arrow["Tc"', from=2-1, to=2-2]
+	\arrow["{\mu_X}", from=1-5, to=1-6]
+	\arrow["{T^2t}"', from=1-5, to=2-5]
+	\arrow["{\mu_C}"', from=2-5, to=2-6]
+	\arrow["Tt"', from=1-6, to=2-6]
+	\arrow["x", from=1-6, to=1-7]
+	\arrow["t", from=1-7, to=2-7]
+	\arrow["c"', from=2-6, to=2-7]
+	\arrow["{=}"{description}, draw=none, from=1-4, to=2-4]
+	\arrow["{T\bar{z}}", shorten <=20pt, shorten >=20pt, Rightarrow, from=2, to=1]
+	\arrow["{\bar{z}}", shorten <=18pt, shorten >=18pt, Rightarrow, from=1, to=0]
+\end{tikzcd}\]
+holds. The unit axiom is again left as an exercise. It remains to check the $2$-dimensional universal property, so consider $\gamma, \delta$ $2$-cells in $T\Alg_l$ s.t.\
+\[\begin{tikzcd}
+	X &&&& X \\
+	&& B & {=} &&& B \\
+	A &&&& A
+	\arrow[""{name=0, anchor=center, inner sep=0}, "g", curve={height=-12pt}, squiggly, from=1-1, to=3-1]
+	\arrow[""{name=1, anchor=center, inner sep=0}, "{g'}"', curve={height=12pt}, squiggly, from=1-1, to=3-1]
+	\arrow[""{name=2, anchor=center, inner sep=0}, "h", curve={height=-6pt}, squiggly, from=1-1, to=2-3]
+	\arrow[""{name=3, anchor=center, inner sep=0}, "f"', curve={height=6pt}, squiggly, from=3-1, to=2-3]
+	\arrow[""{name=4, anchor=center, inner sep=0}, "h", curve={height=-12pt}, squiggly, from=1-5, to=2-7]
+	\arrow[""{name=5, anchor=center, inner sep=0}, "{h'}"', curve={height=12pt}, squiggly, from=1-5, to=2-7]
+	\arrow["f"', curve={height=6pt}, squiggly, from=3-5, to=2-7]
+	\arrow["{g'}"', squiggly, from=1-5, to=3-5]
+	\arrow["\alpha", shorten <=12pt, shorten >=12pt, Rightarrow, from=2, to=3]
+	\arrow["\gamma", shorten <=7pt, shorten >=7pt, Rightarrow, from=0, to=1]
+	\arrow["\delta", shorten <=5pt, shorten >=5pt, Rightarrow, from=4, to=5]
+	\arrow["{\alpha'}"', shorten <=18pt, shorten >=10pt, Rightarrow, from=5, to=3-5]
+\end{tikzcd}\]
+holds. The data of a $T$-transformation is just a $2$-cell in $\K$ which is compared and whiskered as in $\K$. From the universal property of $\varphi$ in $\K$ it follows that there is a unique $2$-cell $\varphi\colon t\Rightarrow t'$ with $p\varphi = \gamma$, $q\varphi=\delta$. It only remains to check that $\varphi$ is a $T$-transformation, i.e.\ that the equation
+\[\begin{tikzcd}
+	TX & X & {} & TX & X \\
+	TC & C & {} & TC & C
+	\arrow["x", from=1-1, to=1-2]
+	\arrow[""{name=0, anchor=center, inner sep=0}, "Tt"', from=1-1, to=2-1]
+	\arrow["c"', from=2-1, to=2-2]
+	\arrow[""{name=1, anchor=center, inner sep=0}, "{t'}", curve={height=-12pt}, from=1-2, to=2-2]
+	\arrow[""{name=2, anchor=center, inner sep=0}, "t"', curve={height=12pt}, from=1-2, to=2-2]
+	\arrow["{=}"{description}, draw=none, from=1-3, to=2-3]
+	\arrow["x", from=1-4, to=1-5]
+	\arrow[""{name=3, anchor=center, inner sep=0}, "{t'}", from=1-5, to=2-5]
+	\arrow[""{name=4, anchor=center, inner sep=0}, "{Tt'}", curve={height=-12pt}, from=1-4, to=2-4]
+	\arrow["c"', from=2-4, to=2-5]
+	\arrow[""{name=5, anchor=center, inner sep=0}, "Tt"', curve={height=12pt}, from=1-4, to=2-4]
+	\arrow["{\bar{t}}", shorten <=12pt, shorten >=12pt, Rightarrow, from=0, to=2]
+	\arrow["\varphi", shorten <=4pt, shorten >=4pt, Rightarrow, from=2, to=1]
+	\arrow["T\varphi", shorten <=3pt, shorten >=6pt, Rightarrow, from=5, to=4]
+	\arrow["{\bar{t'}}", shorten <=12pt, shorten >=12pt, Rightarrow, from=4, to=3]
+\end{tikzcd}\]
+holds. After whiskering with $p\colon C\to A$, the equation becomes
+\[\begin{tikzcd}
+	TX & X & {} & TX & X \\
+	TA & A & {} & TA & A
+	\arrow["x", from=1-1, to=1-2]
+	\arrow[""{name=0, anchor=center, inner sep=0}, "Tg"', from=1-1, to=2-1]
+	\arrow["a"', from=2-1, to=2-2]
+	\arrow[""{name=1, anchor=center, inner sep=0}, "{g'}", curve={height=-12pt}, from=1-2, to=2-2]
+	\arrow["{=}"{description}, draw=none, from=1-3, to=2-3]
+	\arrow[""{name=2, anchor=center, inner sep=0}, "{Tg'}", curve={height=-12pt}, from=1-4, to=2-4]
+	\arrow["x", from=1-4, to=1-5]
+	\arrow["a"', from=2-4, to=2-5]
+	\arrow[""{name=3, anchor=center, inner sep=0}, "{g'}", from=1-5, to=2-5]
+	\arrow[""{name=4, anchor=center, inner sep=0}, "g"', curve={height=12pt}, from=1-2, to=2-2]
+	\arrow[""{name=5, anchor=center, inner sep=0}, "Tg"', curve={height=12pt}, from=1-4, to=2-4]
+	\arrow["{\bar{g}}", shorten <=12pt, shorten >=12pt, Rightarrow, from=0, to=4]
+	\arrow["\gamma", shorten <=4pt, shorten >=4pt, Rightarrow, from=4, to=1]
+	\arrow["T\gamma", shorten <=4pt, shorten >=4pt, Rightarrow, from=5, to=2]
+	\arrow["{\bar{g'}}", shorten <=12pt, shorten >=12pt, Rightarrow, from=2, to=3]
+\end{tikzcd}\]
+which holds since $\gamma$ is a $T$-transformation. The equation also holds after whiskering with $q$ since $\delta$ is a $T$-transformation. Therefore $\varphi$ is indeed a $T$-transformation, which concludes the proof of the $2$-dimensional universal property. Finally, if $q$ and $h$ are strict $T$-morphisms, then the equation $p\cdot\bar{t}=\bar{g}$ and $q\cdot\bar{t}=\bar{h}$ implies that $\bar{t}=1$, i.e.\ $(t,\bar{t})$ is a strict $T$-morphism. 
 \end{proof}
-
+In any $2$-category $\K$ with colax limits of arrows, we get for each $f\colon A\to B$ with colax limit $(C_f,p_f,q_f,X)$ a unique $1$-cell $r_f\colon A\to C_f$ s.t.
+\[\begin{tikzcd}
+	& A &&&& A \\
+	&&& {=} & {} & {C_f} \\
+	A && B && A && B
+	\arrow[Rightarrow, no head, from=1-2, to=3-1]
+	\arrow[""{name=0, anchor=center, inner sep=0}, "f"', from=3-1, to=3-3]
+	\arrow[""{name=1, anchor=center, inner sep=0}, "f", from=1-2, to=3-3]
+	\arrow["{p_f}"', from=2-6, to=3-5]
+	\arrow["{q_f}", from=2-6, to=3-7]
+	\arrow[""{name=2, anchor=center, inner sep=0}, "f"', from=3-5, to=3-7]
+	\arrow["{r_f}", from=1-6, to=2-6]
+	\arrow[shift left=5, shorten <=8pt, shorten >=10pt, Rightarrow, no head, from=0, to=1]
+	\arrow["\lambda"', shorten <=5pt, shorten >=5pt, Rightarrow, from=2-6, to=2]
+\end{tikzcd}\]
+holds. In particular, $q_fr_f=f$ and $p_fr_f=\id_f$.
+\begin{prop}
+    In the above situation, there exists a unique $2$-cell $\eta_f\colon\id_{C_f}\Rightarrow r_f\cdot p_f$ s.t.\ $p_f\eta_f=1, q_f\eta_f=\lambda$. This $2$-cell exhibits $r_f$ as right adjoint of $p_f$ with colimit the identity $p_f r_f=\id_A$.
+    \end{prop}
+    \begin{proof}
+        Taking $\gamma=1_{p_f}\colon p_f\Rightarrow p_fr_fp_f$ and $\delta=\lambda\colon q_f\Rightarrow fpf=q_fr_fp_f$ we have
+        \[\begin{tikzcd}
+	A && {C_f} &&&& {C_f} \\
+	&&&& {=} && A \\
+	{C_f} & A && B && A && B
+	\arrow["{p_f}"', from=3-1, to=3-2]
+	\arrow[""{name=0, anchor=center, inner sep=0}, "{p_f}"', from=1-3, to=3-2]
+	\arrow[""{name=1, anchor=center, inner sep=0}, "{q_f}", from=1-3, to=3-4]
+	\arrow["f"', from=3-2, to=3-4]
+	\arrow["{p_f}"', from=1-7, to=2-7]
+	\arrow[Rightarrow, no head, from=2-7, to=3-6]
+	\arrow[""{name=2, anchor=center, inner sep=0}, "f"', from=3-6, to=3-8]
+	\arrow[""{name=3, anchor=center, inner sep=0}, "f", from=2-7, to=3-8]
+	\arrow[""{name=4, anchor=center, inner sep=0}, "{q_f}", curve={height=-12pt}, from=1-7, to=3-8]
+	\arrow["{p_f}"', from=1-3, to=1-1]
+	\arrow[""{name=5, anchor=center, inner sep=0}, "{r_f}"', from=1-1, to=3-1]
+	\arrow[shorten <=25pt, shorten >=25pt, Rightarrow, no head, from=5, to=0]
+	\arrow["\lambda", shorten <=23pt, shorten >=23pt, Rightarrow, from=1, to=3-2]
+	\arrow[shift left=4, shorten <=5pt, shorten >=11pt, Rightarrow, no head, from=2, to=3]
+	\arrow["\lambda"', shift right=4, shorten <=5pt, shorten >=8pt, Rightarrow, from=4, to=3]
+\end{tikzcd}\]
+\[\begin{tikzcd}
+	&& {C_f} \\
+	&& A \\
+	{=} && {C_f} \\
+	& A && B
+	\arrow["{p_f}"', from=1-3, to=2-3]
+	\arrow["{r_f}"', from=2-3, to=3-3]
+	\arrow["{p_f}"', from=3-3, to=4-2]
+	\arrow[""{name=0, anchor=center, inner sep=0}, "f"', from=4-2, to=4-4]
+	\arrow[""{name=1, anchor=center, inner sep=0}, "{q_f}", from=3-3, to=4-4]
+	\arrow[""{name=2, anchor=center, inner sep=0}, "f"', curve={height=-12pt}, from=2-3, to=4-4]
+	\arrow[""{name=3, anchor=center, inner sep=0}, "{q_f}", curve={height=-18pt}, from=1-3, to=4-4]
+	\arrow["\lambda", shift right=2, shorten <=1pt, shorten >=5pt, Rightarrow, from=3, to=2]
+	\arrow[shorten <=9pt, Rightarrow, no head, from=2, to=3-3]
+	\arrow["\lambda"', shift right=3, shorten <=5pt, shorten >=5pt, Rightarrow, from=1, to=0]
+\end{tikzcd}\]
+so there exists a unique $2$-cell $\eta_f\colon\id_{C_f}\Rightarrow r_f\cdot p_f$ with $p_f\cdot\eta_f=1, q_f\eta_f=\lambda$ by the $2$-dimensional universal property. Need to check triangular identities.
+    \end{proof}
 \backmatter
 
 \end{document}
