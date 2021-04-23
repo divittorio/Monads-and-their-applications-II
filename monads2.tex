@@ -359,7 +359,7 @@ $T$-morphisms in this case? The simple existence of $\{f,f\}_l$ tells us that
 this is some kind of equalizer, however there is a problem: what is $T(F)\Alg_l$
 and what does the 2-functor $T(F)\Alg_l\rightarrow T(G)\Alg_l$ look like?
 
-From $T(F) wiggly arrow \{f,f\}_l$ we get a morphism $T\rightarrow
+From $T(F)\rightsquigarrow\{f,f\}_l$ we get a morphism $T\rightarrow
 T(F)\rightarrow\{f,f\}_l$, which is however hard to analyze. This requires a bit
 of a detour.
 
@@ -367,7 +367,7 @@ of a detour.
     Let $(f,\overline{f})\colon(A,a)\rightarrow(B,b)$ be a pseudo $T$-morphism
     s.t.\ $f$ is a left adjoint to $u\colon B\rightarrow A$ with unit $\eta$ and
     counit $\epsilon$. Then there exists a unique lax $T$-morphism structure
-    $\overline{u}$ on $u$ s.t.\ $\eta$ and $\epsilon$ are $T$-transormations.
+    $\overline{u}$ on $u$ s.t.\ $\eta$ and $\epsilon$ are $T$-transformations.
 \end{thm}
 \begin{proof}
     We shall prove uniqueness. For this, we observe that the equality
@@ -634,6 +634,40 @@ We can now state the following.
     \end{tikzcd}\]
     so from the 1-dimensional universal property it follows that
     $c\cdot\mu_C=c\cdot Tc$.
+The unit axiom is left as an exercise. To show that $(C,c)$ is a $T$-algebra, $p,q$ are strict morphisms and $\lambda$ is a $T$-transformation we have to check the universal properties. Consider a $2$-cell 
+ \[\begin{tikzcd}
+        & X && {} \\
+        A && B
+        \arrow["h", rightsquigarrow, from=1-2, to=2-3]
+        \arrow["g"', rightsquigarrow, from=1-2, to=2-1]
+        \arrow[""{name=0, anchor=center, inner sep=0}, "f"', rightsquigarrow, from=2-1, to=2-3]
+        \arrow["\alpha"', shorten <=6pt, shorten >=6pt, Rightarrow, from=1-2, to=0]
+    \end{tikzcd}\]
+in $T\Alg_l$. This is a $2$-cell $\alpha\colon h\Rightarrow fg$ in $\K$ subject to the axiom for a $T$-transformation. In particular, there exists a unique $1$-cell $t\colon X\to C$ s.t.\ $\alpha=\lambda t$. The composite $\lambda\cdot c\cdot Tt$ corresponds to the $2$-cell  
+\[\begin{tikzcd}
+	& TA & A \\
+	TX \\
+	& TB & B
+	\arrow["Tg", from=2-1, to=1-2]
+	\arrow[""{name=0, anchor=center, inner sep=0}, "Th"', from=2-1, to=3-2]
+	\arrow["a", from=1-2, to=1-3]
+	\arrow["b"', from=3-2, to=3-3]
+	\arrow[""{name=1, anchor=center, inner sep=0}, "f", from=1-3, to=3-3]
+	\arrow[""{name=2, anchor=center, inner sep=0}, "Tf"{description}, from=1-2, to=3-2]
+	\arrow["{\bar{f}}", shorten <=6pt, shorten >=6pt, Rightarrow, from=2, to=1]
+	\arrow["T\alpha", shorten <=6pt, shorten >=6pt, Rightarrow, from=0, to=1-2]
+\end{tikzcd}\]
+and the composite $\lambda\cdot t\cdot x$ corresponds to the $2$-cell 
+\[\begin{tikzcd}
+	&& A \\
+	TX & X \\
+	&& B
+	\arrow["x", from=2-1, to=2-2]
+	\arrow["g", from=2-2, to=1-3]
+	\arrow["h"', from=2-2, to=3-3]
+	\arrow["f", from=1-3, to=3-3]
+\end{tikzcd}\]
+in $\K$. Since $\alpha$ is a $2$-cell in $T\Alg_l$, comparing the first of these with $\bar{g}\colon a\cdot Tg \Rightarrow g\cdot x$, we get the $2$-cell $\alpha\cdot x$ compared with $\bar{h}\colon b\cdot Th\Rightarrow h\cdot x$. In other words, $\bar{g}$ and $\bar{h}$ satisfy the defining equations for $2$-cells in the $2$-dimensional universal property of the colax limit of $f$. Thus there exists a unique $2$-cell $\bar{t}\colon c\cdot Tt \Rightarrow t\cdot x$ s.t.\ $p\cdot\bar{t} = \bar{g}$ and $q\cdot\bar{t}=\bar{h}$. If we can show that 
 \end{proof}
 
 \backmatter
