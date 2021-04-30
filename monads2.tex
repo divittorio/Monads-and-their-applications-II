@@ -928,8 +928,158 @@ holds. In particular, $q_fr_f=f$ and $p_fr_f=\id_f$.
 	\arrow[shorten <=9pt, Rightarrow, no head, from=2, to=3-3]
 	\arrow["\lambda"', shift right=3, shorten <=5pt, shorten >=5pt, Rightarrow, from=1, to=0]
 \end{tikzcd}\]
-so there exists a unique $2$-cell $\eta_f\colon\id_{C_f}\Rightarrow r_f\cdot p_f$ with $p_f\cdot\eta_f=1, q_f\eta_f=\lambda$ by the $2$-dimensional universal property. Need to check triangular identities.
-    \end{proof}
+so there exists a unique $2$-cell $\eta_f\colon\id_{C_f}\Rightarrow r_f\cdot p_f$ with $p_f\cdot\eta_f=1, q_f\eta_f=\lambda$ by the $2$-dimensional universal property. It remains to show that the triangle identities hold. Since $\epsilon=1$ these become $p_f\eta_f=1$ and $\eta_f r_f=1$. So one of these we already checked. For the second it suffices to check that it holds after whiskering with $p_f$ and $\eta_f$, where we get $p_f\eta_f r_f=1$ and $q_f\eta_f r_f=\lambda r_f=1$ (by def of $r_f$) and $p_f\eta_f=1$ by definition. 
+\end{proof}
+A right adjoint $r$ with counit the identity is sometimes called a RARI (Right Adjoint Right Inverse). The corresponding left adjoint is called a LALI (Left Adjoint Left Inverse). The dual concepts (with unit the identity) are called RALI and LARI. For $T\Alg_p$ we can work instead with pseudolimits of arrows, which is the universal  \[\begin{tikzcd}
+	& {P_f} \\
+	A && B.
+	\arrow["{p_f}"', from=1-2, to=2-1]
+	\arrow["{q_f}", from=1-2, to=2-3]
+	\arrow[""{name=0, anchor=center, inner sep=0}, "f"', from=2-1, to=2-3]
+	\arrow["\sim", shorten <=5pt, shorten >=5pt, Rightarrow, from=1-2, to=0]
+\end{tikzcd}\]
+\begin{prop}
+    The forgetful $2$-functor $U_p\colon T\Alg_p\to\K$ creates pseudolimits of arrows.
+\end{prop} 
+\begin{proof}
+    The same construction\footnote{In part $p_f,q_f$ strict!} as in the case of $T\Alg_l$ works, we just have to observe that $\bar{t}$ is an isomorphism, which follows from $p\bar{t}=\bar{g}$ and $q\bar{t}=\bar{h}$ and the fact that those are isomorphisms, since $f$ and $g$ are pseudomorphisms and $p,q$ jointly detect isos.
+\end{proof}
+\begin{prop}
+    If $\K$ has pseudolimits of arrows and $(f,\bar{f})\colon A\rightsquigarrow B$ is a pseudo $T$-morphism, then there exists a unique $r_f\colon A\rightsquigarrow P_f$ such that 
+    \[\begin{tikzcd}
+	&&&&& A \\
+	& A && {} && {P_f} \\
+	A && B & {} & A & {} & B
+	\arrow[Rightarrow, no head, from=2-2, to=3-1]
+	\arrow["f", squiggly, from=2-2, to=3-3]
+	\arrow["f"', squiggly, from=3-1, to=3-3]
+	\arrow["{=}"{description}, draw=none, from=2-4, to=3-4]
+	\arrow["r_f", squiggly, from=1-6, to=2-6]
+	\arrow["{p_f}"', from=2-6, to=3-5]
+	\arrow["f"', squiggly, from=3-5, to=3-7]
+	\arrow["{q_f}", from=2-6, to=3-7]
+	\arrow[curve={height=12pt}, Rightarrow, no head, from=1-6, to=3-5]
+	\arrow["f", curve={height=-12pt}, squiggly, from=1-6, to=3-7]
+	\arrow["\sim", "\lambda"', shorten <=7pt, shorten >=4pt, Rightarrow, from=2-6, to=3-6]
+\end{tikzcd}\]
+    and an invertible $\eta_f\colon 1\Rightarrow r_f p_f$ s.t.\ $(r_f,p_f,\eta_f,1)$ is an adjoint equivalence.
+\end{prop}
+\begin{proof}
+    Existence of $\eta_f$ and triangle identities follow as before. Moreover, $\eta_f$ is invertible since both $p_f\eta_f=1$ and $q_f\eta_f=\lambda$ are invertible and $p_f, q_f$ jointly detect isos.
+\end{proof}
+In particular, we can replace (up to equivalence) a pseudo $T$-morphism by a strict $T$-morphism 
+\[\begin{tikzcd}
+	& {P_f} \\
+	A && B
+	\arrow["{r_f}", squiggly, from=2-1, to=1-2]
+	\arrow["f"', squiggly, from=2-1, to=2-3]
+	\arrow[""{name=0, anchor=center, inner sep=0}, "{q_f}", from=1-2, to=2-3]
+	\arrow["\simeq"{pos=0.7}, shift right=2, Rightarrow, draw=none, from=2-1, to=0]
+\end{tikzcd}\]
+of path-spaces.
+With this at hand we can prove the following theorem, which is useful for constructing $2$-monads via presentations. Specifically, for identifying the pseudo and lax $T$-morphisms of such $2$-monads.
+\begin{thm}
+    Let $S$ and $T$ be $2$-monads on a $2$-category with colax limits of arrows. Let $F_s\colon T\Alg_s\to S\Alg_s$ be a (strict) $2$-functor such that the triangle \[\begin{tikzcd}
+	{T\Alg_s} && {S\Alg_s} \\
+	& \K
+	\arrow["{U_t}"', from=1-1, to=2-2]
+	\arrow["{F_s}", from=1-1, to=1-3]
+	\arrow["{U_s}", from=1-3, to=2-2]
+\end{tikzcd}\]
+commutes. Then there exists a unique $2$-functor $F_l\colon T\Alg_l\to S\Alg_l$ s.t.\ the diagram
+\[\begin{tikzcd}
+	{T\Alg_s} && {S\Alg_s} \\
+	{T\Alg_l} && {S\Alg_l} \\
+	& \K
+	\arrow["{F_s}", from=1-1, to=1-3]
+	\arrow["J"', from=1-1, to=2-1]
+	\arrow["J", from=1-3, to=2-3]
+	\arrow["{F_l}", from=2-1, to=2-3]
+	\arrow["{U_l}"', from=2-1, to=3-2]
+	\arrow["{U_l}", from=2-3, to=3-2]
+\end{tikzcd}\]
+commutes.
+\end{thm}
+\begin{proof}
+    For the existence note that $F_s$ is induced by a (unique) $2$-monad morphism $\varphi\colon S\to T$ s.t.\ the semantics $1$-functor $$(-)\Alg\colon2\mbox{-}\Mnd(\K)^{\op}\to 2\mbox{-}\Cat/\K$$
+is full and faithful. This can be used to define $F_l$ as follows. We send
+\[\begin{tikzcd}
+	TA & A \\
+	TB & B
+	\arrow["a", from=1-1, to=1-2]
+	\arrow[""{name=0, anchor=center, inner sep=0}, "Tf"', from=1-1, to=2-1]
+	\arrow["b"', from=2-1, to=2-2]
+	\arrow[""{name=1, anchor=center, inner sep=0}, "f", from=1-2, to=2-2]
+	\arrow["{\bar{f}}", shorten <=17pt, shorten >=17pt, Rightarrow, from=0, to=1]
+\end{tikzcd}\]
+to 
+\[\begin{tikzcd}
+	SA & TA & A \\
+	SB & TB & B
+	\arrow["{\varphi_A}", from=1-1, to=1-2]
+	\arrow["Sf"', from=1-1, to=2-1]
+	\arrow["{\varphi_B}"', from=2-1, to=2-2]
+	\arrow[""{name=0, anchor=center, inner sep=0}, "Tf"', from=1-2, to=2-2]
+	\arrow["a", from=1-2, to=1-3]
+	\arrow["b"', from=2-2, to=2-3]
+	\arrow[""{name=1, anchor=center, inner sep=0}, "f", from=1-3, to=2-3]
+	\arrow["{\bar{f}}", shorten <=17pt, shorten >=17pt, Rightarrow, from=0, to=1]
+\end{tikzcd}\]
+and we let $F_l$ be the identity on $2$-cells. The interesting part is the converse. Since the inclusions $J$ are bijective on objects, $F_l$ is uniquely determined on $0$-cells. The two $2$-functors $U_l\colon T\Alg\to\K$ and $U_l\colon S\Alg_l\to\K$ are both injective on $2$-cells, so $F_l$ is also uniquely determined on $2$-cells. It remains to show uniqueness on $1$-cells. So let $(f,\bar{f})\colon (A,a)\rightsquigarrow (B,b)$ be a $1$-cell in $T\Alg_l$. Since we have colax limits of arrows in $\K$, we can factor $(f,\bar{f})$ as follows
+ \[\begin{tikzcd}
+	&&&&& A \\
+	& A && {} && {C_f} \\
+	A && B & {} & A & {} & B.
+	\arrow[Rightarrow, no head, from=2-2, to=3-1]
+	\arrow["f", squiggly, from=2-2, to=3-3]
+	\arrow["f"', squiggly, from=3-1, to=3-3]
+	\arrow["{=}"{description}, draw=none, from=2-4, to=3-4]
+	\arrow["r_f", squiggly, from=1-6, to=2-6]
+	\arrow["{p_f}"', from=2-6, to=3-5]
+	\arrow["f"', squiggly, from=3-5, to=3-7]
+	\arrow["{q_f}", from=2-6, to=3-7]
+	\arrow[curve={height=12pt}, Rightarrow, no head, from=1-6, to=3-5]
+	\arrow["f", curve={height=-12pt}, squiggly, from=1-6, to=3-7]
+	\arrow["\lambda"', shorten <=7pt, shorten >=4pt, Rightarrow, from=2-6, to=3-6]
+\end{tikzcd}\]
+It follows that $F_l(f,\bar{f})=F_l(q_f)\circ F_l(r_f)$. Since the square in the diagram commutes, $F_l(q_f)=F_s(q_f)$, so it only remains to show that $F_l(r_f)$ is uniquely determined. We also know that $(r_f, p_f, \eta_f,1)$ is an adjunction, so since $F_l$ is a $2$-functor it follows that $(F_l(r_f), F_l(p_f), F_l(\eta_f), 1)$ is an adjunction in $S\Alg_s$. Since $p_f$ is also strict, we have $F_l(p_f)=F_s(p_f)$. To summarize: $F_l(r_f)$ is a lax $T$-morphism structure on $U_lF_l(r_f)=U_l(r_f)$ so that $\eta_f$ and $1$ make it a right adjoint of $F_l(p_f)$ in $S\Alg_l$. From the uniqueness part of doctrinal adjunction it follows that $F_l(r_f)$ is uniquely determined by $F_s(p_f), \eta_f, 1$. 
+\end{proof}  
+\begin{rmk}
+    There is an analogous statement for $T\Alg_p$ using the pseudolimit of arrows (assuming they exist in $\K$). Why is this useful? When dealing with monads given by presentations, we will (by construction) have a $2$-functor $F_s\colon T(G)\Alg_s\to T(F)\Alg_s$, so a corresponding monad morphism $T(F)\to T(G)$, whenever $T(F), T(G)$ are free $2$-monads on endofunctors $F, G$. So this corresponds to a $2$-natural $F\to T(G)$, but it is in general hard to describe this explicitly. If we want to figure out what happens on lax morphisms from the definition, we would need to understand this instead. Usually it is easy to guess a $2$-functor $F_l$ that makes everything commute. This assumes that we have a description of $T(F)\Alg_l$ purely in terms of $F$, which is indeed possible as we will see next.
+\end{rmk}
+\begin{defn}
+    Let $F\colon\K\to\K$ be a $2$-functor. An $F$-algebra is a pair $(A,a)$ with $a\colon FA\to A$ a $1$-cell in $\K$ with no axioms.
+    Strict morphisms $f\colon(A,a)\to(B,b)$ are $1$-cells $f\colon A\to B$ s.t.\ $b Ff=fa$. A lax $F$-morphism is a pair $(f,\bar{f})$ of a $1$-cell $f\colon A\to B$ and a $2$-cell 
+    \[\begin{tikzcd}
+	FA & A \\
+	FB & B
+	\arrow["a", from=1-1, to=1-2]
+	\arrow[""{name=0, anchor=center, inner sep=0}, "Ff"', from=1-1, to=2-1]
+	\arrow["b"', from=2-1, to=2-2]
+	\arrow[""{name=1, anchor=center, inner sep=0}, "f", from=1-2, to=2-2]
+	\arrow["{\bar{f}}", shorten <=17pt, shorten >=17pt, Rightarrow, from=0, to=1]
+\end{tikzcd}\]
+subject to no axioms. An $F$-transformation $\rho\colon(f,\bar{f})\Rightarrow(g,\bar{g})$ is a $2$-cell $\rho\colon f\Rightarrow g$ s.t.\ the equation
+\[\begin{tikzcd}
+	FA & A & {} & FA & A \\
+	FB & B & {} & FB & B
+	\arrow["a", from=1-1, to=1-2]
+	\arrow[""{name=0, anchor=center, inner sep=0}, "Ff"', from=1-1, to=2-1]
+	\arrow["b"', from=2-1, to=2-2]
+	\arrow[""{name=1, anchor=center, inner sep=0}, "{g}", curve={height=-12pt}, from=1-2, to=2-2]
+	\arrow[""{name=2, anchor=center, inner sep=0}, "f"', curve={height=12pt}, from=1-2, to=2-2]
+	\arrow["{=}"{description}, draw=none, from=1-3, to=2-3]
+	\arrow["a", from=1-4, to=1-5]
+	\arrow[""{name=3, anchor=center, inner sep=0}, "{g}", from=1-5, to=2-5]
+	\arrow[""{name=4, anchor=center, inner sep=0}, "{Fg}", curve={height=-12pt}, from=1-4, to=2-4]
+	\arrow["b"', from=2-4, to=2-5]
+	\arrow[""{name=5, anchor=center, inner sep=0}, "Ff"', curve={height=12pt}, from=1-4, to=2-4]
+	\arrow["{\bar{f}}", shorten <=12pt, shorten >=12pt, Rightarrow, from=0, to=2]
+	\arrow["\rho", shorten <=4pt, shorten >=4pt, Rightarrow, from=2, to=1]
+	\arrow["F\rho", shorten <=3pt, shorten >=6pt, Rightarrow, from=5, to=4]
+	\end{tikzcd}\]
+	holds. We write $F\Alg$ for the resulting $2$-category. A pseudo $F$-morphism is an $(f,\bar{f})$ s.t.\ $\bar{f}$ is invertible and we write $F\Alg_p$ for the corresponding $2$-category. 
+\end{defn}
 \backmatter
 
 \end{document}
