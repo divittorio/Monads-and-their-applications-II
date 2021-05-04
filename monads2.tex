@@ -978,7 +978,7 @@ In particular, we can replace (up to equivalence) a pseudo $T$-morphism by a str
 \end{tikzcd}\]
 of path-spaces.
 With this at hand we can prove the following theorem, which is useful for constructing $2$-monads via presentations. Specifically, for identifying the pseudo and lax $T$-morphisms of such $2$-monads.
-\begin{thm}
+\begin{thm}\label{unique ext}
     Let $S$ and $T$ be $2$-monads on a $2$-category with colax limits of arrows. Let $F_s\colon T\Alg_s\to S\Alg_s$ be a (strict) $2$-functor such that the triangle \[\begin{tikzcd}
 	{T\Alg_s} && {S\Alg_s} \\
 	& \K
@@ -1078,8 +1078,299 @@ subject to no axioms. An $F$-transformation $\rho\colon(f,\bar{f})\Rightarrow(g,
 	\arrow["\rho", shorten <=4pt, shorten >=4pt, Rightarrow, from=2, to=1]
 	\arrow["F\rho", shorten <=3pt, shorten >=6pt, Rightarrow, from=5, to=4]
 	\end{tikzcd}\]
-	holds. We write $F\Alg$ for the resulting $2$-category. A pseudo $F$-morphism is an $(f,\bar{f})$ s.t.\ $\bar{f}$ is invertible and we write $F\Alg_p$ for the corresponding $2$-category. 
+	holds. We write $F\Alg$ for the resulting $2$-category. A pseudo $F$-morphism is an $(f,\bar{f})$ s.t.\ $\bar{f}$ is invertible and we write $F\Alg_p$ for the corresponding $2$-category.
 \end{defn}
+
+As in the 1-dimensional case, we can relate $F$-algebras and $T(F)$-algebras.
+
+\begin{prop}
+    Let $\cK$ be a locally presentable 2-category, $F$ a $\kappa$-accessible
+    2-endofunctor on $\cK$, $T(F)$ the free $\kappa$-accessible monad on $F$
+    with universal 2-natural transformation $\psi\colon F\rightarrow T(F)$. We
+    can then construct isomorphisms of categories
+    \[\psi^*\colon T(F)\Alg_L\rightarrow F\Alg_L\]
+    \[\psi^*\colon T(F)\Alg_P\rightarrow F\Alg_P\]
+    by whiskering with $\psi$.
+\end{prop}
+\begin{proof}
+    It is clear that $FA\xrightarrow{\psi_a}T(F)A\xrightarrow{a}A$ is a
+    $F$-algebra for any $T(F)$-algebra $(A,a)$ and, for any lax $T(T)$-morphism
+    $(f,\overline{f})$, the 2-cell
+    \[\begin{tikzcd}
+        FA & {T(F)A} & A \\
+        FB & {T(F)B} & B
+        \arrow["b"', from=2-2, to=2-3]
+        \arrow[""{name=0, anchor=center, inner sep=0}, "f"', from=1-3, to=2-3]
+        \arrow["a", from=1-2, to=1-3]
+        \arrow[""{name=1, anchor=center, inner sep=0}, "{T(F)f}"{description}, from=1-2, to=2-2]
+        \arrow["Ff"', from=1-1, to=2-1]
+        \arrow["{\psi_b}"', from=2-1, to=2-2]
+        \arrow["{\psi_a}", from=1-1, to=1-2]
+        \arrow[shorten <=8pt, shorten >=8pt, Rightarrow, no head, from=2-1, to=1-2]
+        \arrow["{\overline{f}}", shorten <=14pt, shorten >=14pt, Rightarrow, from=1, to=0]
+    \end{tikzcd}\]
+    is a lax $F$-morphism. Since composition of 1-cells in both $F\Alg_L$ and
+    $T(F)\Alg_L$ is defined by attaching these 2-cells, this defines a functor
+    on the underlying 1-categories.
+
+    Since $\psi$ is 2-natural, the axiom for a $T(F)$-transformation turns into
+    the axiom for a $F$-transformation, hence we can extend this to a 2-functor
+    by acting as the identity on 2-cells.
+
+    It remains to show that this defines an isomorphism of 2-categories, or
+    equivalently that it is a bijection on 0, 1 and 2-cells, which follows from
+    the universal property of $\psi$.
+
+    Since $\psi^*$ preserves the underlying 0, 1 and 2-cells we only need to
+    check the bijection for a fixed underlying cell. In this case, the claim
+    follows from the existence of the 2-monads $<A,A>$, $\{f,f\}_L$ and
+    $[\rho,\rho]$. Namely, whiskering with $\psi$ gives a bijection between
+    2-monad morphisms $T(F)\rightarrow<A,A>$ and mere 2-natural transformations
+    $F\Rightarrow <A,A>$. By adjunction, this corresponds to $a\colon
+    FA\rightarrow A$, subject to no axioms. The bijection on 1 and 2-cells
+    follows analogously, as proof concerning $T(F)\Alg_P$ and $F\Alg_P$.
+\end{proof}
+
+We can use this to identify $T\Alg_L$ when $T$ is given via a presentation
+through the following procedure. We start with various (accessible)
+2-endofunctors $F,G\ldots$ on $\cK$ and we construct 2-functors
+$F\Alg_S\rightarrow G\Alg_S$, etc. These are induced by monad morphisms
+$T(G)\rightarrow T(F)$ and if we want to know what happens on lax and pseudo
+morphisms we use \ref{unique ext}.
+
+Taking limits, we obtain new categories which are of the form $T\Alg_S$ for the
+corresponding category of monads. We can then iterate this by considering
+2-functors $T\Alg_L\rightarrow W\Alg_S$ for a 2-endofunctor $W$ on $\cK$.
+
+To do this we need one more ingredient in order to identify the 2-category
+$(W\odot D)\Alg_{S/L/P}$ for any small diagram $D\colon\cA^{\op}\rightarrow
+2\Mnd_{\kappa}(\cK)$ and any weight $W\colon\cA^{\op}\rightarrow\Cat$.
+
+For $T\Alg_L$, this comes from the corresponding limit of 2-categories
+$\{W,D\Alg_L\}$. To show it we first need to turn $(-)\Alg_L$ into a 2-functor.
+\[\begin{tikzcd}
+	\cC & \cD
+	\arrow[""{name=0, anchor=center, inner sep=0}, "G"', curve={height=12pt}, from=1-1, to=1-2]
+	\arrow[""{name=1, anchor=center, inner sep=0}, "F", curve={height=-12pt}, from=1-1, to=1-2]
+	\arrow["\alpha", shorten <=6pt, shorten >=6pt, Rightarrow, from=1, to=0]
+\end{tikzcd}\]
+s.t.\
+\[\begin{tikzcd}
+	\cC & \cD & \cK & {=} & {\id_{U^{\cC}}}
+	\arrow[""{name=0, anchor=center, inner sep=0}, "G"', curve={height=12pt}, from=1-1, to=1-2]
+	\arrow[""{name=1, anchor=center, inner sep=0}, "F", curve={height=-12pt}, from=1-1, to=1-2]
+	\arrow["{U^{\cD}}", from=1-2, to=1-3]
+	\arrow["\alpha", shorten <=6pt, shorten >=6pt, Rightarrow, from=1, to=0]
+\end{tikzcd}\]
+
+We now need to extend $(-)\Alg_L$ to a 2-functor.
+
+Recall that a monad modification $\alpha\colon\phi\Rrightarrow\psi$ between
+monad morphisms is a modification subject to two axioms.
+
+The datum of a modification of 2-monads consists of a 2-cell $\alpha_A$ for each
+0-cell $A\in\cK$ and the axioms state that the equations
+\[\begin{tikzcd}
+	SSA & STA & TTA & A & {=} & SSA & SA & TA
+	\arrow[""{name=0, anchor=center, inner sep=0}, "{S\phi_A}", curve={height=-12pt}, from=1-1, to=1-2]
+	\arrow[""{name=1, anchor=center, inner sep=0}, "{S\psi_A}"', curve={height=12pt}, from=1-1, to=1-2]
+	\arrow[""{name=2, anchor=center, inner sep=0}, "{\phi_{TA}}", curve={height=-12pt}, from=1-2, to=1-3]
+	\arrow[""{name=3, anchor=center, inner sep=0}, "{\psi_{TA}}"', curve={height=12pt}, from=1-2, to=1-3]
+	\arrow["{\mu^T_A}", from=1-3, to=1-4]
+	\arrow["{\mu^S_A}", from=1-6, to=1-7]
+	\arrow[""{name=4, anchor=center, inner sep=0}, "{\phi_A}", curve={height=-12pt}, from=1-7, to=1-8]
+	\arrow[""{name=5, anchor=center, inner sep=0}, "{\psi_A}"', curve={height=12pt}, from=1-7, to=1-8]
+	\arrow["{\alpha_{TA}}", shorten <=6pt, shorten >=6pt, Rightarrow, from=2, to=3]
+	\arrow["{S\alpha_A}", shorten <=6pt, shorten >=6pt, Rightarrow, from=0, to=1]
+	\arrow["{\alpha_A}"', shorten <=6pt, shorten >=6pt, Rightarrow, from=4, to=5]
+\end{tikzcd}\]
+\[\begin{tikzcd}
+    A & SA & TA & {=} & {1_{\eta_A^T}}
+	\arrow["{\eta_A^S}", from=1-1, to=1-2]
+	\arrow[""{name=0, anchor=center, inner sep=0}, "{\phi_A}", curve={height=-12pt}, from=1-2, to=1-3]
+	\arrow[""{name=1, anchor=center, inner sep=0}, "{\psi_A}"', curve={height=12pt}, from=1-2, to=1-3]
+	\arrow["{\alpha_A}", shorten <=6pt, shorten >=6pt, Rightarrow, from=0, to=1]
+\end{tikzcd}\]
+hold, plus the modification axioms.
+
+We want to finish extending $(-)\Alg_L$ to a 2-functor
+$2-\Mnd_\kappa(\cK)^{\text{coop}}\rightarrow 2-\CAT/\cK$, where the target has
+the 2-cells specified above, hence we have to define a 2-natural transformation
+$\alpha^*\colon\psi^*\Rightarrow\phi^*$ s.t.\ $U_L\alpha^*=1$. Giving a
+2-natural transformation means giving a 1-cell in $S\Alg_L$ for each 0-cell in
+$T\Alg_L$, i.e.\ for each $T$-algebra we have to specify a lax $S$-morphism.
+
+We do it as follows: given $(A,a)\in T\Alg_L$, we let $(\alpha^*)_{(A,a)}$ be
+the lax $S$-morphism
+\[\begin{tikzcd}
+	SA & TA & A \\
+	SA & TA & A
+	\arrow[""{name=0, anchor=center, inner sep=0}, Rightarrow, no head, from=1-1, to=2-1]
+	\arrow[""{name=1, anchor=center, inner sep=0}, Rightarrow, no head, from=1-2, to=2-2]
+	\arrow[Rightarrow, no head, from=1-3, to=2-3]
+	\arrow["a", from=1-2, to=1-3]
+	\arrow["a"', from=2-2, to=2-3]
+	\arrow["{\psi_A}", from=1-1, to=1-2]
+	\arrow["{\phi_A}"', from=2-1, to=2-2]
+	\arrow[shorten <=8pt, shorten >=8pt, Rightarrow, no head, from=2-2, to=1-3]
+	\arrow["{\alpha_A}", shorten <=13pt, shorten >=13pt, Rightarrow, from=0, to=1]
+\end{tikzcd}\]
+with the identity as underlying 1-cell.
+
+\begin{prop}
+    The assignment $\alpha\mapsto\alpha^*$ is well-defined and thus $(-)\Alg_L$
+    gives a 2-functor
+    \[2-\Mnd_\kappa(\cK)^{\text{coop}}\rightarrow 2-\CAT/\cK\]
+\end{prop}
+\begin{proof}
+    There are a few things to check. We leave some as exercises.
+
+    We start with one of the lax morphism axioms. We want to show that
+    \[\begin{tikzcd}
+        {(1)} & SSA & STA & SA & TA & A \\
+        & SSA & STA & SA & TA & A \\
+        &&& {=} \\
+        {(2)} & SSA & SA & TA & A \\
+        & SSA & SA & TA & A
+        \arrow[""{name=0, anchor=center, inner sep=0}, Rightarrow, no head, from=1-4, to=2-4]
+        \arrow[""{name=1, anchor=center, inner sep=0}, Rightarrow, no head, from=1-5, to=2-5]
+        \arrow[Rightarrow, no head, from=1-6, to=2-6]
+        \arrow["a", from=1-5, to=1-6]
+        \arrow["a"', from=2-5, to=2-6]
+        \arrow["{\psi_A}", from=1-4, to=1-5]
+        \arrow["{\phi_A}"', from=2-4, to=2-5]
+        \arrow["{S\psi_A}", from=1-2, to=1-3]
+        \arrow["{S\phi_A}"', from=2-2, to=2-3]
+        \arrow["Sa"', from=2-3, to=2-4]
+        \arrow["Sa", from=1-3, to=1-4]
+        \arrow[""{name=2, anchor=center, inner sep=0}, Rightarrow, no head, from=1-2, to=2-2]
+        \arrow[""{name=3, anchor=center, inner sep=0}, Rightarrow, no head, from=1-3, to=2-3]
+        \arrow[Rightarrow, no head, from=4-5, to=5-5]
+        \arrow[""{name=4, anchor=center, inner sep=0}, Rightarrow, no head, from=4-4, to=5-4]
+        \arrow[""{name=5, anchor=center, inner sep=0}, Rightarrow, no head, from=4-3, to=5-3]
+        \arrow[Rightarrow, no head, from=4-2, to=5-2]
+        \arrow["{\mu_A^S}", from=4-2, to=4-3]
+        \arrow["{\psi_A}", from=4-3, to=4-4]
+        \arrow["a", from=4-4, to=4-5]
+        \arrow["a"', from=5-4, to=5-5]
+        \arrow["{\psi_A}"', from=5-3, to=5-4]
+        \arrow["{\mu^S_A}"', from=5-2, to=5-3]
+        \arrow["{\alpha_A}", shorten <=13pt, shorten >=13pt, Rightarrow, from=0, to=1]
+        \arrow["{S\alpha_A}", shorten <=13pt, shorten >=13pt, Rightarrow, from=2, to=3]
+        \arrow["{\alpha_A}", shorten <=13pt, shorten >=13pt, Rightarrow, from=5, to=4]
+    \end{tikzcd}\]
+
+    Using a modification axiom,
+    \[\begin{tikzcd}
+        {(1)} & {=} & SSA & STA & TTA & TA & A \\
+        && SSA & STA & TTA & TA & A \\
+        &&&&& TA
+        \arrow[""{name=0, anchor=center, inner sep=0}, Rightarrow, no head, from=1-5, to=2-5]
+        \arrow[Rightarrow, no head, from=1-6, to=2-6]
+        \arrow[Rightarrow, no head, from=1-7, to=2-7]
+        \arrow["a", from=1-6, to=1-7]
+        \arrow["a", from=2-6, to=2-7]
+        \arrow["Ta", from=1-5, to=1-6]
+        \arrow["Ta", from=2-5, to=2-6]
+        \arrow["{S\psi_A}", from=1-3, to=1-4]
+        \arrow["{S\phi_A}"', from=2-3, to=2-4]
+        \arrow["Sa"', from=2-4, to=2-5]
+        \arrow["Sa", from=1-4, to=1-5]
+        \arrow[""{name=1, anchor=center, inner sep=0}, Rightarrow, no head, from=1-3, to=2-3]
+        \arrow[""{name=2, anchor=center, inner sep=0}, Rightarrow, no head, from=1-4, to=2-4]
+        \arrow["{\mu_a}"', from=2-5, to=3-6]
+        \arrow["a"', from=3-6, to=2-7]
+        \arrow["{S\alpha_A}", shorten <=13pt, shorten >=13pt, Rightarrow, from=1, to=2]
+        \arrow["{\alpha_{TA}}", shorten <=13pt, shorten >=13pt, Rightarrow, from=2, to=0]
+    \end{tikzcd}\]
+    and now we apply a monad modification axiom to find that this is equal to
+    \[\begin{tikzcd}
+        SSA & SA & TA & A
+        \arrow["a", from=1-3, to=1-4]
+        \arrow[""{name=0, anchor=center, inner sep=0}, "{\phi_A}", curve={height=-12pt}, from=1-2, to=1-3]
+        \arrow[""{name=1, anchor=center, inner sep=0}, "{\psi_A}"', curve={height=12pt}, from=1-2, to=1-3]
+        \arrow["{\mu_A^S}", from=1-1, to=1-2]
+        \arrow["{\alpha_A}", shorten <=6pt, shorten >=6pt, Rightarrow, from=0, to=1]
+    \end{tikzcd},\]
+    which we can rewrite as (2). We leave the second axiom as an exercise.
+
+    Next we check the 2-naturality of $\alpha^*$. For the 1-cell axiom, we need
+    to consider a 1-cell $(f,\overline{f}\colon(A,a)\rightarrow(B,b)$ in
+    $T\Alg_L$. Then we have
+    \[\begin{tikzcd}
+        \bullet && SA & TA & A && SA & TA & A \\
+        \bullet & {=} & SA & TA & A & {=} & SB & TB & B \\
+        \bullet && SB & TB & B \\
+        && SA & TA & A && \bullet \\
+        & {=} & SB & TB & B & {=} & \bullet \\
+        && SB & TB & B && \bullet
+        \arrow["{\alpha^*_{(A,a)}}", from=1-1, to=2-1]
+        \arrow["{\phi^*_{(f,\overline{f})}}", from=2-1, to=3-1]
+        \arrow["Sf"', from=2-3, to=3-3]
+        \arrow[Rightarrow, no head, from=1-3, to=2-3]
+        \arrow[""{name=0, anchor=center, inner sep=0}, "Tf"', from=2-4, to=3-4]
+        \arrow[""{name=1, anchor=center, inner sep=0}, "f"', from=2-5, to=3-5]
+        \arrow[Rightarrow, no head, from=1-5, to=2-5]
+        \arrow[Rightarrow, no head, from=1-4, to=2-4]
+        \arrow["a", from=2-4, to=2-5]
+        \arrow["a", from=1-4, to=1-5]
+        \arrow["b"', from=3-4, to=3-5]
+        \arrow["{\phi_B}"', from=3-3, to=3-4]
+        \arrow["{\phi_A}", from=2-3, to=2-4]
+        \arrow["{\psi_A}", from=1-3, to=1-4]
+        \arrow[""{name=2, anchor=center, inner sep=0}, "f", from=1-9, to=2-9]
+        \arrow[""{name=3, anchor=center, inner sep=0}, "Tf"{description}, from=1-8, to=2-8]
+        \arrow["b"', from=2-8, to=2-9]
+        \arrow["a", from=1-8, to=1-9]
+        \arrow["{\psi_A}", from=1-7, to=1-8]
+        \arrow["Sf"', from=1-7, to=2-7]
+        \arrow[""{name=4, anchor=center, inner sep=0}, "{\psi_B}", curve={height=-12pt}, from=2-7, to=2-8]
+        \arrow[""{name=5, anchor=center, inner sep=0}, "{\phi_B}"', curve={height=12pt}, from=2-7, to=2-8]
+        \arrow["f", from=4-5, to=5-5]
+        \arrow[Rightarrow, no head, from=5-5, to=6-5]
+        \arrow["b", from=5-4, to=5-5]
+        \arrow["b"', from=6-4, to=6-5]
+        \arrow["a", from=4-4, to=4-5]
+        \arrow["Tf", from=4-4, to=5-4]
+        \arrow[Rightarrow, no head, from=5-4, to=6-4]
+        \arrow["{\phi_B}"', from=6-3, to=6-4]
+        \arrow["{\psi_B}"', from=5-3, to=5-4]
+        \arrow["{\psi_A}", from=4-3, to=4-4]
+        \arrow["Sf"', from=4-3, to=5-3]
+        \arrow[Rightarrow, no head, from=5-3, to=6-3]
+        \arrow["{\psi^*_{(f,\overline{f})}}", from=4-7, to=5-7]
+        \arrow["{\alpha^*_{(B,b)}}", from=5-7, to=6-7]
+        \arrow["{\overline{f}}", shorten <=13pt, shorten >=13pt, Rightarrow, from=0, to=1]
+        \arrow["{\overline{f}}", shorten <=13pt, shorten >=13pt, Rightarrow, from=3, to=2]
+        \arrow["{\alpha_B}"', shorten <=6pt, shorten >=6pt, Rightarrow, from=5, to=4]
+    \end{tikzcd}\]
+    which shows the 1-cell part of the 2-naturality condition. We leave the
+    2-cell part of 2-naturality as an exercise.
+
+    By construction, we have $U^L\alpha^*_{(A,a)}=1_A$, so this really is a
+    2-cell in $2-\CAT/\cK$. This shows that this assignment extends to a
+    2-functor if we can prove that composition and whiskering operations for
+    monad modifications turn into the corresponding operations in $2-\CAT/\cK$,
+    which follows from the definition of composition and whiskering for
+    modifications.
+\end{proof}
+
+\begin{rmk}
+    For $T\Alg_P$ we only have 2-naturality for invertible modifications.
+\end{rmk}
+
+Next we want to check that $(-)\Alg_L$ turns weighted colimits into weighted
+limits. For this we use the following characterization of $<A,A>$, $\{f,f\}_L$
+and $[\rho,\rho]$.
+
+\begin{prop}
+    Let $\cK$ be complete and $A\in\cK$. Then there is an isomorphism of
+    categories
+    \[\Mnd(\cK)^{\text{co}}(T,<A,A>)\rightarrow
+    2-\CAT/\cK(I\xrightarrow{A}\cK,T\Alg_L\xrightarrow{U_L}\cK)\]
+    which is 2-natural in $T$.
+\end{prop}
+
 \backmatter
 
 \end{document}
