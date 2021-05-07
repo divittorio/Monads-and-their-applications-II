@@ -9,6 +9,8 @@
 \usepackage{mdframed}
 \usepackage{amsthm}
 \usepackage{amssymb}
+\usepackage{dsfont}
+\usepackage{bbm}
 \usepackage{amscd}
 \usepackage{faktor}
 \usepackage{mathtools}
@@ -106,6 +108,9 @@
 \newcommand{\set}[2]{\left\lbrace\,#1\colon #2 \,\right\rbrace}
 \makeatother
 
+\DeclareMathOperator{\bb1}{\mathds{1}}
+\DeclareMathOperator{\b2}{\mathbbm{2}}
+
 \ExplSyntaxOn
 \NewDocumentCommand{\makeabbrev}{mmm}
 {
@@ -170,6 +175,7 @@
 \usepackage{amsmath,calligra,mathrsfs}
 
 \DeclareMathOperator{\innerhom}{\mathscr{H}\text{\kern -3pt {\calligra\Large om}}\,}
+\DeclareMathOperator{\Colax}{\text{Colax}}
 \DeclareMathOperator{\Hom}{\text{Hom}}
 \DeclareMathOperator{\End}{\text{End}}
 \DeclareMathOperator{\op}{\text{op}}

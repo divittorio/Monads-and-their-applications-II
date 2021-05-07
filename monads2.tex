@@ -1348,28 +1348,205 @@ with the identity as underlying 1-cell.
     2-cell part of 2-naturality as an exercise.
 
     By construction, we have $U^L\alpha^*_{(A,a)}=1_A$, so this really is a
-    2-cell in $2-\CAT/\cK$. This shows that this assignment extends to a
+    2-cell in $2\mbox{-}\CAT/\cK$. This shows that this assignment extends to a
     2-functor if we can prove that composition and whiskering operations for
-    monad modifications turn into the corresponding operations in $2-\CAT/\cK$,
+    monad modifications turn into the corresponding operations in $2\mbox{-}\CAT/\cK$,
     which follows from the definition of composition and whiskering for
     modifications.
 \end{proof}
 
 \begin{rmk}
-    For $T\Alg_P$ we only have 2-naturality for invertible modifications.
+    For $T\Alg_p$ we only have 2-naturality for invertible modifications.
 \end{rmk}
 
-Next we want to check that $(-)\Alg_L$ turns weighted colimits into weighted
-limits. For this we use the following characterization of $<A,A>$, $\{f,f\}_L$
+Next we want to check that $(-)\Alg_l$ turns weighted colimits into weighted
+limits. For this we use the following characterization of $\langle A,A\rangle$, $\{f,f\}_l$
 and $[\rho,\rho]$.
 
 \begin{prop}
     Let $\cK$ be complete and $A\in\cK$. Then there is an isomorphism of
     categories
-    \[\Mnd(\cK)^{\text{co}}(T,<A,A>)\rightarrow
-    2-\CAT/\cK(I\xrightarrow{A}\cK,T\Alg_L\xrightarrow{U_L}\cK)\]
+    \[\Mnd(\cK)^{\text{co}}(T,\langle A,A \rangle)\rightarrow
+    2\mbox{-}\CAT/\cK(\bb1\xrightarrow{A}\cK,T\Alg_l\xrightarrow{U_l}\cK)\]
     which is 2-natural in $T$.
 \end{prop}
+\begin{prop}
+The $2$-category $2\mbox{-}\CAT/\cK$ is complete as a $\Cat$-enriched category.
+\end{prop}
+\begin{proof}
+    For completeness we need conical limits and powers by $\b2=\{0\to1\}$. We start with the latter. It is given by the pullback in $2\mbox{-}\CAT$ 
+    
+    \[\begin{tikzcd}
+\b2\pitchfork U \arrow[r] \arrow[d, "V"'] \arrow[rd, "\lrcorner", near start, phantom] & \C^{\b2} \arrow[d, "U^{\b2}"] \\
+\cK \arrow[r, "\ulcorner\id\urcorner"']                                    & \K^{\b2}                     
+\end{tikzcd}\]
+where $\ulcorner\id\urcorner$ classifies the identity $2$-cell on $\id_{\cK}$. Note that there is a $2$-dimensional aspect to this, which follows from the $2$-dimensional universal property of $\C^{\b2}$. We also have copowers by $\b2$ given by $\C\times\b2\xrightarrow{\text{pr}}\C\xrightarrow{U}\cK$, so we only need to check the $1$-dimensional universal property for conical limits. Conical limits are classical: products are given by ``wide'' pullbacks 
+\[\begin{tikzcd}
+                                                     & \prod U_i \arrow[ld] \arrow[rd] &                        \\
+\C_i \arrow[rd, "U_i"'] \arrow[rr, "\dots", phantom] &                                 & \C_j \arrow[ld, "U_j"] \\
+                                                     & \cK                             &                       
+\end{tikzcd}\]
+while equalizer are computed as in $2\mbox{-}\CAT$.
+\end{proof}
+Now we have a $2$-functor between complete $2$-categories and we want to show that it preserves limits. The strategy is as follows. 
+
+Let $\C,\D$ be complete $\V$-categories, $F\colon\C\to\D$ a $\V$-functor, $D\colon\A\to\C$ a diagram and $\W\colon\A\to\V$ a weight. We get the comparison morphism $\bar{F}\colon F\{\W,\D\}\to\{\W, F\D\}$ in $\D$. We want to show that this is an iso. We will construct a new functor $G\colon\D\to\E$ s.t.\ both $G$ and $GF$ preserve weighted limits and $G$ reflects isomorphisms. Then the comparison morphism $\bar{GF}\colon GF\{\W,\D\}\xrightarrow{\cong}\{\W, GF\}$ factors as $GF\{\W,\D\}\xrightarrow{G(\bar{F})} G\{\W, F\D\}\xrightarrow[\cong]{\bar{G}}\{\W'GF\D\}$ so $G(\bar{F})$ is invertible hence also $\bar{F}$ is an isomorphism.
+
+We want to construct such a functor $G$ in our setting. For this we use the constructions $\langle A,A \rangle, \{f,f\}_l$ and $[\rho,\rho]$.
+\begin{prop}
+Let $\cK$ be complete. Then there is an isomorphism of categories, $2$-natural in $T$.
+\[2\mbox{-}\Mnd(\cK)^{\text{co}}(T,\langle A,A \rangle)\rightarrow
+    2\mbox{-}\CAT/\cK(\bb1\xrightarrow{A}\cK,T\Alg_l\xrightarrow{U_l}\cK)\]
+\end{prop}
+\begin{proof}
+  From Exercise $1.3$ we know that there is a natural bijection between monad morphisms $T\to\langle A,A\rangle$ and $T\mbox{-}\Alg$ structures $a\colon TA\to A$ on $A$. This gives the bijection on objects. Since this is constructed from the general theory of strict actions of strict monoidal categories, we know from Exercise 1.2 that monad modifications 
+\[\begin{tikzcd}
+	T & {\langle A,A\rangle}
+	\arrow[""{name=0, anchor=center, inner sep=0}, "{a_2}"', curve={height=18pt}, shorten >=4pt, from=1-1, to=1-2]
+	\arrow[""{name=1, anchor=center, inner sep=0}, "{a_1}", curve={height=-18pt}, shorten >=4pt, from=1-1, to=1-2]
+	\arrow["\varphi"', shorten <=10pt, shorten >=10pt, Rightarrow, from=1, to=0]
+\end{tikzcd}\]
+correspond to lax $T$-morphisms $(\id_A,\varphi)\colon(A,a_2)\to(A,a_1)$ (note the reversal of direction, omitted in the Exercise). This corresponds precisely to a $2$-cell
+\[\begin{tikzcd}
+	\bb1 && {T\Alg_l} \\
+	\\
+	& \cK
+	\arrow[""{name=0, anchor=center, inner sep=0}, "{(A,a_2)}", curve={height=-18pt}, from=1-1, to=1-3]
+	\arrow[""{name=1, anchor=center, inner sep=0}, "{(A,a_1)}"'{pos=0.55}, curve={height=18pt}, from=1-1, to=1-3]
+	\arrow["A"', from=1-1, to=3-2]
+	\arrow["{U_l}", from=1-3, to=3-2]
+	\arrow["{(\id,\varphi)}"', shorten <=10pt, shorten >=10pt, Rightarrow, from=0, to=1]
+\end{tikzcd}\]
+in $2\mbox{-}\CAT/\cK$.
+\end{proof}
+\begin{prop}
+Let $\cK$ be a complete $2$-category and $f\colon A\to B$ a $1$-cell in $\cK$. Then there is an isomorphism of categories
+\[2\mbox{-}\Mnd(\cK)^{\text{co}}(T,\{f,f\}_l)\rightarrow
+    2\mbox{-}\CAT/\cK(\b2\xrightarrow{f}\cK,T\Alg_l\xrightarrow{U_l}\cK)\]
+    which is $2$-natural in $T$.
+\end{prop}
+\begin{proof}
+  We already know this bijection on objects. From Exercise $1.4$ we know that this bijection arises from the strict action $[\cK,\cK]\times \Colax[\b2,\cK]\to\Colax[\b2,\cK]$ of $2$-categories. Using Exercise $1.2$ here we find that monad modifications 
+  \[\begin{tikzcd}
+	T & {\{f,f\}_l}
+	\arrow[""{name=0, anchor=center, inner sep=0}, "{\bar{f_2}}"', curve={height=18pt}, shorten >=4pt, from=1-1, to=1-2]
+	\arrow[""{name=1, anchor=center, inner sep=0}, "{\bar{f_1}}", curve={height=-18pt}, shorten >=4pt, from=1-1, to=1-2]
+	\arrow["\xi"', shorten <=10pt, shorten >=10pt, Rightarrow, from=1, to=0]
+\end{tikzcd}\]
+correspond to lax $T$-morphisms in $\Colax[\b2,\cK]$, which are the identity on objects, that is to pairs of $2$-cells $\xi_A, \xi_B$ s.t.
+\[\begin{tikzcd}
+	TA & A & {} & TA & A \\
+	TB & B & {} & TB & B
+	\arrow[""{name=0, anchor=center, inner sep=0}, "{a_2}"{pos=0.45}, curve={height=-12pt}, from=1-1, to=1-2]
+	\arrow[""{name=1, anchor=center, inner sep=0}, "{a_1}"'{pos=0.45}, curve={height=12pt}, from=1-1, to=1-2]
+	\arrow["{b_1}"', from=2-1, to=2-2]
+	\arrow[""{name=2, anchor=center, inner sep=0}, "f", from=1-2, to=2-2]
+	\arrow["{=}"{description}, draw=none, from=1-3, to=2-3]
+	\arrow["{a_2}", from=1-4, to=1-5]
+	\arrow[""{name=3, anchor=center, inner sep=0}, "{b_2}"{pos=0.49}, curve={height=-12pt}, from=2-4, to=2-5]
+	\arrow[""{name=4, anchor=center, inner sep=0}, "{b_1}"', curve={height=12pt}, from=2-4, to=2-5]
+	\arrow["f", from=1-5, to=2-5]
+	\arrow["Tf"', from=1-1, to=2-1]
+	\arrow[""{name=5, anchor=center, inner sep=0}, "Tf"', from=1-4, to=2-4]
+	\arrow["{\bar{f_1}}"'{pos=0.4}, shift left=1, shorten <=10pt, shorten >=10pt, Rightarrow, from=2-1, to=2]
+	\arrow["{\bar{f_2}}"{pos=0.5}, shift right=1, shorten <=10pt, shorten >=14pt, Rightarrow, from=5, to=1-5]
+	\arrow["{\xi_B}"', shorten <=6pt, shorten >=6pt, Rightarrow, from=4, to=3]
+	\arrow["{\xi_A}"', shorten <=6pt, shorten >=6pt, Rightarrow, from=1, to=0]
+\end{tikzcd}\]
+holds and $(\id_A,\xi_A)\colon (A,a_2)\to (A,a_1)$, $(\id_B,\xi_B)\colon (B,b_2)\to (B,b_1)$ are lax $T$-morphisms (exercise). This is precisely a $2$-cell 
+\[\begin{tikzcd}
+	\b2 && {T\Alg_l} \\
+	\\
+	& \cK
+	\arrow[""{name=0, anchor=center, inner sep=0}, "{(f,\bar{f_2})}", curve={height=-18pt}, from=1-1, to=1-3]
+	\arrow[""{name=1, anchor=center, inner sep=0}, "{(f,\bar{f_1})}"'{pos=0.55}, curve={height=18pt}, from=1-1, to=1-3]
+	\arrow["f"', from=1-1, to=3-2]
+	\arrow["{U_l}", from=1-3, to=3-2]
+	\arrow[shorten <=10pt, shorten >=10pt, Rightarrow, from=0, to=1]
+\end{tikzcd}\]
+in $2\mbox{-}\CAT/\cK$. 
+\end{proof}
+\begin{prop}
+If $\cK$ is complete and \begin{tikzcd}
+	A & B
+	\arrow[""{name=0, anchor=center, inner sep=0}, "g"', curve={height=12pt}, from=1-1, to=1-2]
+	\arrow[""{name=1, anchor=center, inner sep=0}, "f", curve={height=-12pt}, from=1-1, to=1-2]
+	\arrow["\rho", shorten <=6pt, shorten >=6pt, Rightarrow, from=1, to=0]
+\end{tikzcd} $2$-cell in $\cK$, there is an iso of categories
+\[2\mbox{-}\Mnd(\cK)^{\text{co}}(T,[\rho,\rho])\longrightarrow
+    2\mbox{-}\CAT/\cK\left(\begin{tikzcd}
+	0 & 1
+	\arrow[""{name=0, anchor=center, inner sep=0}, curve={height=12pt}, from=1-1, to=1-2]
+	\arrow[""{name=1, anchor=center, inner sep=0}, curve={height=-12pt}, from=1-1, to=1-2]
+	\arrow[shorten <=6pt, shorten >=6pt, Rightarrow, from=1, to=0]
+\end{tikzcd}\xlongrightarrow{\rho}\cK,T\Alg_l\xrightarrow{U_l}\cK\right)\]
+that is $2$-natural in $T$.
+\end{prop}
+\begin{proof}
+  One uses the action of $[\cK,\cK]$ on $$\Colax\left[\begin{tikzcd}
+	0 & 1
+	\arrow[""{name=0, anchor=center, inner sep=0}, curve={height=12pt}, from=1-1, to=1-2]
+	\arrow[""{name=1, anchor=center, inner sep=0}, curve={height=-12pt}, from=1-1, to=1-2]
+	\arrow[shorten <=6pt, shorten >=6pt, Rightarrow, from=1, to=0]
+\end{tikzcd}, \cK\right],$$ which has objects the $2$-cells \begin{tikzcd}
+	A & B
+	\arrow[""{name=0, anchor=center, inner sep=0}, "g"', curve={height=12pt}, from=1-1, to=1-2]
+	\arrow[""{name=1, anchor=center, inner sep=0}, "f", curve={height=-12pt}, from=1-1, to=1-2]
+	\arrow["\rho", shorten <=6pt, shorten >=6pt, Rightarrow, from=1, to=0]
+\end{tikzcd}, morphisms the quadruples $(a,\phi,\psi,b)$ such that
+\[\begin{tikzcd}
+	A & {A'} & {} & A & {A'} \\
+	B & {B'} & {} & B & {B'}
+	\arrow["a", from=1-1, to=1-2]
+	\arrow[""{name=0, anchor=center, inner sep=0}, "g", curve={height=-12pt}, from=1-1, to=2-1]
+	\arrow[""{name=1, anchor=center, inner sep=0}, "f"', curve={height=12pt}, from=1-1, to=2-1]
+	\arrow["b"', from=2-1, to=2-2]
+	\arrow[""{name=2, anchor=center, inner sep=0}, "{g'}", from=1-2, to=2-2]
+	\arrow["{=}"{description}, draw=none, from=1-3, to=2-3]
+	\arrow["a", from=1-4, to=1-5]
+	\arrow["b"', from=2-4, to=2-5]
+	\arrow[""{name=3, anchor=center, inner sep=0}, "{g'}", curve={height=-12pt}, from=1-5, to=2-5]
+	\arrow[""{name=4, anchor=center, inner sep=0}, "{f'}"', curve={height=12pt}, from=1-5, to=2-5]
+	\arrow[""{name=5, anchor=center, inner sep=0}, "f"', from=1-4, to=2-4]
+	\arrow["\rho", shorten <=5pt, shorten >=5pt, Rightarrow, from=1, to=0]
+	\arrow["\psi"', shorten <=8pt, shorten >=8pt, Rightarrow, from=0, to=2]
+	\arrow["{\rho'}", shorten <=5pt, shorten >=5pt, Rightarrow, from=4, to=3]
+	\arrow["\varphi", shorten <=8pt, shorten >=8pt, Rightarrow, from=5, to=4]
+\end{tikzcd}\]
+holds. The $2$-cells are pairs of $2$-cells subject to two axioms spelled out in the exercises. The construction is then analogous to the previous two propositions. That is we have to analyze what exactly a $T$-algebra in $$\Colax\left[\begin{tikzcd}
+	0 & 1
+	\arrow[""{name=0, anchor=center, inner sep=0}, curve={height=12pt}, from=1-1, to=1-2]
+	\arrow[""{name=1, anchor=center, inner sep=0}, curve={height=-12pt}, from=1-1, to=1-2]
+	\arrow[shorten <=6pt, shorten >=6pt, Rightarrow, from=1, to=0]
+\end{tikzcd}, \cK\right]$$ is and what a lax $T$-morphism is, whose $1$-cell part is the identity. 
+\end{proof}
+The existence of adjoints is due to the completeness assumption. With this at hand we can now prove that $(-)\Alg_l$ turns colimits into limits.
+\begin{thm}
+    Let $\cK$ be a locally $\kappa$-presentable $2$-category. Then the $2$-functor
+    \[(-)\Alg_l\colon2\mbox{-}\Mnd_{\kappa}(\cK)^{\text{coop}}\to 2\mbox{-}\CAT/\cK\] turns weighted colimits into limits.
+\end{thm}
+\begin{proof}
+  We already know that the inclusion $2\mbox{-}\Mnd_{\kappa}(\cK)\to 2\mbox{-}\Mnd(\cK)$ preserves weighted colimits, so it suffices to prove the claim for diagrams in the latter $2$-category, which happen to have a colimit. So let $D\colon\A\to2\mbox{-}\Mnd(\cK)^{\text{co}}$ be a diagram, $\W\colon\A^{\op}\to\CAT$ a weight such that $\W\copw_{\A}D$ exists in $2\mbox{-}\Mnd(\cK)^{\text{co}}$. We have a comparison morphism $L\colon\W\copw_{\A}D\Alg_l\to\{\W,D\Alg_l\}$ in $2\mbox{-}\CAT/\cK$. The represented $2$-functor $2\mbox{-}\CAT/\cK(\bb1\xrightarrow{A}\cK,-)$ preserves weighted limits (as homs do) and the composite $2\mbox{-}\CAT/\cK(\bb1\xrightarrow{A}\cK,-)\circ(-)\Alg_l$ also preserves weighted limits, since it is represented by $\langle A,A \rangle$ by the first Proposition above. So in the commuting diagram 
+  \[\begin{tikzcd}[column sep=.1mm, row sep=7mm]
+	{2\mbox{-}\CAT/\cK(\bb1\xrightarrow{A}\cK,\W\copw_{\A}D\Alg_l) } && {2\mbox{-}\CAT/\cK(\bb1\xrightarrow{A}\cK,\{\W,D\Alg_l\})} \\
+	\\
+	& {\{\W,2\mbox{-}\CAT/\cK(\bb1\xrightarrow{A}\cK,D\Alg_l)\}}
+	\arrow["{2\mbox{-}\CAT/\cK(\bb1\xrightarrow{A}\cK,L)}", from=1-1, to=1-3]
+	\arrow["{\text{comparison}}"',"\cong", from=1-1, to=3-2]
+	\arrow["{\text{comparison}}","\cong"', from=1-3, to=3-2]
+\end{tikzcd}\]
+both arrows labelled "comparison" are isomorphisms (compare with the discussion above for $F=(-)\Alg_l, G=2\mbox{-}\CAT/\cK(\bb1\xrightarrow{A}\cK,-)$).
+Upshot: for each $A\in\cK$, $2\mbox{-}\CAT/\cK(\bb1\xrightarrow{A}\cK,L)$ is an isomorphism. Using the same argument applied to $(0\to 1)\xrightarrow{f}\cK$ and 
+$$\begin{tikzcd}
+	0 & 1
+	\arrow[""{name=0, anchor=center, inner sep=0}, curve={height=12pt}, from=1-1, to=1-2]
+	\arrow[""{name=1, anchor=center, inner sep=0}, curve={height=-12pt}, from=1-1, to=1-2]
+	\arrow[shorten <=6pt, shorten >=6pt, Rightarrow, from=1, to=0]
+\end{tikzcd}\xlongrightarrow{\rho}\cK$$ and the propositions about $\{f,f\}_l$ and $[\rho,\rho]$ we find that for all $1$-cells $f$ and all $2$-cells $\rho$ the $2$-functors $2\mbox{-}\CAT/\cK(f,L)$ and $2\mbox{-}\CAT/\cK(\rho,L)$ are isomorphisms. Since the $2$-functors $2\mbox{-}\CAT/\cK(A,-),2\mbox{-}\CAT/\cK(f,-)$ and $2\mbox{-}\CAT/\cK(\rho,-)$ jointly detect isomorphisms, we find that $L$ is an isomorphism. 
+\end{proof}
+We can do the same construction for $(-)\Alg_p$ and $(-)\Alg_s$. On the other hand, once we know that a $2$-category is of the form $T\Alg_l$ it has subcategories $T\Alg_p$ and $T\Alg_s$. We would like to be able to identify these in terms of the categories $D_i\Alg_p, D_i\Alg_s$ when forming limits. To do this we will use the $2$-monads $\{f,f\}_p$ and $\{f,f\}_s$. We have $2$-monads morphisms $\{f,f\}_s\to\{f,f\}_p\to\{f,f\}_l$ defined by the requirement that the $2$-cell $\bar{f}$ is either an identity or an isomorphism. A factorization of $T\to\{f,f\}_l$ through one of these is unique, if it exists, which it does if and only if the lax morphism corresponding to $\varphi$ is strict resp. pseudo.
+
+
 
 \backmatter
 
