@@ -1546,7 +1546,366 @@ $$\begin{tikzcd}
 \end{proof}
 We can do the same construction for $(-)\Alg_p$ and $(-)\Alg_s$. On the other hand, once we know that a $2$-category is of the form $T\Alg_l$ it has subcategories $T\Alg_p$ and $T\Alg_s$. We would like to be able to identify these in terms of the categories $D_i\Alg_p, D_i\Alg_s$ when forming limits. To do this we will use the $2$-monads $\{f,f\}_p$ and $\{f,f\}_s$. We have $2$-monads morphisms $\{f,f\}_s\to\{f,f\}_p\to\{f,f\}_l$ defined by the requirement that the $2$-cell $\bar{f}$ is either an identity or an isomorphism. A factorization of $T\to\{f,f\}_l$ through one of these is unique, if it exists, which it does if and only if the lax morphism corresponding to $\varphi$ is strict resp.\ pseudo.
 
+\begin{lemma}
+    Given a diagram $D\colon\cA\rightarrow 2-\Mnd_\kappa(\cK)$ and a weight
+    $W\colon\cA^{\op}\rightarrow\Cat$, let $\cK_i\colon D_i\rightarrow W\odot_\cA
+    D$ jointly ``codetect'' identities and isomorphisms. A 2-cell $\begin{tikzcd}
+	{W\odot_\cA D} & T
+	\arrow[""{name=0, anchor=center, inner sep=0}, curve={height=-9pt}, from=1-1, to=1-2]
+	\arrow[""{name=1, anchor=center, inner sep=0}, curve={height=9pt}, from=1-1, to=1-2]
+	\arrow["\alpha", shorten <=3pt, shorten >=3, Rightarrow, from=0, to=1]
+    \end{tikzcd}$ is an identity (an isomorphism) if and only if each $\alpha
+    \cK_i$ is. Then a lax $W\odot_\cA D$-morphism $(f,\overline{f})$ is pseudo
+    (strict) if and only if $(\cK_i)^*(f,\overline{f})$ is.
+\end{lemma}
+\begin{proof}
+    This follows from the existence of the classifiers $\{f,f\}_S$, $\{f,f\}_P$,
+    which are defined by the universal requirement that a certain 2-cell is an
+    identity (an isomorphism).
+\end{proof}
 
+\begin{lemma}
+    The morphisms $\coprod_{i\in \cA}\coprod_{w\in W_i}D_i\rightarrow W\odot_\cA
+    D$ jointly codetect isomorphisms and identities.
+\end{lemma}
+\begin{proof}
+    Applying $2-\Mnd_\kappa(-T)$, this translates to a statement about weighted
+    limits in $\Cat$, namely that for any $D'\colon\cA^{\op}\rightarrow\Cat$ the
+    functor
+    \[\{W,D'\}\rightarrow
+    \Pi_{i\in\cA}\{W_i,D'_i\}\rightarrow
+    \Pi_{i\in\cA}\Pi_{w\in
+    W_i}D_i\]
+    detects isomorphisms and identities, where the first is the canonical map we
+    get from the characterization of weighted limits in terms of powers,
+    products and equalizers and the second is a product of functors
+    $\{W_i,D'_i\}=\Fun(W_i,D'_i)\rightarrow\Fun(\Ob W_i,D'_i)$.
+     The latter functors detect isomorphisms and identities because a natural
+     transformation is an isomorphism (an identity) if and only if all of its
+     components are.
+
+     The first functor is the equalizer in the standard
+     presentation of $\{W,D'\}$ in $\Cat$, hence a (not necessarily full)
+     inclusion of subcategories, thus it detects identities (using injectivity
+     on objects). It also detects isomorphisms: if $Ff=Gf$ and $f$ is an
+     isomorphism then $(Ff)^{-1}=(Gf)^{-1}$, so the inverse of an isomorphism
+     lies in the equalizer.
+\end{proof}
+
+\begin{rmk}
+    In practice once can do much better than the morphism in the above lemma:
+    for example, for the cocomma object
+    \[\begin{tikzcd}
+        A & B \\
+        C & D
+        \arrow[from=1-2, to=2-2]
+        \arrow["f", from=1-1, to=1-2]
+        \arrow[from=2-1, to=2-2]
+        \arrow[from=1-1, to=2-1]
+        \arrow[shorten <=8pt, shorten >=8pt, Rightarrow, from=1-2, to=2-1]
+    \end{tikzcd},\]
+    the canonical arrow $B+C\rightarrow D$ codetects identities and
+    isomorphisms. Identifying such a subset of objects with this property is
+    easy once the 2-dimensional universal property is understood.
+\end{rmk}
+
+Summarizing, a lax $W\odot_\cA D$-morphism consists of certain 2-cells involving
+the categories $D_i\Alg_L$ and it will be pseudo (strict) if and only if all of
+the constituents are.
+
+We now have almost all the ingredients necessary to identify $T\Alg_{S/P/L}$
+when $T$ is given by a presentation.
+
+\begin{exmp}
+    Consider a locally $\kappa$-presentable monoidal 2-category $\cK$ such that
+    for all objects $x$ both $x\otimes-$ and $-\otimes x$ preserve
+    $\kappa$-filtered colimits. Monoidal here means exactly the 1-categorical
+    definition, replacing functors and natural transformations with their
+    2-dimensional counterparts. Examples of this are $[\cK,\cK]_\kappa$ with
+    $\otimes=\circ$, $\cV-\Cat$ for a lfp cosmos $\cV$.
+
+    We now present a complete characterization of the 2-category of monoids on
+    $\cK$.
+
+    Let $F\colon\cK\rightarrow\cK$ be the 2-endofunctor $M\mapsto M\otimes M+I$.
+    Then $T\Alg_L$ has as objects the triples $(M,p\colon M\otimes M\rightarrow
+    M,u\colon I\rightarrow M)$ subject to no axioms; morphisms
+    $(M,p,u)\rightarrow(M',p',u')$ are 1-cells $f\colon M\rightarrow M'$ with
+    2-cells
+    \[\begin{tikzcd}
+        {M\otimes M+I} & M \\
+        {M'\otimes M'+I} & {M'}
+        \arrow["{p'+u'}"', from=2-1, to=2-2]
+        \arrow["{p+u}", from=1-1, to=1-2]
+        \arrow[""{name=0, anchor=center, inner sep=0}, "f", from=1-2, to=2-2]
+        \arrow[""{name=1, anchor=center, inner sep=0}, "{f\otimes f+I}"', from=1-1, to=2-1]
+        \arrow["{\overline{f}}", shorten <=18pt, shorten >=18pt, Rightarrow, from=1, to=0]
+    \end{tikzcd}\]
+    subject to no axioms. This amounts to a pair of 2-cells
+    $\overline{f_2}\colon p'\cdot f\otimes f\Rightarrow f\cdot p$ and
+    $\overline{f_0}\colon u'\rightarrow f\cdot u$ by the universal property of
+    the coproduct. The 2-cells
+    $(f,\overline{f_2},\overline{f_0})\Rightarrow(g,\overline{g_2},\overline{g_0})$
+    are 2-cells $\phi\colon f\Rightarrow g$ s.t.\
+    \[\begin{tikzcd}
+        {M\otimes M} & M & {=} & {M\otimes M} & M \\
+        {M'\otimes M'} & {M'} && {M'\otimes M'} & {M'}
+        \arrow["p", from=1-1, to=1-2]
+        \arrow["{p'}"', from=2-1, to=2-2]
+        \arrow[""{name=0, anchor=center, inner sep=0}, "g", from=1-2, to=2-2]
+        \arrow[""{name=1, anchor=center, inner sep=0}, "{g\otimes g}", curve={height=-12pt}, from=1-1, to=2-1]
+        \arrow[""{name=2, anchor=center, inner sep=0}, "{f\otimes f}"', curve={height=12pt}, from=1-1, to=2-1]
+        \arrow[""{name=3, anchor=center, inner sep=0}, "{f\otimes f}"', from=1-4, to=2-4]
+        \arrow[""{name=4, anchor=center, inner sep=0}, "f"', curve={height=12pt}, from=1-5, to=2-5]
+        \arrow[""{name=5, anchor=center, inner sep=0}, "g", curve={height=-12pt}, from=1-5, to=2-5]
+        \arrow["p", from=1-4, to=1-5]
+        \arrow["{p'}"', from=2-4, to=2-5]
+        \arrow["\phi\otimes\phi", shorten <=6pt, shorten >=6pt, Rightarrow, from=2, to=1]
+        \arrow["{\overline{g_2}}", shorten <=11pt, shorten >=11pt, Rightarrow, from=1, to=0]
+        \arrow["\phi", shorten <=6pt, shorten >=6pt, Rightarrow, from=4, to=5]
+        \arrow["{\overline{f_2}}", shorten <=11pt, shorten >=11pt, Rightarrow, from=3, to=4]
+    \end{tikzcd}\]
+    and
+    \[\begin{tikzcd}
+        & M &&& M \\
+        I && {=} & I \\
+        & {M'} &&& {M'}
+        \arrow["u", from=2-1, to=1-2]
+        \arrow["{u'}"', from=2-1, to=3-2]
+        \arrow[""{name=0, anchor=center, inner sep=0}, "g", curve={height=-12pt}, from=1-2, to=3-2]
+        \arrow[""{name=1, anchor=center, inner sep=0}, "f"', curve={height=12pt}, from=1-2, to=3-2]
+        \arrow[""{name=2, anchor=center, inner sep=0}, "g", from=1-5, to=3-5]
+        \arrow["{u'}"', from=2-4, to=3-5]
+        \arrow["u", from=2-4, to=1-5]
+        \arrow["\phi", shorten <=5pt, shorten >=5pt, Rightarrow, from=1, to=0]
+        \arrow["{\overline{f_0}}", shorten <=2pt, shorten >=7pt, Rightarrow, from=2-1, to=1]
+        \arrow["{\overline{g_0}}", shorten <=10pt, shorten >=10pt, Rightarrow, from=2-4, to=2]
+    \end{tikzcd}\]
+    hold.
+
+    Let $G\colon\cK\rightarrow\cK$ be the 2-endofunctor $GM=M\otimes(M\otimes
+    M)+M+M$. The 2-category $G\Alg_L$ has objects $(M,p_\alpha\colon
+    M\otimes(M\otimes M)\rightarrow M, p_\lambda\colon M\rightarrow M,
+    p_\rho\colon M\rightarrow M)$ and 1-cells are the quadruples
+    $(f,\overline{f_\alpha}\colon p'_\alpha\cdot(f\otimes (f\otimes
+    f))\Rightarrow f\cdot p_\alpha,\overline{f_\lambda}\colon p'_\lambda\cdot
+    f\Rightarrow f\cdot p_\lambda,\overline{f_\rho}\colon p'_\rho\cdot
+    f\Rightarrow f\cdot p_\rho)$. The 2-cells are 2-cells $\phi\colon
+    f\Rightarrow g$ s.t.
+    \[\begin{tikzcd}
+        {M\otimes (M\otimes M)} && M & {=} & {M\otimes(M\otimes M)} & M \\
+        {M'\otimes(M'\otimes M')} && {M'} && {M'\otimes(M'\otimes M')} & {M'}
+        \arrow[""{name=0, anchor=center, inner sep=0}, "{f\otimes (f\otimes f)}"', curve={height=18pt}, from=1-1, to=2-1]
+        \arrow[""{name=1, anchor=center, inner sep=0}, "{g\otimes (g\otimes g)}", curve={height=-24pt}, from=1-1, to=2-1]
+        \arrow[""{name=2, anchor=center, inner sep=0}, "g", from=1-3, to=2-3]
+        \arrow["{p_\alpha}", from=1-1, to=1-3]
+        \arrow["{p'_\alpha}"', from=2-1, to=2-3]
+        \arrow[""{name=3, anchor=center, inner sep=0}, "{f\otimes(f\otimes f)}"', from=1-5, to=2-5]
+        \arrow[""{name=4, anchor=center, inner sep=0}, "f"', curve={height=12pt}, from=1-6, to=2-6]
+        \arrow[""{name=5, anchor=center, inner sep=0}, "g", curve={height=-12pt}, from=1-6, to=2-6]
+        \arrow["{p_\alpha}", from=1-5, to=1-6]
+        \arrow["{p'_\alpha}"', from=2-5, to=2-6]
+        \arrow["{\phi\otimes(\phi\otimes\phi)}", shorten <=8pt, shorten >=8pt, Rightarrow, from=0, to=1]
+        \arrow["{\overline{g_\alpha}}"{pos=0.7}, shorten <=48pt, shorten >=12pt, Rightarrow, from=1, to=2]
+        \arrow["\phi", shorten <=6pt, shorten >=6pt, Rightarrow, from=4, to=5]
+        \arrow["{\overline{f_\alpha}}", shorten <=16pt, shorten >=16pt, Rightarrow, from=3, to=4]
+    \end{tikzcd}\]
+    and the other axioms hold.
+    The pseudo/strict versions of these are the ones where $\overline{f_0}$,
+    $\overline{f_2}$ (respectively $\overline{f_\alpha}$,
+    $\overline{f_\lambda}$, $\overline{f_\rho}$) are isomorphisms/identities.
+
+    Next we construct two 2-functors $\psi_i\colon F\Alg_L\rightarrow G\Alg_L$,
+    which send $(M,p,u)$ to $(M,p\cdot M\otimes p, p\cdot
+    u\otimes\cdot\lambda_M^{-1},p\cdot M\otimes u\cdot\rho_M^{-1})$ and
+    $(M,p\cdot p\otimes M\cdot\alpha_{M,M,M},\id_M,\id_M)$ respectively.
+
+    On 1-cells, $\psi_1$ sends $(f,\overline{f_2},\overline{f_0})$ to
+    \[\begin{tikzcd}
+        {M\otimes (M\otimes M)} & {M\otimes M} & M \\
+        {M'\otimes(M'\otimes M')} & {M'\otimes M'} & {M'}
+        \arrow[""{name=0, anchor=center, inner sep=0}, "{f\otimes(f\otimes f)}"', from=1-1, to=2-1]
+        \arrow[""{name=1, anchor=center, inner sep=0}, "f", from=1-3, to=2-3]
+        \arrow[""{name=2, anchor=center, inner sep=0}, "{f\otimes f}"{description}, from=1-2, to=2-2]
+        \arrow["p", from=1-2, to=1-3]
+        \arrow["{p'}"', from=2-2, to=2-3]
+        \arrow["{M'\otimes p'}"', from=2-1, to=2-2]
+        \arrow["{M\otimes p}", from=1-1, to=1-2]
+        \arrow["{\overline{f_2}}", shorten <=16pt, shorten >=16pt, Rightarrow, from=2, to=1]
+        \arrow["{f\otimes\overline{f_2}}", shorten <=24pt, shorten >=24pt, Rightarrow, from=0, to=2]
+    \end{tikzcd},\quad
+        \begin{tikzcd}
+        M & {I\otimes M} & {M\otimes M} & M \\
+        {M'} & {I\otimes M'} & {M'\otimes M'} & {M'}
+        \arrow[""{name=0, anchor=center, inner sep=0}, "f", from=1-4, to=2-4]
+        \arrow[""{name=1, anchor=center, inner sep=0}, "{f\otimes f}"{description}, from=1-3, to=2-3]
+        \arrow["p", from=1-3, to=1-4]
+        \arrow["{p'}"', from=2-3, to=2-4]
+        \arrow["{u'\otimes M'}"', from=2-2, to=2-3]
+        \arrow["{u\otimes M}", from=1-2, to=1-3]
+        \arrow[""{name=2, anchor=center, inner sep=0}, "{I\otimes f}"{description}, from=1-2, to=2-2]
+        \arrow["{\lambda_{M'}^{-1}}"', from=2-1, to=2-2]
+        \arrow["{\lambda_M^{-1}}", from=1-1, to=1-2]
+        \arrow["f"', from=1-1, to=2-1]
+        \arrow[shorten <=9pt, shorten >=9pt, Rightarrow, no head, from=2-1, to=1-2]
+        \arrow["{\overline{f_2}}", shorten <=16pt, shorten >=16pt, Rightarrow, from=1, to=0]
+        \arrow["{\overline{f_0}\otimes f}", shorten <=17pt, shorten >=17pt, Rightarrow, from=2, to=1]
+    \end{tikzcd}\]
+    and
+    \[\begin{tikzcd}
+        M & {M\otimes I} & {M\otimes M} & M \\
+        {M'} & {M'\otimes I} & {M'\otimes M'} & {M'}
+        \arrow[""{name=0, anchor=center, inner sep=0}, "f", from=1-4, to=2-4]
+        \arrow["{p'}"', from=2-3, to=2-4]
+        \arrow[shorten <=9pt, shorten >=9pt, Rightarrow, no head, from=2-1, to=1-2]
+        \arrow["{\rho_M^{-1}}", from=1-1, to=1-2]
+        \arrow["f"', from=1-1, to=2-1]
+        \arrow["{M'\otimes u'}"', from=2-2, to=2-3]
+        \arrow[""{name=1, anchor=center, inner sep=0}, "{I\otimes f}"{description}, from=1-2, to=2-2]
+        \arrow["{\rho_{M'}^{-1}}"', from=2-1, to=2-2]
+        \arrow[""{name=2, anchor=center, inner sep=0}, "{f\otimes f}"{description}, from=1-3, to=2-3]
+        \arrow["p", from=1-3, to=1-4]
+        \arrow["{M\otimes u}", from=1-2, to=1-3]
+        \arrow["{\overline{f_2}}", shorten <=16pt, shorten >=16pt, Rightarrow, from=2, to=0]
+        \arrow["{f\otimes\overline{f_0}}", shorten <=17pt, shorten >=17pt, Rightarrow, from=1, to=2]
+    \end{tikzcd}\]
+
+    The 2-functor $\psi_2$ sends $(f,\overline{f_2},\overline{f_0})$ to
+    \[\begin{tikzcd}
+        {M\otimes(M\otimes M)} & {(M\otimes M)\otimes M} & {M\otimes M} & M \\
+        {M'\otimes(M'\otimes M')} & {(M'\otimes M')\otimes M'} & {M'\otimes M'} & {M'}
+        \arrow["{f\otimes(f\otimes f)}"', from=1-1, to=2-1]
+        \arrow[""{name=0, anchor=center, inner sep=0}, "{(f\otimes f)\otimes f}"{description}, from=1-2, to=2-2]
+        \arrow[""{name=1, anchor=center, inner sep=0}, "{f\otimes f}"{description}, from=1-3, to=2-3]
+        \arrow[""{name=2, anchor=center, inner sep=0}, "f", from=1-4, to=2-4]
+        \arrow["{p'\otimes M'}"', from=2-2, to=2-3]
+        \arrow["{p\otimes M}", from=1-2, to=1-3]
+        \arrow["{p'}"', from=2-3, to=2-4]
+        \arrow["p", from=1-3, to=1-4]
+        \arrow["{\alpha_{M,M,M}}", from=1-1, to=1-2]
+        \arrow[shorten <=14pt, shorten >=14pt, Rightarrow, no head, from=2-1, to=1-2]
+        \arrow["{\alpha_{M',M',M'}}"', from=2-1, to=2-2]
+        \arrow["{\overline{f_2}}", shorten <=16pt, shorten >=16pt, Rightarrow, from=1, to=2]
+        \arrow["{\overline{f_2}\otimes f}", shorten <=24pt, shorten >=24pt, Rightarrow, from=0, to=1]
+    \end{tikzcd},\]
+    $1_f$ and $1_f$.
+
+    On 2-cells both $\psi_1$ and $\psi_2$ act as the identity. The axioms hold
+    because the $\alpha$, $\lambda$, $\rho$ parts are built from
+    $\overline{f_0}$ and $\overline{f_2}$.
+
+    From the construction we see that the $\psi_i$ restrict to 2-functors
+    $F\Alg_S\rightarrow G\Alg_S$ and these restrictions are induced by 2-monad
+    morphisms $\hat{\psi_i}\colon T(G)\rightarrow T(F)$, the free 2-monads on
+    $G$ and $F$ respectively, by full faithfullness of the 1-functor
+    $(-)\Alg_S$. In other words, $\psi_i=(\hat{\psi_i})^*$ is a strict morphism.
+    Since there is a unique extension of $(\hat{\psi_i})^*$ to a 2-functor on
+    $T(F)\Alg_L$ compatible with $U_L$, we have $\psi_i=(\hat{\psi_i})^*$ on all
+    of $F\Alg_L\cong T(F)\Alg_L$.
+
+    Now let $\Mon$ be the coequalizer of $\hat{\psi_1}$ and $\hat{\psi_2}$ in
+    $2-\Mnd_\kappa(\cK)$. Then $\Mon\Alg_L$ is the coequalizer of the $\psi_i$,
+    so the objects are precisely the monoids in $\cK$, the 1-cells are the
+    triples $(f,\overline{f_2},\overline{f_0})$ subject to three axioms, namely
+    that the 2-cells depicted above are equal. The 2-cell axioms remain the
+    same: compatibility with $\overline{f_2}$ and $\overline{f_0}$. The
+    pseudo/strict morphisms are the ones where $\overline{f_2}$,
+    $\overline{f_0}$ are invertible/identities, since $T(F)\rightarrow\Mon$
+    codetects isomorphisms/identities.
+
+    We can spell out what this means for $\kappa$-accessible monads.
+
+    Lax morphisms $(T,\mu^T,\eta^T)\rightarrow(S,\mu^S,\eta^S)$ are triples
+    $(f,\overline{f_2},\overline{f_0})$ where $f\colon T\rightarrow S$ is
+    2-natural and $\overline{f_0}$, $\overline{f_2}$ are modifications
+    \[\begin{tikzcd}
+        & T & {T^2} \\
+        {\id_{\cK}} & {} \\
+        & S & {S^2}
+        \arrow["{\eta^T}", from=2-1, to=1-2]
+        \arrow["{\eta^S}"', from=2-1, to=3-2]
+        \arrow["{\mu^S}", from=3-3, to=3-2]
+        \arrow["{\mu^T}"', from=1-3, to=1-2]
+        \arrow[""{name=0, anchor=center, inner sep=0}, "{f^2}", from=1-3, to=3-3]
+        \arrow["f"{description}, from=1-2, to=3-2]
+        \arrow["{\overline{f_0}}", shorten <=6pt, shorten >=6pt, Rightarrow, from=2-1, to=2-2]
+        \arrow["{\overline{f_2}}"', shorten <=10pt, shorten >=10pt, Rightarrow, from=0, to=2-2]
+    \end{tikzcd}\]
+    such that --diagrams-- hold.
+    \[\begin{tikzcd}
+        {T^3} & {T^2} & T && {T^3} & {T^2} & T \\
+        {TS^2} & TS && {=} & {T^2S} & TS \\
+        {S^3} & {S^2} & S && {S^3} & {S^2} & S
+        \arrow[""{name=0, anchor=center, inner sep=0}, "f", from=1-3, to=3-3]
+        \arrow["{\mu^S}"', from=3-2, to=3-3]
+        \arrow["{S\mu^S}"', from=3-1, to=3-2]
+        \arrow["{T\mu^S}", from=2-1, to=2-2]
+        \arrow["{T\mu^T}", from=1-1, to=1-2]
+        \arrow[""{name=1, anchor=center, inner sep=0}, "Tf", from=1-2, to=2-2]
+        \arrow["{\mu^T}", from=1-2, to=1-3]
+        \arrow["{f S^2}"', from=2-1, to=3-1]
+        \arrow[""{name=2, anchor=center, inner sep=0}, "{Tf^2}"', from=1-1, to=2-1]
+        \arrow["fS", from=2-2, to=3-2]
+        \arrow[shorten <=8pt, shorten >=8pt, Rightarrow, no head, from=3-1, to=2-2]
+        \arrow[""{name=3, anchor=center, inner sep=0}, "f", from=1-7, to=3-7]
+        \arrow["{\mu^S}"', from=3-6, to=3-7]
+        \arrow["{\mu^SS}"', from=3-5, to=3-6]
+        \arrow["{\mu^TS}", from=2-5, to=2-6]
+        \arrow["{\mu^TT}", from=1-5, to=1-6]
+        \arrow["{\mu^T}", from=1-6, to=1-7]
+        \arrow["Tf", from=1-6, to=2-6]
+        \arrow[""{name=4, anchor=center, inner sep=0}, "fS", from=2-6, to=3-6]
+        \arrow[""{name=5, anchor=center, inner sep=0}, "{f^2S}"', from=2-5, to=3-5]
+        \arrow["{T^2f}"', from=1-5, to=2-5]
+        \arrow[shorten <=8pt, shorten >=8pt, Rightarrow, no head, from=2-5, to=1-6]
+        \arrow["{\overline{f_2}}", shorten <=10pt, shorten >=10pt, Rightarrow, from=2-2, to=0]
+        \arrow["{T\overline{f_2}}", shorten <=13pt, shorten >=13pt, Rightarrow, from=2, to=1]
+        \arrow["{\overline{f_2}S}", shorten <=13pt, shorten >=13pt, Rightarrow, from=5, to=4]
+        \arrow["{\overline{f_2}}", shorten <=10pt, shorten >=10pt, Rightarrow, from=2-6, to=3]
+    \end{tikzcd},\]
+    \[\begin{tikzcd}
+        & {T^2} & T \\
+        T & ST && {=} & {1_f} \\
+        S & {S^2} & S
+        \arrow[""{name=0, anchor=center, inner sep=0}, "fT", from=1-2, to=2-2]
+        \arrow[""{name=1, anchor=center, inner sep=0}, "f", from=1-3, to=3-3]
+        \arrow["{\mu^S}"', from=3-2, to=3-3]
+        \arrow["{\eta^SS}"', from=3-1, to=3-2]
+        \arrow["f"', from=2-1, to=3-1]
+        \arrow["Sf", from=2-2, to=3-2]
+        \arrow["{\mu^T}", from=1-2, to=1-3]
+        \arrow["{\eta^TT}", from=2-1, to=1-2]
+        \arrow["{\eta^ST}"', from=2-1, to=2-2]
+        \arrow[shorten <=8pt, shorten >=8pt, Rightarrow, no head, from=3-1, to=2-2]
+        \arrow["{\overline{f_2}}", shorten <=10pt, shorten >=10pt, Rightarrow, from=2-2, to=1]
+        \arrow["{\overline{f_0}}"', shorten <=10pt, shorten >=10pt, Rightarrow, from=2-1, to=0]
+    \end{tikzcd}\]
+    and
+    \[\begin{tikzcd}
+        T & {T^2} & T \\
+        S & ST && {=} & {1_f} \\
+        & {S^2} & S
+        \arrow["fT", from=1-2, to=2-2]
+        \arrow[""{name=0, anchor=center, inner sep=0}, "f", from=1-3, to=3-3]
+        \arrow["{\mu^S}"', from=3-2, to=3-3]
+        \arrow["Sf", from=2-2, to=3-2]
+        \arrow["{\mu^T}", from=1-2, to=1-3]
+        \arrow["{T\eta^T}", from=1-1, to=1-2]
+        \arrow["f"', from=1-1, to=2-1]
+        \arrow["{S\eta^T}", from=2-1, to=2-2]
+        \arrow[shorten <=8pt, shorten >=8pt, Rightarrow, no head, from=2-1, to=1-2]
+        \arrow[""{name=1, anchor=center, inner sep=0}, "{S\overline{f_0}}"', from=2-1, to=3-2]
+        \arrow["{\overline{f_2}}", shorten <=10pt, shorten >=10pt, Rightarrow, from=2-2, to=0]
+        \arrow["{S\overline{f_0}}", shorten <=4pt, shorten >=4pt, Rightarrow, from=1, to=2-2]
+    \end{tikzcd}\]
+    hold.
+
+    Monad modifications between these are required to be compatible with
+    $\overline{f_0}$ and $\overline{f_2}$.
+
+    It is somewhat surprising that these are really the lax morphisms if you try
+    to recognize them without the machinery we built.
+\end{exmp}
 
 \backmatter
 
