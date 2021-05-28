@@ -2356,6 +2356,176 @@ We now impose the triangle identities using an equifier in the same manner as be
 \begin{rmk}
     The free objects for $T_{\D}$ should correspond to the $\D$-colimits closure in the diagram category $[\C,\V]$ of the representables. For this we need to understand ``how free'' $T_{\D}(\C)$ actually is in $T_{\D}\Alg_p$ (as opposed to $T_{\D}\Alg_s$).
 \end{rmk}
-\backmatter
 
+\begin{rmk}
+If we want to get the $2$-monad for categories with colimits of shape $\{\D_i\}_{i\in I}$ for some set of ordinary categories, we simply take the coproduct $\coprod T_{\D_i}$ in $2\mbox{-}\Mnd(\V\mbox{-}\Cat)$ (all $\D_i$ are $\kappa$-presentable). E.g.\ given shapes for binary coproducts, initial object and coequalizers we get finitely cocomplete categories in the case $\V=\Set$. Our final example concerns $2$-categories of $2$-functors. Let $\cK$ be a cocomplete $2$-category and $\A$ a small $2$-category. Then $[\A,\cK]$, the $2$-category of (strict) $2$-functors, (strict) $2$-natural transformations and modifications is the $2$-category of algebras for the $2$-monad 
+\begin{align*}
+    T\colon[\Ob\A,\cK]&\longrightarrow[\Ob\A,\cK]\\
+    (X_a)_{a\in\A}&\mapsto \left(\sum_{a\in\A}\A(a,b)\copw X_a\right)_{b\in\A}
+\end{align*}
+by definition in our case if $\cK=\Cat$, and in general it follows from the adjunction defining the copower:
+$$(\A(a,b)\copw X_a \to X_b) \leftrightsquigarrow (\A(a,b)\to\K(X_a,X_b)).$$
+The coproduct of $T^2$ at $c\in\A$ is 
+\begin{align*}
+    \left(T^2(X_a)_{a\in\A}\right)_c &= \sum_b \A(b,c)\copw\left(T(X_a)_{a\in\A}\right)_b \\
+    &= \sum_b \A(b,c)\copw\left(\sum_a \A(a,b)\copw X_a\right)\\
+    &\cong \sum_{a,b} (\A(b,c)\times\A(a,b))\copw X_a.
+\end{align*}
+The unit and multiplication are given by the identities resp.\ composition in $\A$. To give a lax $T$-morphism $(F_a)_{a\in\A}\to(G_a)_{a\in\A}$ amounts to giving a pair $(f,\overline{f})$ whose $f$ is simply a morphism of collections, i.e.\ a $1$-cell $f_a\colon F_a\to G_a$ for each $a\in\A$ and $\overline{f}$ is a $2$-cell
+\[\begin{tikzcd}
+	{\sum_a\A(a,b)\copw F_a} & {F_b} \\
+	{\sum_a\A(a,b)\copw G_a} & {G_b}
+	\arrow["{\varphi_b}", from=1-1, to=1-2]
+	\arrow[""{name=0, anchor=center, inner sep=0}, "{f_b}", from=1-2, to=2-2]
+	\arrow["{\gamma_b}"', from=2-1, to=2-2]
+	\arrow[""{name=1, anchor=center, inner sep=0}, "{\sum_a\A(a,b)\copw f_a}"', from=1-1, to=2-1]
+	\arrow["{\overline{f_b}}"', shorten <=30pt, shorten >=30pt, Rightarrow, from=1, to=0]
+\end{tikzcd}\]
+for each $b\in\A$. Here $\varphi$ and $\gamma$ encode the algebraic structure of $F$ and $G$. By the universal property of coproducts, to give $\overline{f_b}$ is equivalent to giving a $2$-cell for each component $a\in\A$, which by universal property of copower corresponds to a $2$-cell 
+\[\begin{tikzcd}
+	{\A(a,b)} & {\cK(F_a,F_b)} \\
+	{\cK(G_a,G_b)} & {\cK(F_a,G_b)}
+	\arrow["{F_{a,b}}", from=1-1, to=1-2]
+	\arrow[""{name=0, anchor=center, inner sep=0}, "{\cK(F_a,f_b)}", from=1-2, to=2-2]
+	\arrow["{\cK(f_a,G_b)}"', from=2-1, to=2-2]
+	\arrow[""{name=1, anchor=center, inner sep=0}, "{G_{a,b}}"', from=1-1, to=2-1]
+	\arrow["{\overline{f_{a,b}}}", shorten <=33pt, shorten >=33pt, Rightarrow, from=1, to=0]
+\end{tikzcd}\]
+in $\Cat$. So this is simply a natural transformation in $\Cat$, which has components 
+\[\begin{tikzcd}
+	{F_a} & {F_b} \\
+	{G_a} & {G_b}
+	\arrow["F_\psi", from=1-1, to=1-2]
+	\arrow[""{name=0, anchor=center, inner sep=0}, "{f_b}", from=1-2, to=2-2]
+	\arrow["G_\psi"', from=2-1, to=2-2]
+	\arrow[""{name=1, anchor=center, inner sep=0}, "{f_a}"', from=1-1, to=2-1]
+	\arrow["f_\psi"', shorten <=13pt, shorten >=13pt, Rightarrow, from=1, to=0]
+\end{tikzcd}\]
+for each $\psi\colon a\to b$ in $\A$. So the data of a lax $T$-morphism corresponds bijectively to the data of a lax natural transformation $F\Rightarrow G$. In fact, $(f,\overline{f})$ satisfies the axioms of a lax $T$-morphism if and only if $(f_a,f_\psi)$ form a lax natural transformation. The naturality of $\overline{f_{a,b}}$ is precisely the compatibility of $f_\psi$ with $2$-cells and the two axioms for a $T$-morphism correspond to the pasting and identity axioms for a lax natural transformation. This follows since the axioms for $T$-morphisms can be checked componentwise. Similarly, one can check that $T$-transformations are the modifications. Finally, a $2$-cell out of a coproduct is invertible if and only if its components are and 
+\[\begin{tikzcd}
+	{\A(a,b)\copw X} & Y
+	\arrow[""{name=0, anchor=center, inner sep=0}, curve={height=18pt}, from=1-1, to=1-2]
+	\arrow[""{name=1, anchor=center, inner sep=0}, curve={height=-18pt}, from=1-1, to=1-2]
+	\arrow[shorten <=10pt, shorten >=10pt, Rightarrow, from=1, to=0]
+\end{tikzcd}\] 
+is an isomorphism if and only if 
+\[\begin{tikzcd}
+	{\A(a,b)} & {\cK(X,Y)}
+	\arrow[""{name=0, anchor=center, inner sep=0}, curve={height=18pt}, from=1-1, to=1-2]
+	\arrow[""{name=1, anchor=center, inner sep=0}, curve={height=-18pt}, from=1-1, to=1-2]
+	\arrow[shorten <=10pt, shorten >=10pt, Rightarrow, from=1, to=0]
+\end{tikzcd}\]
+is an isomorphism, so the pseudo $T$-morphism are precisely the $(f_a,f_\psi)$ s.t.\ each $f_\psi$ is an isomorphism. Thus the pseudo $T$-morphisms are precisely the pseudonatural transformations.
+\end{rmk}  
+\section{Limits and colimits in $T\Alg_p$}
+Recall that for a $1$-monad $T$ on a complete category, $T\Alg$ is always complete. The enriched version of this also works. In particular, $T\Alg_s$ is complete if $\cK$ is. What about $T\Alg_p$ and $T\Alg_l$?
+We start with some positive results.
+\begin{prop}
+    If $\cK$ has products and $T\colon\cK\to\cK$ is a $2$-monad, then the products in $T\Alg_s$ are products in $T\Alg_p$. 
+\end{prop}
+\begin{proof}
+    We already know that products exist in $T\Alg_s$, so this amounts to checking the universal property. This is similar to the case we saw involving the colax limit of an arrow. In the next few propositions we will see more examples of this kind, so we have this as an exercise. 
+\end{proof}
+\begin{rmk}
+We actually only proved existence of products in $T\Alg_s$ if $\cK$ is complete. It is true in general if $\cK$ has products (exercise). The same remains true in the following propositions.
+\end{rmk}
+\begin{prop}
+    If $\cK$ has (iso-)inserters, then $T\Alg_p$ has (iso-)inserters. The universal $1$-cell is a strict $T$-morphism and it detects strict $T$-morphisms. 
+\end{prop}
+\begin{proof}
+    We do the inserter case; the iso-inserter is similar. Let $(f,\overline{f}),(g,\overline{g})\colon(A,a)\rightsquigarrow(B,b)$ be two pseudo $T$-morphisms and let 
+    \[\begin{tikzcd}
+	&& A \\
+	I &&&& B \\
+	&& A
+	\arrow["p", from=2-1, to=1-3]
+	\arrow["f", from=1-3, to=2-5]
+	\arrow["p"', from=2-1, to=3-3]
+	\arrow["g"', from=3-3, to=2-5]
+	\arrow["\lambda", shorten <=18pt, shorten >=18pt, Rightarrow, from=1-3, to=3-3]
+\end{tikzcd}\]
+    be the inserter in $\cK$. We have $a\cdot Tp\colon TI\to A$ and a $2$-cell 
+    $$fa\cdot Tp\xRightarrow{\overline{f}^{-1}\cdot Tp}b\cdot Tf\cdot Tp\xRightarrow{b\cdot T\lambda} b\cdot Tg\cdot Tp\xRightarrow{\overline{g}\cdot Tp} ga\cdot Tp$$
+    and so from the universal property we get a unique $i\colon TI\to I$ s.t.\ $p\cdot i = a\cdot Tp$ and the equation 
+    \[\begin{tikzcd}
+	&& TA &&& {} &&& TA \\
+	TI &&&& TB && TI &&&& TB \\
+	&& A &&&&&& TA \\
+	I &&&& B && I &&&& B \\
+	&& A &&& {} &&& A
+	\arrow["Tp", from=2-1, to=1-3]
+	\arrow["a"', from=1-3, to=3-3]
+	\arrow["i"', from=2-1, to=4-1]
+	\arrow["p", from=4-1, to=3-3]
+	\arrow[""{name=0, anchor=center, inner sep=0}, "Tf", from=1-3, to=2-5]
+	\arrow["b", from=2-5, to=4-5]
+	\arrow[""{name=1, anchor=center, inner sep=0}, "f", from=3-3, to=4-5]
+	\arrow["p"', from=4-1, to=5-3]
+	\arrow["g"', from=5-3, to=4-5]
+	\arrow["\lambda"', shorten <=13pt, shorten >=13pt, Rightarrow, from=3-3, to=5-3]
+	\arrow["{=}"{description}, draw=none, from=1-6, to=5-6]
+	\arrow["Tp", from=2-7, to=1-9]
+	\arrow["Tf", from=1-9, to=2-11]
+	\arrow["Tp"', from=2-7, to=3-9]
+	\arrow[""{name=2, anchor=center, inner sep=0}, "Tg"', from=3-9, to=2-11]
+	\arrow["i"', from=2-7, to=4-7]
+	\arrow["p"', from=4-7, to=5-9]
+	\arrow["a"', from=3-9, to=5-9]
+	\arrow["b", from=2-11, to=4-11]
+	\arrow[""{name=3, anchor=center, inner sep=0}, "g"', from=5-9, to=4-11]
+	\arrow["\lambda", shorten <=13pt, shorten >=13pt, Rightarrow, from=1-9, to=3-9]
+	\arrow["{\overline{f}}"', shorten <=17pt, shorten >=17pt, Rightarrow, from=0, to=1]
+	\arrow["{\overline{g}}"', shorten <=17pt, shorten >=17pt, Rightarrow, from=2, to=3]
+\end{tikzcd}\]
+    holds. As in the proof of the ``colax limit of an arrow'', we use the axioms for $(f,\overline{f})$ and $(g,\overline{g})$ and the $2$-naturality of $\eta$ and $\mu$ to show that $(I,i)$ is a $T$-algebra. By construction, $p\colon(I,i)\to(A,a)$ is a strict $T$-morphism and $\lambda$ a $T$-transformation. It remains to check the universal property, so consider 
+    \[\begin{tikzcd}
+	&& {(A,a)} \\
+	{(X,x)} &&&& {(B,b)} \\
+	&& {(A,a)}
+	\arrow["{(q,\overline{q})}", squiggly, from=2-1, to=1-3]
+	\arrow["{(q,\overline{q})}"', squiggly, from=2-1, to=3-3]
+	\arrow[squiggly, from=3-3, to=2-5]
+	\arrow[squiggly, from=1-3, to=2-5]
+	\arrow["\mu", shorten <=13pt, shorten >=13pt, Rightarrow, from=1-3, to=3-3]
+\end{tikzcd}\]
+in $T\Alg_p$. This means that the equation 
+\[\begin{tikzcd}
+	&& TA &&& {} &&& TA \\
+	TX &&&& TB && TX &&&& TB \\
+	&& A &&&&&& TA &&& {(*)}\\
+	X &&&& B && X &&&& B \\
+	&& A &&& {} &&& A
+	\arrow[""{name=0, anchor=center, inner sep=0}, "Tq", from=2-1, to=1-3]
+	\arrow["a"', from=1-3, to=3-3]
+	\arrow["x"', from=2-1, to=4-1]
+	\arrow[""{name=1, anchor=center, inner sep=0}, "q", from=4-1, to=3-3]
+	\arrow[""{name=2, anchor=center, inner sep=0}, "Tf", from=1-3, to=2-5]
+	\arrow["b", from=2-5, to=4-5]
+	\arrow[""{name=3, anchor=center, inner sep=0}, "f", from=3-3, to=4-5]
+	\arrow["q"', from=4-1, to=5-3]
+	\arrow["g"', from=5-3, to=4-5]
+	\arrow["\mu"', shorten <=20pt, shorten >=20pt, Rightarrow, from=3-3, to=5-3]
+	\arrow["{=}"{description}, draw=none, from=1-6, to=5-6]
+	\arrow["Tq", from=2-7, to=1-9]
+	\arrow["Tf", from=1-9, to=2-11]
+	\arrow[""{name=4, anchor=center, inner sep=0}, "Tq"', from=2-7, to=3-9]
+	\arrow[""{name=5, anchor=center, inner sep=0}, "Tg"', from=3-9, to=2-11]
+	\arrow["x"', from=2-7, to=4-7]
+	\arrow[""{name=6, anchor=center, inner sep=0}, "q"', from=4-7, to=5-9]
+	\arrow["a"', from=3-9, to=5-9]
+	\arrow["b", from=2-11, to=4-11]
+	\arrow[""{name=7, anchor=center, inner sep=0}, "g"', from=5-9, to=4-11]
+	\arrow["T\mu", shorten <=20pt, shorten >=20pt, Rightarrow, from=1-9, to=3-9]
+	\arrow["{\overline{f}}"', shorten <=27pt, shorten >=27pt, Rightarrow, from=2, to=3]
+	\arrow["{\overline{g}}"', shorten <=27pt, shorten >=27pt, Rightarrow, from=5, to=7]
+	\arrow["{\overline{q}}", shorten <=27pt, shorten >=27pt, Rightarrow, from=0, to=1]
+	\arrow["{\overline{q}}"', shorten <=27pt, shorten >=27pt, Rightarrow, from=4, to=6]
+\end{tikzcd}\]
+holds. We have a unique $1$-cell $h\colon X\to I$ s.t.\ $ph=q$ and $\lambda h=\mu$ from the universal property of $(I,p,\lambda)$ in $\cK$. Thus $\overline{q}$ can be seen as a $2$-cell
+$$p\cdot i\cdot Th = a\cdot Tp\cdot Th = a\cdot Tq \xRightarrow{\overline{q}} q\cdot x=p\cdot h\cdot x$$
+in $\cK$. Plugging this into $(*)$ and using $ph=q, \lambda h=\mu$, we find that $(\lambda hx)\cdot(f\overline{q})\cdot(\overline{f}\cdot Tp\cdot Th)=(g\overline{q})\cdot (\overline{g}\cdot Tp\cdot Th)\cdot (b\cdot T\lambda\cdot Th)$ holds.
+Using the definition of $i$ in terms of $\overline{f}^{-1}$, we find that the equation holds if and only if $(\lambda\cdot h\cdot x)\cdot (f\cdot\overline{q})=(g\cdot\overline{q})(\lambda\cdot i\cdot Th)$ holds. From the $2$-dimensionality of the universal property of $(I,p,\lambda)$ it follows that there exists a unique $\overline{h}\colon i\cdot Th\Rightarrow x\cdot h$ s.t.\ $p\overline{h}=\overline{q}$. Using the uniqueness part of the $2$-dimensional universal property plus the fact that $(q,\overline{q})$ is a pseudo $T$-morphism, it follows that $(h,\overline{h})$ is a pseudo $T$-morphism. This $(h,\overline{h})$ is clearly the unique $1$-cell with $p\cdot (h,\overline{h})=(q,\overline{q})$, so this shows the $1$-dimensional universal property. Checking the $2$-dimensional universal property is left as an exercise.
+\end{proof} 
+
+\backmatter
 \end{document}
