@@ -2527,5 +2527,217 @@ in $\cK$. Plugging this into $(*)$ and using $ph=q, \lambda h=\mu$, we find that
 Using the definition of $i$ in terms of $\overline{f}^{-1}$, we find that the equation holds if and only if $(\lambda\cdot h\cdot x)\cdot (f\cdot\overline{q})=(g\cdot\overline{q})\cdot(\lambda\cdot i\cdot Th)$ holds. From the $2$-dimensionality of the universal property of $(I,p,\lambda)$ it follows that there exists a unique $\overline{h}\colon i\cdot Th\Rightarrow x\cdot h$ s.t.\ $p\overline{h}=\overline{q}$. Using the uniqueness part of the $2$-dimensional universal property plus the fact that $(q,\overline{q})$ is a pseudo $T$-morphism, it follows that $(h,\overline{h})$ is a pseudo $T$-morphism. This $(h,\overline{h})$ is clearly the unique $1$-cell with $p\cdot (h,\overline{h})=(q,\overline{q})$, so this shows the $1$-dimensional universal property. Checking the $2$-dimensional universal property is left as an exercise.
 \end{proof} 
 
+We also have the following statement similar to the previous one.
+
+\begin{prop}
+    Let $\cK$ be a 2-category with equifiers. Then $T\Alg_P$ has equifiers,
+    which are preserved by $U_P$. The universal 1-cell is a strict $T$-morphism
+    detecting strict $T$-morphisms.
+\end{prop}
+\begin{proof}
+    Consider a pair of 2-cells in $T\Alg_P$
+    \[\begin{tikzcd}
+        \cA && \cB
+        \arrow[""{name=0, anchor=center, inner sep=0}, "f", curve={height=-12pt}, squiggly, from=1-1, to=1-3]
+        \arrow[""{name=1, anchor=center, inner sep=0}, "g"', curve={height=12pt}, squiggly, from=1-1, to=1-3]
+        \arrow["\alpha"', shift right=2, shorten <=3pt, shorten >=3pt, Rightarrow, from=0, to=1]
+        \arrow["\beta", shift left=2, shorten <=3pt, shorten >=3pt, Rightarrow, from=0, to=1]
+    \end{tikzcd},\]
+    with equifier $p\colon E\rightarrow A$ in $\cK$. We have to define an
+    algebra structure on $E$ and check the universal property.
+
+    The $T$-transformation axiom for $\alpha$ says that $(\alpha\cdot a)\cdot
+    \overline{f}=\overline{g}\cdot(b\cdot T\alpha)$, so $((\alpha\cdot a)\cdot
+    Tp)(\overline{f}\cdot Tp=(\overline{g}\cdot Tp)\cdot(b\cdot T\alpha\cdot
+    Tp)$ holds and similarly with $\beta$ in place of $\alpha$. Since
+    $\overline{f}$ is an isomorphism, this implies that $\alpha\cdot a\cdot
+    Tp=\beta\cdot a\cdot Tp$. It follows that there exists a unique $e\colon
+    TE\rightarrow E$ s.t.\ $p\cdot e=a\cdot Tp$.
+
+    As in the other cases, one checks that $(E,e)$ is a $T$-algebra with the
+    desired universal property. Note that $p$ is a strict $T$-morphism by
+    construction. The claim about detecting strict morphisms is also left as an
+    exercise.
+\end{proof}
+
+We have shown that $T\Alg_P$ has products, inserters, equifiers, or is
+PIE-limits for short (namely anything that can be built from there).
+
+\begin{rmk}
+    In general, $T\Alg_P$ does not have equalizers.
+\end{rmk}
+
+\begin{exmp}
+    Consider the 2-category of small categories with an initial object and
+    functors preserving it up to isomorphism. This is $T\Alg_P$ for a suitable
+    $T$. We can show that the equalizer of $0,1\colon *\rightarrow\{0\cong 1\}$
+    doesn't exist. Indeed, if $E\rightarrow *$ were the equalizer, then the
+    unique object can't be in the image since it is mapped to two different
+    objects in $\{0\cong 1\}$. It follows that the image is $\emptyset$ and
+    therefore $E=\emptyset$, which does not have an initial object
+    .
+\end{exmp}
+
+A consequence of this remark is that, even if $\cK$ is complete, $T\Alg_P$ will
+in general not be complete. However, we will see that PIE-limits can be used to
+construct all bilimits, i.e.\ weak 2-limits.
+
+\begin{rmk}
+    The situation in $T\Alg_L$ is even worse: it does have products, but it has
+    neither inserters nor equifiers.
+\end{rmk}
+
+\begin{exmp}
+    Consider the 2-category of finitely cocomplete small categories with all
+    functors. This is again $T\Alg_L$ for a suitable (finitary) $T$. Since it
+    has products, if it had inserters it would also have comma objects, but the
+    comma object
+    \[\begin{tikzcd}
+        {\Set(X,Y)} & {*} \\
+        {*} & \Set
+        \arrow["c_Y"', from=2-1, to=2-2]
+        \arrow["c_X", from=1-2, to=2-2]
+        \arrow[from=1-1, to=1-2]
+        \arrow[from=1-1, to=2-1]
+        \arrow[shorten <=11pt, shorten >=11pt, Rightarrow, from=1-2, to=2-1]
+    \end{tikzcd}\]
+    is the discrete category $\Set(X,Y)$ in $\Cat$, so if the comma object in
+    $T\Alg_L$ existed it would induce a functor to $\Set(X,Y)$. This is however
+    impossible if $\Set(X,Y)$ has more than one object, since it contradicts the
+    existence of an initial object. More precisely, the existence of an initial
+    object implies that the unique morphism from the comma object in $T\Alg_L$
+    to $\Set(X,Y)$ factors through the inclusion $\{f\}\rightarrow\Set(X,Y)$ for
+    some $f\colon X\rightarrow Y$. But in $T\Alg_L$ we also have the 2-cell
+    \[\begin{tikzcd}
+        {*} & {*} \\
+        {*} & \Set
+        \arrow["Y"', from=2-1, to=2-2]
+        \arrow["X", from=1-2, to=2-2]
+        \arrow[from=1-1, to=1-2]
+        \arrow[from=1-1, to=2-1]
+        \arrow["{\tilde{g}}"', shorten <=8pt, shorten >=8pt, Rightarrow, from=1-2, to=2-1]
+    \end{tikzcd}\]
+    for any $\tilde{g}\colon X\rightarrow Y$, so $g$ would also have to lie in
+    the image of the comparison morphism. It follows that we don't have
+    products.
+
+    We will also show that it lacks equifiers. Indeed, consider two distinct
+    morphisms $f,g\colon X\rightarrow Y$. They give two 2-cells $c_f,c_g\colon
+    c_X\rightarrow c_Y$ and the equifier in $\Cat$ is $\emptyset$, thus the
+    equifier in $T\Alg_L$, if it existed, would map to $\emptyset$, hence it
+    would be $\emptyset$ itself. However, $\emptyset$ is not finitely
+    cocomplete, thus the equifier doesn't exist.
+\end{exmp}
+
+These facts emphasize that using $\overline{f}^{-1}$ was crucial in lifting
+inserters to algebras.
+
+In order to investigate what kinds of limits we can build using products,
+inserters and equifiers and to study the existence of colimits in $T\Alg_P$, we
+need the notion of flexible algebras. This, in turn, requires the existence of
+(lax) pseudo morphism classifiers.
+
+\begin{defn}
+    Let $T$ be a 2-monad on $\cK$ and $A$ a $T$-algebra. We write
+    $T\Alg_S\xrightarrow{J}T\Alg_P\xrightarrow{K}T\Alg_L$ for the inclusions. A
+    pseudo (respectively lax) morphism classifier is a representing object
+    for $T\Alg_P(A,J-)$ (respectively $T\Alg_L(A,J-)$) in $T\Alg_S$, that is an
+    object $QA$ (respectively $Q_LA$) with a pseudo $T$-morphism $h_A\colon
+    A\leadsto QA$ (respectively a lax $T$-morphism $h^L_A\colon A\leadsto Q_LA$)
+    s.t.\ the induced 2-natural transformation $T\Alg_S(QA,B)\rightarrow
+    T\Alg_P(A,JB)$ (respectively $T\Alg_S(Q_LA,B)\rightarrow T\Alg_P(A,JB)$) is
+    an isomorphism.
+
+    We are asking for each $A\leadsto B$ to factor uniquely through a strict
+    $T$-morphism $Q\rightarrow B$ plus a 2-dimensional property.
+\end{defn}
+
+\begin{rmk}
+    If the pseudo morphism classifier exists for all $A$, then $J$ has $Q$ as a
+    left 2-adjoint. Similarly, $KJ$ has a left 2-adjoint if $Q^LA$ exists for
+    all $A$. The object $QA$ is often denoted $A'$.
+\end{rmk}
+
+\begin{thm}[Lack]
+    If $T\Alg_L$ has codescent objects (respectively lax codescent objects),
+    then it has (lax) pseudo morphism classifiers for all $A$.
+\end{thm}
+\begin{proof}
+    We have to translate the data of a lax/pseudo $T$-morphism
+    $(f,\overline{f})\colon(A,a)\rightarrow(B,b)$ into a diagram in $T\Alg_S$
+    and then take its colimit.
+
+    The 1-cell $f\colon A\rightarrow B$ in $\cK$ corresponds bijectively to a
+    1-cell $g\colon TA\rightarrow B$ in $T\Alg_S$. The bijection sends $f$ to
+    $g=b\cdot Tf$ since $b$ is the counit of $T\dashv U_S$.
+
+    Giving a 2-cell
+    \[\begin{tikzcd}
+        TA & A \\
+        TB & B
+        \arrow["b"', from=2-1, to=2-2]
+        \arrow["a", from=1-1, to=1-2]
+        \arrow[""{name=0, anchor=center, inner sep=0}, "f", from=1-2, to=2-2]
+        \arrow[""{name=1, anchor=center, inner sep=0}, "Tf"', from=1-1, to=2-1]
+        \arrow["{\overline{f}}", shorten <=13pt, shorten >=13pt, Rightarrow, from=1, to=0]
+    \end{tikzcd}\]
+    in $\cK$ amounts to giving a 2-cell
+    \[\begin{tikzcd}
+        {T^2A} & TA \\
+        {T^2B} & TB
+        \arrow["Tf", from=1-2, to=2-2]
+        \arrow["{T^2f}"', from=1-1, to=2-1]
+        \arrow["{\mu_B}"', from=2-1, to=2-2]
+        \arrow["{\mu_A}", from=1-1, to=1-2]
+        \arrow["\xi"', shorten <=8pt, shorten >=8pt, Rightarrow, from=1-2, to=2-1]
+    \end{tikzcd}\]
+    in $T\Alg_S$: the codomain has to be $b\cdot T(f\cdot a)=b\cdot Tf\cdot
+    Ta=g\cdot Ta$ and the domain is $b\cdot T(b\cdot Tf)=b\cdot Tb\cdot
+    T^2f=b\cdot\mu_B\cdot T^2f=b\cdot Tf\cdot\mu_A=g\cdot\mu_A$.
+
+    The condition $\overline{f}\cdot\eta_A=1_f$ becomes $\xi\cdot T\eta_A=1_g$
+    while the other axiom becomes
+    \[\begin{tikzcd}[column sep=small]
+        & {T^2A} &&  TA &&&& {T^2A} && TA \\
+        {T^3A} && TA && B & {=} & {T^3A} && {T^2A} && B \\
+        & {T^2A} && TA &&&& {T^2A} && TA
+        \arrow["Ta"', from=1-2, to=2-3]
+        \arrow[""{name=0, anchor=center, inner sep=0}, "{\mu_A}", from=1-2, to=1-4]
+        \arrow["g", from=1-4, to=2-5]
+        \arrow["g"{description}, from=2-3, to=2-5]
+        \arrow["g"', from=3-4, to=2-5]
+        \arrow["Ta"', from=3-2, to=3-4]
+        \arrow["{\mu_A}", from=3-2, to=2-3]
+        \arrow["{T^2a}"', from=2-1, to=3-2]
+        \arrow["{\mu_{TA}}", from=2-1, to=1-2]
+        \arrow["\xi"', shorten <=8pt, shorten >=8pt, Rightarrow, from=1-4, to=2-3]
+        \arrow["\xi"', shorten <=8pt, shorten >=8pt, Rightarrow, from=2-3, to=3-4]
+        \arrow["g", from=1-10, to=2-11]
+        \arrow["g"', from=3-10, to=2-11]
+        \arrow["Ta"', from=2-9, to=3-10]
+        \arrow["{\mu_A}", from=2-9, to=1-10]
+        \arrow["\xi"', shorten <=13pt, shorten >=13pt, Rightarrow, from=1-10, to=3-10]
+        \arrow["{\mu_A}", from=1-8, to=1-10]
+        \arrow["{\mu_{TA}}", from=2-7, to=1-8]
+        \arrow["{T^2a}"', from=2-7, to=3-8]
+        \arrow["Ta"', from=3-8, to=3-10]
+        \arrow["{T\mu_A}", from=2-7, to=2-9]
+    \end{tikzcd}\]
+    in $T\Alg_S$. This is precisely a (lax) codescent datum on the truncated
+    simplicial diagram
+    \[\begin{tikzcd}[column sep=large]
+        {T^3A} & {T^2A} & TA
+        \arrow["Ta", shift left=1, from=1-2, to=1-3]
+        \arrow["{\mu_A}"', shift right=1, from=1-2, to=1-3]
+        \arrow["{T\mu_A}"{description}, from=1-1, to=1-2]
+        \arrow["{T^2A}", shift left=2, from=1-1, to=1-2]
+        \arrow["{\mu_{Ta}}"', shift right=2, from=1-1, to=1-2]
+    \end{tikzcd}\]
+    and one can check that the 2-dimensional aspect of a codescent object
+    corresponds precisely to the fact that 2-cells $g\Rightarrow g'$ compatible
+    with $\xi$ correspond bijectively to $T$-transformations
+    $(f,\overline{f})\Rightarrow(f',\overline{f'})$.
+\end{proof}
+
 \backmatter
 \end{document}
