@@ -2739,5 +2739,311 @@ need the notion of flexible algebras. This, in turn, requires the existence of
     $(f,\overline{f})\Rightarrow(f',\overline{f'})$.
 \end{proof}
 
+\section{Codensity objects}
+
+To be moved elsewhere. This section fills a previous gap.
+
+\begin{defn}
+    Consider a truncated simplicial diagram
+    \[\begin{tikzcd}
+        {X_2} & {X_1} & {X_0}
+        \arrow["{s_0}"{description}, from=1-3, to=1-2]
+        \arrow["{d_1}", shift left=2, from=1-2, to=1-3]
+        \arrow["{d_0}"', shift right=2, from=1-2, to=1-3]
+        \arrow["{d_1}"{description}, from=1-1, to=1-2]
+        \arrow["{d_2}", shift left=2, from=1-1, to=1-2]
+        \arrow["{d_0}"', shift right=2, from=1-1, to=1-2]
+    \end{tikzcd}\]
+    in a 2-category $\cK$. A codescent datum in this diagram $X_\bullet$ is a pair
+    $(g,\xi)$ of a 1-cell $g\colon X_0\rightarrow C$ and a 2-cell
+    \[\begin{tikzcd}
+        & {X_0} \\
+        {X_1} && C \\
+        & {X_0}
+        \arrow["g", from=1-2, to=2-3]
+        \arrow["g"', from=3-2, to=2-3]
+        \arrow["{d_0}"', from=2-1, to=3-2]
+        \arrow["{d_1}", from=2-1, to=1-2]
+        \arrow["\xi", shorten <=13pt, shorten >=13pt, Rightarrow, from=1-2, to=3-2]
+    \end{tikzcd}\]
+    s.t.\ the axiom $\xi\cdot s_0=1_g$ and the equation
+    \[\begin{tikzcd}[column sep=small]
+        & {X_1} && {X_0} &&&& {X_1} && {X_0} \\
+        {X_2} && {X_0} && C & {=} & {X_2} && {X_1} && C \\
+        & {X_1} && {X_0} &&&& {X_1} && {X_0}
+        \arrow["{d_0}"{description}, from=1-2, to=2-3]
+        \arrow["{d_1}"{description}, from=3-2, to=2-3]
+        \arrow["{d_0}"', from=2-1, to=3-2]
+        \arrow["{d_2}", from=2-1, to=1-2]
+        \arrow["{=}"{description}, Rightarrow, draw=none, from=1-2, to=3-2]
+        \arrow["{d_1}", from=1-2, to=1-4]
+        \arrow["{d_0}"', from=3-2, to=3-4]
+        \arrow["g", from=1-4, to=2-5]
+        \arrow["g"', from=3-4, to=2-5]
+        \arrow["g"{description}, from=2-3, to=2-5]
+        \arrow["\xi", shorten <=8pt, shorten >=8pt, Rightarrow, from=2-3, to=3-4]
+        \arrow["\xi", shorten <=8pt, shorten >=8pt, Rightarrow, from=1-4, to=2-3]
+        \arrow["g", from=1-10, to=2-11]
+        \arrow["g"', from=3-10, to=2-11]
+        \arrow["{d_0}"{description}, from=2-9, to=3-10]
+        \arrow["{d_1}"{description}, from=2-9, to=1-10]
+        \arrow["\xi", shorten <=13pt, shorten >=13pt, Rightarrow, from=1-10, to=3-10]
+        \arrow["{d_1}", from=1-8, to=1-10]
+        \arrow["{d_0}"', from=3-8, to=3-10]
+        \arrow["{d_0}"', from=2-7, to=3-8]
+        \arrow["{d_2}", from=2-7, to=1-8]
+        \arrow["{d_1}"{description}, from=2-7, to=2-9]
+        \arrow["{=}"{description}, draw=none, from=1-8, to=2-9]
+        \arrow["{=}"{description}, draw=none, from=2-9, to=3-8]
+    \end{tikzcd}\]
+    holds.
+
+    A morphism of descent data $(g,\xi)$ and $(g',\xi')$ with the same target
+    $C$ is a 2-cell $\alpha\colon g\Rightarrow g'$ s.t.\
+    \[\begin{tikzcd}
+        & {X_0} &&&& {X_0} \\
+        {X_1} && C & {=} & {X_1} && C \\
+        & {X_0} &&&& {X_0}
+        \arrow["{d_1}", from=2-1, to=1-2]
+        \arrow["{d_0}"', from=2-1, to=3-2]
+        \arrow[""{name=0, anchor=center, inner sep=0}, "g", curve={height=-12pt}, from=1-2, to=2-3]
+        \arrow[""{name=1, anchor=center, inner sep=0}, "{g'}"{description}, curve={height=12pt}, from=1-2, to=2-3]
+        \arrow["{g'}"', from=3-2, to=2-3]
+        \arrow["{\xi'}"', shorten <=13pt, shorten >=13pt, Rightarrow, from=1-2, to=3-2]
+        \arrow["{d_0}"', from=2-5, to=3-6]
+        \arrow["{d_1}", from=2-5, to=1-6]
+        \arrow["g", from=1-6, to=2-7]
+        \arrow[""{name=2, anchor=center, inner sep=0}, "g"{description}, curve={height=-12pt}, from=3-6, to=2-7]
+        \arrow[""{name=3, anchor=center, inner sep=0}, "{g'}"', curve={height=12pt}, from=3-6, to=2-7]
+        \arrow["\xi"', shorten <=13pt, shorten >=13pt, Rightarrow, from=1-6, to=3-6]
+        \arrow["\alpha", shorten <=8pt, shorten >=8pt, Rightarrow, from=0, to=1]
+        \arrow["\alpha", shorten <=8pt, shorten >=8pt, Rightarrow, from=2, to=3]
+    \end{tikzcd}\]
+    holds.
+
+    Sending $C\in\cK$ to the category of descent data with target $C$ defines a
+    2-functor $\cK\rightarrow\Cat$. A codescent object for $X_\bullet$ is a
+    representing object for the 2-functor. By Yoneda, this amounts to a
+    universal such codescent datum.
+
+    An iso-codescent object is one where each $\xi$ is invertible.
+\end{defn}
+
+\begin{rmk}
+    Codescent objects are weighted colimits and the weight is given simply by
+    the inclusion $\overline{\Delta_{\leq 2}}\rightarrow\Cat$ (where the domain
+    category has the objects $[0],[1],[2]$ and all of the arrows of $\Delta$ but
+    the codegeneracies $[1]\rightarrow[2]$). The dual notion for cosimplicial
+    objects is called descent objects.
+
+    We can also consider these for pseudofunctors $\overline{\Delta_{\leq
+    2}}^{\op}\rightarrow\cK$. In this case, one has to replace the equalities
+    above coming from the simplicial identities by the coherence isomorphisms,
+    i.e.\
+    \[\begin{tikzcd}
+        && {X_0} \\
+        {X_0} & {X_1} && C & {=} & {1_g} \\
+        && {X_0}
+        \arrow["g", from=1-3, to=2-4]
+        \arrow["g"', from=3-3, to=2-4]
+        \arrow["{d_0}"{description}, from=2-2, to=3-3]
+        \arrow["{d_1}"{description}, from=2-2, to=1-3]
+        \arrow["{s_0}"{description}, from=2-1, to=2-2]
+        \arrow[""{name=0, anchor=center, inner sep=0}, curve={height=6pt}, Rightarrow, no head, from=2-1, to=3-3]
+        \arrow[""{name=1, anchor=center, inner sep=0}, curve={height=-6pt}, Rightarrow, no head, from=2-1, to=1-3]
+        \arrow["\xi"', shorten <=13pt, shorten >=13pt, Rightarrow, from=1-3, to=3-3]
+        \arrow["{\cong}"{description}, Rightarrow, draw=none, from=2-2, to=0]
+        \arrow["{\cong}"{description}, Rightarrow, draw=none, from=1, to=2-2]
+    \end{tikzcd}.\]
+\end{rmk}
+
+\begin{rmk}
+    The terminology is not entirely standardized: sometimes the ``iso'' version
+    is called the (co)descent object and the above is called a lax codescent
+    object. For emphasis, it is perhaps best to always refer to iso-(co)descent
+    objects and lax (co)descent objects.
+\end{rmk}
+
+\begin{prop}
+    If $\cK$ is a complete and cocomplete 2-category, then so is $T\Alg_S$ and
+    thus $QA$, $Q_LA$ exist for all $A$.
+\end{prop}
+\begin{proof}
+    We showed this for general $\cV$ in the past course.
+\end{proof}
+
+As already mentioned, in this case $Q$ defines a left 2-adjoint to $J\colon
+T\Alg_S\rightarrow T\Alg_P$. We write $e_A\colon QA\rightarrow A$ for the counit
+of the adjunction, so this is the unique strict $T$-morphism s.t.\ the triangle
+\[\begin{tikzcd}
+	A & QA \\
+	& A
+	\arrow["{h_A}", squiggly, from=1-1, to=1-2]
+	\arrow["{e_A}", from=1-2, to=2-2]
+	\arrow[Rightarrow, no head, from=1-1, to=2-2]
+\end{tikzcd}\]
+commutes. Notice that this is just one of the triangle identities with $J$
+omitted from the notation.
+
+\begin{rmk}
+    Often the notation $h_A=q_A$ and $e_A=p_A$ is used instead.
+\end{rmk}
+
+What can we say about this adjunction?
+
+\begin{prop}
+    If $h_A\colon A\leadsto QA$ exists and the pseudolimit of $h_A$ exists in
+    $\cK$, then $e_A$ is right adjoint to $h_A$ with identity unit and
+    invertible counit $\rho_A\colon h_A\cdot e_A\Rightarrow\id_{QA}$. In
+    particular, $e_A$ and $h_A$ are equivalences in $T\Alg_P$.
+\end{prop}
+\begin{proof}
+    Existence of the pseudolimit in $\cK$ implies the existence in $T\Alg_P$ of
+    the pseudolimit of the form
+    \[\begin{tikzcd}
+        & C \\
+        A && B
+        \arrow["{h_A}"', squiggly, from=2-1, to=2-3]
+        \arrow[""{name=0, anchor=center, inner sep=0}, "v", from=1-2, to=2-3]
+        \arrow[""{name=1, anchor=center, inner sep=0}, "u"', from=1-2, to=2-1]
+    \end{tikzcd},\]
+    i.e.\ $u,v$ are strict, and this factorization s.t.\
+    \[\begin{tikzcd}
+        & QA &&&& A \\
+        & C && {=} & A && QA \\
+        A && QA
+        \arrow["r", squiggly, from=1-2, to=2-2]
+        \arrow["{h_A}"', squiggly, from=3-1, to=3-3]
+        \arrow["v"{description}, from=2-2, to=3-3]
+        \arrow["u"{description}, from=2-2, to=3-1]
+        \arrow[""{name=0, anchor=center, inner sep=0}, "d"', curve={height=6pt}, from=1-2, to=3-1]
+        \arrow[""{name=1, anchor=center, inner sep=0}, "{h_A}", curve={height=-6pt}, squiggly, from=1-2, to=3-3]
+        \arrow[""{name=2, anchor=center, inner sep=0}, "{h_A}", squiggly, from=1-6, to=2-7]
+        \arrow["{h_A}"', squiggly, from=2-5, to=2-7]
+        \arrow[""{name=3, anchor=center, inner sep=0}, Rightarrow, no head, from=1-6, to=2-5]
+        \arrow["{=}"{description}, Rightarrow, draw=none, from=0, to=2-2]
+        \arrow["{=}"{description}, Rightarrow, draw=none, from=2-2, to=1]
+        \arrow["{=}"{description}, Rightarrow, draw=none, from=3, to=2]
+    \end{tikzcd}\]
+    in $T\Alg_P$.
+    By the universal property of $QA$, there exists a unique $w\colon
+    QA\rightarrow C$ s.t.\ $r=w\cdot h_A$. Since $v\cdot w\cdot h_A=v\cdot r$
+    and $v\cdot w$ is strict, we have $v\cdot w=\id_{QA}$. On the other hand, we
+    have $u\cdot w\cdot h_A=u\cdot r=\id_A=e_A\cdot h_A$, where the last
+    equality comes from the triangle identities. It follows that $u\cdot w=e_A$.
+
+    We get then the invertible 2-cell $\rho_A=\lambda\cdot w\colon h_A\cdot
+    e_A=h_A\cdot u\cdot w\Rightarrow\Rightarrow v\cdot w=\id_{QA}$, which
+    satisfies $\rho_A\cdot h_A=\lambda\cdot r=1_{h_A}$ by construction of $r$.
+    This gives one of the triangle identities, while the other one follows
+    formally from this since all 2-cells ??? are invertible as shown in the next
+    lemma.
+\end{proof}
+
+\begin{lemma}
+    If $f\colon A\rightarrow B$, $u\colon B\rightarrow A$,
+    $\eta\colon\id_A\Rightarrow u\cdot f$, $\epsilon\colon f\cdot
+    u\Rightarrow\id_B$ are 1-cells and 2-cells s.t.\ $\epsilon f\cdot f\eta=1_f$
+    and $\eta,\epsilon$ are invertible, then $u\epsilon\cdot\eta u=1_u$ holds,
+    so $(f,u,\eta,\epsilon)$ is an adjoint equivalence.
+\end{lemma}
+\begin{proof}
+    Since $u\cdot\cong\id$, $f$ is faithful, so it suffices to checl that
+    \[\begin{tikzcd}
+        & \bullet && \bullet & \bullet & {=} & {1_{f\cdot u}} \\
+        \bullet && \bullet
+        \arrow[""{name=0, anchor=center, inner sep=0}, Rightarrow, no head, from=1-2, to=1-4]
+        \arrow["f"{description}, from=1-2, to=2-3]
+        \arrow["u"', from=2-3, to=1-4]
+        \arrow["f", from=1-4, to=1-5]
+        \arrow[""{name=1, anchor=center, inner sep=0}, Rightarrow, no head, from=2-1, to=2-3]
+        \arrow["u", from=2-1, to=1-2]
+        \arrow["\eta", shorten <=6pt, shorten >=6pt, Rightarrow, from=0, to=2-3]
+        \arrow["\epsilon", shorten <=6pt, shorten >=6pt, Rightarrow, from=1-2, to=1]
+    \end{tikzcd}\]
+    holds, which by invertibility of $\epsilon$ it is equivalent to
+    \[\begin{tikzcd}
+        & \bullet && \bullet && {=} && \bullet \\
+        \bullet && \bullet & {} & \bullet && \bullet && \bullet
+        \arrow[""{name=0, anchor=center, inner sep=0}, Rightarrow, no head, from=1-2, to=1-4]
+        \arrow["f"{description}, from=1-2, to=2-3]
+        \arrow["u"{description}, from=2-3, to=1-4]
+        \arrow[""{name=1, anchor=center, inner sep=0}, Rightarrow, no head, from=2-1, to=2-3]
+        \arrow["u", from=2-1, to=1-2]
+        \arrow["f", from=1-4, to=2-5]
+        \arrow[Rightarrow, no head, from=2-3, to=2-5]
+        \arrow["\epsilon", shorten <=4pt, shorten >=4pt, Rightarrow, from=1-4, to=2-4]
+        \arrow["u", from=2-7, to=1-8]
+        \arrow["f", from=1-8, to=2-9]
+        \arrow[""{name=2, anchor=center, inner sep=0}, Rightarrow, no head, from=2-7, to=2-9]
+        \arrow["\eta", shorten <=6pt, shorten >=6pt, Rightarrow, from=0, to=2-3]
+        \arrow["\epsilon", shorten <=6pt, shorten >=6pt, Rightarrow, from=1-2, to=1]
+        \arrow["\epsilon", shorten <=6pt, shorten >=6pt, Rightarrow, from=1-8, to=2]
+    \end{tikzcd},\]
+    which follows from the fact that
+    \[\begin{tikzcd}
+        \bullet && \bullet && {=} & {1_f} \\
+        & \bullet & {} & \bullet
+        \arrow[""{name=0, anchor=center, inner sep=0}, Rightarrow, no head, from=1-1, to=1-3]
+        \arrow["f"{description}, from=1-1, to=2-2]
+        \arrow["u"{description}, from=2-2, to=1-3]
+        \arrow["f", from=1-3, to=2-4]
+        \arrow[Rightarrow, no head, from=2-2, to=2-4]
+        \arrow["\epsilon", shorten <=4pt, shorten >=4pt, Rightarrow, from=1-3, to=2-3]
+        \arrow["\eta", shorten <=6pt, shorten >=6pt, Rightarrow, from=0, to=2-2]
+    \end{tikzcd}\]
+\end{proof}
+
+This shows that the strict $T$-morphism $e_A\colon QA\rightarrow A$ is always an
+equivalence in $T\Alg_P$; in fact, it is a surjective equivalence and it has an
+inverse equivalence which is a section.
+
+\begin{defn}
+    An algebra $A$ in $T\Alg_S$ is flexible if $e_A\colon QA\rightarrow A$ has a
+    section in $T\Alg_S$.
+\end{defn}
+
+\begin{prop}
+    Assume that $Q$ exists. The following are equivalent:
+    \begin{enumerate}
+        \item the $T$-algebra $A$ is flexible;
+        \item the counit $e_A\colon QA\rightarrow A$ is a surjective equivalence
+            in $T\Alg_S$;
+        \item the $T$-algebra $A$ is a retract of some $QB$ in $T\Alg_S$.
+    \end{enumerate}
+\end{prop}
+\begin{proof}
+    Missing
+\end{proof}
+
+The next theorem gives a first class of examples of flexible algebras.,
+
+\begin{thm}
+    Suppose that $Q$ exists and pseudolimits of arrows exist in $\cK$. Then all
+    free $T$-algebras are flexible.
+\end{thm}
+\begin{proof}
+    We have that the free algebra 2-functor $T$ is left adjoint to $U_S=U_P\cdot
+    J$, with unit $\eta_A\colon A\rightarrow TA$. Consider the 2-natural
+    transformation
+    \[\begin{tikzcd}
+        {\id} & {U_PJT} & {U_PJQJT}
+        \arrow["{U_PhJT}", Rightarrow, from=1-2, to=1-3]
+        \arrow["\eta", Rightarrow, from=1-1, to=1-2]
+    \end{tikzcd}\]
+    with mate $k\colon T\Rightarrow QJT$. We claim that $eT\cdot k=\id_T$, so
+    each $e_{TA}$ is a retraction.
+
+    By definition, $k$ is the unique 2-natural transformation s.t.\
+    $U_PJk\cdot\eta=U_PhJT\cdot\eta$ holds, thus $U_PJeT\cdot
+    U_PJk\cdot\eta=U_PJeT\cdot U_PhJT\cdot\eta=\eta$ by the triangle identities,
+    so by adjunction we get $eT\cdot k=\id$, as claimed.
+
+    It follows that $e_{TA}$ is split by $k_A$ and $h$ is a 2-natural
+    transformation between two 2-functors with target $T\Alg_S$, so $k_A$ is
+    indeed a strict $T$-morphism.
+\end{proof}
+
+
 \backmatter
 \end{document}
