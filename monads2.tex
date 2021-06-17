@@ -3016,7 +3016,7 @@ inverse equivalence which is a section.
     Missing
 \end{proof}
 
-The next theorem gives a first class of examples of flexible algebras.,
+The next theorem gives a first class of examples of flexible algebras.
 
 \begin{thm}
     Suppose that $Q$ exists and pseudolimits of arrows exist in $\cK$. Then all
@@ -3043,7 +3043,56 @@ The next theorem gives a first class of examples of flexible algebras.,
     transformation between two 2-functors with target $T\Alg_S$, so $k_A$ is
     indeed a strict $T$-morphism.
 \end{proof}
+\noindent Thus we have the examples $TA$ and $QA$ of flexible algebras. The following proposition, combined with the examples of free algebras, shows that free $T$-algebras in $T\Alg_s$ are ``essentially free'' in $T\Alg_p$: every $TA\rightsquigarrow B$ is isomorphic to a strict one, hence corresponds to $A\to B$ in $\K$.
+\begin{prop}
+Assume $Q$ exists plus pseudolimits of arrows in $\K$. If $A$ is a flexible algebra, then the full and faithful inclusion $T\Alg_s(A,B)\to T\Alg_p(A,B)$ is essentially surjective for all $B$, hence an equivalence of categories. In other words, any $A\rightsquigarrow B$ is isomorphic to a strict $T$-morphism $A\to B$.
+\end{prop}
+\begin{proof}
+ For algebras of the form $QA$, the commutative triangle   
+ \[\begin{tikzcd}
+{T\Alg_s(QA,B)} \arrow[r, "{J_{QA,B}}"] \arrow[rd, "\cong"'] & {T\Alg_p(JQA,JB)} \arrow[d, "n_A^*"] \\
+                                                             & {T\Alg_p(A,JB)}                        
+\end{tikzcd}\]
+coming from the $2$-adjunction $Q\dashv J$, combined with the fact that $n_A$ is an equivalence in $T\Alg_p$, shows that $J_{QA,B}$ is an equivalence. For general flexible $A$, we know that $e_A$ is an equivalence in $T\Alg_s$, so the commutative square 
+\[\begin{tikzcd}
+{T\Alg_s(A,B)} \arrow[r, "{J_{A,B}}"] \arrow[d, "e_A^*"', "\cong"] & {T\Alg_p(JA,JB)} \arrow[d, "Je_A^*", "\cong"'] \\
+{T\Alg_s(QA,B)} \arrow[r, "{J_{QA,B}}"', "\cong"]                  & {T\Alg_p(JQA,JB)}                   
+\end{tikzcd}\]
+shows that $J_{A,B}$ is an equivalence of categories for all $B\in T\Alg_s$.
+\end{proof}
+\begin{rmk}
+Let $T$ be the $2$-monad on $\V\mbox{-}\Cat$ for e.g.\ finite conical limits. The above shows that $TA$ is the free cocompletion of $A$ under finite colimits: let $P_f A$ be the closure of the representables in $[\A^{\op},\V]$ under finite conical colimits. Then the induced
+\[\begin{tikzcd}
+A \arrow[r, "y"] \arrow[rd, "\eta_A"'] & P_fA \arrow[d, dashed] \\
+                                       & TA                    
+\end{tikzcd}\]
+is an equivalence. So, up to equivalence, $\eta_A$ is the Yoneda embedding. In particular, $\eta_A$ is fully faithful.
+\end{rmk}
+\begin{defn} A \emph{biequivalence} between bicategories (or $2$-categories) consists of pseudofunctors $F\colon\A\to\B$, $G\colon\B\to\A$ and pseudonatural equivalences $\id_{\A}\simeq GF$, $FG\simeq\id_{\B}$.
+\end{defn}
+\begin{rmk}
+With the axiom of choice, $F\colon\A\to\B$ is a biequivalence if and only if each $F_{A,A'}\colon\A(A,A')\to\B(FA,FA')$ is an equivalence of categories and $F$ is essentially surjective up to equivalence: for every $B\in\B$ there exists an $A\in\A$ and an equivalence $FA\to B$ in $\B$. 
+\end{rmk}
+We write $T\Flex$ for the full sub-2-category of $T\Alg_s$ consisting of the flexible algebras. 
 
+The above proposition, combined with the remark, shows that $J\colon T\Flex\to T\Alg_p$ is a biequivalence: every $n_A$ is an equivalence in $T\Alg_p$, so every object in the target is equivalent to one in the image, and the proposition shows $J_{A,A'}$ is an equivalence for $A,A'$ flexible. In fact, much more is true in this case: the left $2$-adjoint $Q\colon T\Alg_p\to T\Alg_s$ factors through $T\Flex$ and $n_A$ is an equivalence in $T\Alg_p$, $e_A$ is an equivalence in $T\Flex$, so we have a biequivalence $F=J$, $G=Q$ s.t.\ $Q\dashv J$ (left $2$-adjoint), $n$ and $e$ are $2$-natural, $F, G$ are $2$-functors. The only ``weakness'' is that $n_A, e_A$ are merely equivalences, not isomorphisms. If we are interested in properties of $T\Alg_p$ that are invariant under biequivalences, it suffices to show that the corresponding property holds for $T\Flex$. If we want to study cocompleteness properties of $T\Alg_p$, it makes sense to first understand what kinds of colimits $T\Flex$ has. 
 
+Recall that an \emph{idempotent} $e\colon A\to A$ in a $2$-category $\K$ is a $1$-cell such that $e^2=e$ (equality, not isomorphism). The \emph{splitting} of this idempotent is the conical colimit of $(A,e)\colon \Idem\to\K$, where $\Idem=\{e\colon*\to*\}$ is the free category on one object with one idempotent. 
+\begin{thm}
+    Let $\K$ be complete and cocomplete and let $T\colon\K\to\K$ be an accessible $2$-monad. Then $T\Flex$ is closed in $T\Alg_s$ under splittings of idempotents, coproducts, coinserters, and coequifiers.
+\end{thm}
+\begin{proof}
+ Splittings of idempotents are retracts, and $T\Flex$ is clearly closed under retracts. The assumptions on $\K$ and $T$ imply that $T\Alg_s$ is cocomplete. Now let $j_n\colon A_n\to A$ be coproduct inclusions in $T\Alg_s$ such that each $A_n$ is flexible. Thus there exist $1$-cells $h_n\colon A_n\to QA_n$ in $T\Alg_s$ such that $e_{A_n}\cdot h_n=\id_{A_n}$. Let $h\colon A\to QA$ be the unique $1$-cell such that $hj_n=Qj_n\cdot h_n$ for every $n$. Since $e\colon Q\Rightarrow\id$ is $2$-natural, we have
+ $$e_Ahj_n = e_AQj_nh_n\overset{2\mbox{-}\text{nat}}{=}j_n\cdot e_{A_n}\cdot h_n=j_n$$
+ for all $n$, so $e_Ah=\id_A$ therefore $A$ is flexible.
+ Now let $f,g\colon A\to B$ be $1$-cells in $T\Alg_s$ such that $B$ is flexible (this turns out to suffice). Let $t\colon B\to C$ be the coinserter in $T\Alg_s$, with $2$-cell $\lambda\colon tf\Rightarrow tg$. We have to construct a section of $e_C\colon QC\to C$. Choose a section $k\colon B\to QB$ of $e_B\colon QB\to B$ in $T\Alg_s$. Since $\K$ has pseudolimits of arrows, we have a $2$-cell $\rho_B\colon n_Be_B\cong \id_{QB}$ with $e_B\rho_B=1_{e_B}$. Thus $\sigma\coloneqq\rho_B\cdot k\colon n_B\cong k$ is an isomorphism with $e_B\sigma = 1_{e_Bk}=1_{\id_B}$. 
+ 
+ The $2$-naturality of $n\colon\id\rightsquigarrow TQ$ gives $n_C t=Qt\colon n_B$, so we get a $T$-transformation
+ $$\tau\colon Qtk\cdot f\xRightarrow{Qt\sigma^{-1}f}Qtn_Bf=n_Ctf\xRightarrow{n_C\lambda}n_Ctg=Qtn_Bg\xRightarrow{Qt\sigma g}Qtk\cdot g$$ in $T\Alg_s$ (since both the domain and codomain are strict $T$-morphisms). By the universal property of $(C,t,\lambda)$, we get a unique $1$-cell $h\colon C\to QC$ such that $ht=Qt\cdot k$ and $h\lambda=\tau$. Again using $2$-naturality of $e$, we have $e_tht=e_CQtk=te_Bk=t$ and $e_Ch\lambda=e_C\tau$. We claim that $e_C\tau=\lambda$: this follows from $e_B\sigma=1_{\id_B}$ and $e_Cn_C=\id_C$. Thus the universal property tells us $e_Ch=\id_C$, which shows that $h$ is the desired section.
+ 
+ The coequifier is a bit easier: assume that we have two $2$-cells $\alpha,\beta\colon f\Rightarrow g$ in $T\Alg_s$ and again only that $B$ is flexible. Let now $t\colon B\to C$ be the coequifier of $\alpha$ and $\beta$. Let $k\colon B\to QB$ and $\sigma n_B\cong k$ be as above. Since $n_Ct = Qt n_B$, we have $Qtn_B\alpha=Qtn_B\beta$ (by definition, $t\alpha=t\beta$), so $Qtk\alpha = Qth\beta$ because $n_B\cong k$. Thus there exists a unique $h\colon C\to QC$ such that $ht=Qt\cdot k$. Since 
+ $$e_Cht=e_CQt\cdot k\overset{2\mbox{-}\text{nat}}{=} te_Bk = t,$$
+ we have $e_Ch=\id_C$, so $C$ is indeed flexible.
+\end{proof} 
 \backmatter
 \end{document}
