@@ -3094,5 +3094,47 @@ Recall that an \emph{idempotent} $e\colon A\to A$ in a $2$-category $\K$ is a $1
  $$e_Cht=e_CQt\cdot k\overset{2\mbox{-}\text{nat}}{=} te_Bk = t,$$
  we have $e_Ch=\id_C$, so $C$ is indeed flexible.
 \end{proof} 
+\begin{exmp}
+    Let $\Lex$ be the $2$-category of finitely complete categories and finite limits preserving functors (and all natural transformations). Here we assume that a fixed choice of limit has been made, so that this is $T\Alg_p$ for some finitary $2$-monad on $\Cat$. We write $\Lex_s$ for the $2$-category with the same $0$-cells and $2$-cells and with $1$-cells the functors which strictly preserve the chosen limits; that is $T\Alg_s$. We can start with the free category in $\Lex_s$ on one object $G$: this is flexible since all free algebras are. We can use a coinserter to get an object $G$ and morphisms $e\colon *\to G$, $m\colon G\times G\to G$, and $i\colon G\to G$ (more precisely, we get a flexible algebra $\B$ such that $\Lex_s(\B,\C)$ is isomorphic to the category of quadruples $(G,e,m,i)$). Finally, we use a coequifier to impose the laws of a group object: $m\cdot m\times G = m\cdot G\times m$, etc. Thus there is a flexible algebra $G_p$ in $\Lex_s$ such that $\Lex_s(G_p,\C)$ is isomorphic to the category of group objects in $\C$. Since every pseudomorphism $G_p\to\C$ is isomorphic to a strict one, we conclude that $\Lex(G_p,\C)$ is equivalent to the category of group objects: $G_p$ is the universal finitely complete category with a group object in it. 
+    
+    More details for the construction: the forgetful $2$-functor $U_s\colon|Lex_s\to\Cat$ is represented by $T*$, the free $T$-algebra on one object. We start with the diagram 
+    \[\begin{tikzcd}
+	{U_s} && {U_s\times U_s\times U_s}
+	\arrow["{(*, -\times-, \id)}", curve={height=-18pt}, from=1-1, to=1-3]
+	\arrow["{(\id, \id, \id)}"', curve={height=18pt}, from=1-1, to=1-3]
+\end{tikzcd}\]
+    in $[\Lex_s,\Cat]$. These are indeed $2$-natural since each $1$-cell in $\Lex_s$ strictly preserves $*$ and $-\times-$. It follows that they are induced by morphisms $T(*+*+*)\rightrightarrows T*$ in $\Lex_s$. If we form the coinserters of these two, then we obtain the category $\B$ above with $\Lex_s(\B,\C)\cong$ quadruples $(G,e,m,i)$. Let $F=\Lex_s(\B,-)$. To impose the axioms, we consider 
+    \[\begin{tikzcd}
+	F && {U_s\times U_s\times U_s\times U_s}
+	\arrow[""{name=0, anchor=center, inner sep=0}, "f", curve={height=-18pt}, from=1-1, to=1-3]
+	\arrow[""{name=1, anchor=center, inner sep=0}, "g"', curve={height=18pt}, from=1-1, to=1-3]
+	\arrow["\beta", shift left=1, shorten <=5pt, shorten >=5pt, Rightarrow, from=0, to=1]
+	\arrow["\alpha"', shift right=5, shorten <=5pt, shorten >=5pt, Rightarrow, from=0, to=1]
+\end{tikzcd}\]
+where the first component $\alpha_1,\beta_1\colon f_1\Rightarrow g_1$ sends $\Gamma=(G,e,m,i)$ to $(G\times G)\times G=f_1(\Gamma)$, $g_1(\Gamma)=G$, $\alpha_1, \beta_1$ are the ways of associating.
+\end{exmp}
+\begin{exmp}
+    Consider the $2$-monad $T$ on $[\K,\K]_{\kappa}$ with algebras $2\mbox{-}\Mnd_{\kappa}(\K)$, the $2$-category of $\kappa$-accessible $2$-monads. We have shown that the $2$-monads for categories with chosen conical (co)limits and the $2$-monads for (braided, symmetric) pseudomonoids are flexible algebras for $T$. On the other hand, the $2$-monad for monoids is \emph{not} flexible: we used a coequalizer in the construction, so this seems at least plausible.
+\end{exmp}
+\begin{exmp}
+    We now have an abstract reason why the free strict monoidal category on a monoid object exists. In the last course, we briefly indicated why this is given by $\Delta_+$, the augmented simplex category with ordinal sum as tensor product. We can now give a rigorous proof of this.
+    As in the case above for group objects, we can construct a flexible strict monoidal category $\M$ representing monoids. We claim that $\Delta_+$ is isomorphic to $\M$; in particular, $\Delta_+$ is flexible. Let $(M,p,u)$ be the universal monoid in $\M$. We have to start with constructing a strict monoidal functor $\Delta_+\to\M$ which sends $([0],\sigma_0,\delta_{-1})$ to $(M,p,u)$. We set $F([n])=M^{\otimes n+1}$, we send $\delta_i\colon [n]\to [n+1]$ to $M^{\otimes i}\otimes u \otimes M^{\otimes n-i+1}\colon M^{\otimes n+1}\to M^{\otimes n+2}$ and we send $\sigma_i\colon [n]\to [n-1]$ to $M^{\otimes i}\otimes p \otimes M^{\otimes n-i-1}\colon M^{\otimes n+1}\to M^{\otimes n}$ respectively. We have to check that the simplicial identities hold to show that $F$ is a functor. This follows from the axioms for a monoid and the laws for a (strict) monoidal category (e.g.\ $\sigma_i\sigma_{i+1}$ needs the associativity axiom for $p$, while $\sigma_i\sigma_j$ $i<j-1$ uses only the axiom that $-\otimes-\colon \M\times \M\to \M$ is a functor). Next we need to check that the two diagrams 
+    \[\begin{tikzcd}
+	& {*} && {} & {\Delta_+\times\Delta_+} & \M\times\M \\
+	{\Delta_+} && \M & {} & {\Delta_+} & \M
+	\arrow["{[-1]}"', from=1-2, to=2-1]
+	\arrow["F"', from=2-1, to=2-3]
+	\arrow["I", from=1-2, to=2-3]
+	\arrow["{\text{and}}"{description}, draw=none, from=1-4, to=2-4]
+	\arrow["{+}"', from=1-5, to=2-5]
+	\arrow["{F\times F}", from=1-5, to=1-6]
+	\arrow["\otimes", from=1-6, to=2-6]
+	\arrow["F"', from=2-5, to=2-6]
+\end{tikzcd}\]
+are commutative. The first is immediate from the definition. The second one clearly commutes on objects, so one only needs to check that it commutes on arrows of the form $(\sigma_i,\id)$, $(\delta_i,\id)$, $(\id,\sigma_i)$, $(\id, \delta_i)$. In all cases, we get $F(\sigma_i)$ resp.\ $F(\delta_i)$ tensored with some number of copies of $M$ on the right resp.\ left; these numbers coincide for both composites in the diagram. 
+
+Since $([0],\sigma_0,\delta_{-1})$ is a monoid in $\Delta_+$, there exists a $G\colon \M\to\Delta_+$ with $GM=[0]$, $G_p=\sigma_0$, $G_u=\delta_{-1}$. Thus $G(M^{\otimes n+1})=[n]$. Thus $GF$ is the identity on objects, and it is clearly full: each $\sigma_i,\delta_j$ arises from $\sigma_0, \delta_{-1}$ via ordinal sum on the right and left. Since the hom-sets are finite, it follows that $GF$ is full and faithful and so $GF$ is an isomorphism of categories: $GF_{[n],[m]}\colon\Delta_+([n],[m])\to\Delta_+([n],[m])$. Moreover, $FG$ sends $(M,p,u)$ to $(M,p,u)$ therefore by the universal property of $\M$ we have $FG\cong \id_{\M}$. Thus $\M\simeq\Delta_+$. This already shows that $\Delta_+$ is flexible since it is a retract of $\M$. Moreover, the category of strong monoidal functors $\Delta_+\to\C$ is \emph{equivalent} to the category of monoids in $\C$.    
+\end{exmp}
+
 \backmatter
 \end{document}
