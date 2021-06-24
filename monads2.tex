@@ -3097,7 +3097,7 @@ Recall that an \emph{idempotent} $e\colon A\to A$ in a $2$-category $\K$ is a $1
 \begin{exmp}
     Let $\Lex$ be the $2$-category of finitely complete categories and finite limits preserving functors (and all natural transformations). Here we assume that a fixed choice of limit has been made, so that this is $T\Alg_p$ for some finitary $2$-monad on $\Cat$. We write $\Lex_s$ for the $2$-category with the same $0$-cells and $2$-cells and with $1$-cells the functors which strictly preserve the chosen limits; that is $T\Alg_s$. We can start with the free category in $\Lex_s$ on one object $G$: this is flexible since all free algebras are. We can use a coinserter to get an object $G$ and morphisms $e\colon *\to G$, $m\colon G\times G\to G$, and $i\colon G\to G$ (more precisely, we get a flexible algebra $\B$ such that $\Lex_s(\B,\C)$ is isomorphic to the category of quadruples $(G,e,m,i)$). Finally, we use a coequifier to impose the laws of a group object: $m\cdot m\times G = m\cdot G\times m$, etc. Thus there is a flexible algebra $G_p$ in $\Lex_s$ such that $\Lex_s(G_p,\C)$ is isomorphic to the category of group objects in $\C$. Since every pseudomorphism $G_p\to\C$ is isomorphic to a strict one, we conclude that $\Lex(G_p,\C)$ is equivalent to the category of group objects: $G_p$ is the universal finitely complete category with a group object in it. 
     
-    More details for the construction: the forgetful $2$-functor $U_s\colon|Lex_s\to\Cat$ is represented by $T*$, the free $T$-algebra on one object. We start with the diagram 
+    More details for the construction: the forgetful $2$-functor $U_s\colon\Lex_s\to\Cat$ is represented by $T*$, the free $T$-algebra on one object. We start with the diagram 
     \[\begin{tikzcd}
 	{U_s} && {U_s\times U_s\times U_s}
 	\arrow["{(*, -\times-, \id)}", curve={height=-18pt}, from=1-1, to=1-3]
@@ -3125,7 +3125,7 @@ where the first component $\alpha_1,\beta_1\colon f_1\Rightarrow g_1$ sends $\Ga
 	\arrow["{[-1]}"', from=1-2, to=2-1]
 	\arrow["F"', from=2-1, to=2-3]
 	\arrow["I", from=1-2, to=2-3]
-	\arrow["{\text{and}}"{description}, draw=none, from=1-4, to=2-4]
+	\arrow["{\text{\normalsize and}}"{description}, draw=none, from=1-4, to=2-4]
 	\arrow["{+}"', from=1-5, to=2-5]
 	\arrow["{F\times F}", from=1-5, to=1-6]
 	\arrow["\otimes", from=1-6, to=2-6]
