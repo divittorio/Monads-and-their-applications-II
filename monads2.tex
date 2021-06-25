@@ -3137,5 +3137,273 @@ are commutative. The first is immediate from the definition. The second one clea
 Since $([0],\sigma_0,\delta_{-1})$ is a monoid in $\Delta_+$, there exists a $G\colon \M\to\Delta_+$ with $GM=[0]$, $G_p=\sigma_0$, $G_u=\delta_{-1}$. Thus $G(M^{\otimes n+1})=[n]$. Thus $GF$ is the identity on objects, and it is clearly full: each $\sigma_i,\delta_j$ arises from $\sigma_0, \delta_{-1}$ via ordinal sum on the right and left. Since the hom-sets are finite, it follows that $GF$ is full and faithful and so $GF$ is an isomorphism of categories: $GF_{[n],[m]}\colon\Delta_+([n],[m])\to\Delta_+([n],[m])$. Moreover, $FG$ sends $(M,p,u)$ to $(M,p,u)$ therefore by the universal property of $\M$ we have $FG\cong \id_{\M}$. Thus $\M\simeq\Delta_+$. This already shows that $\Delta_+$ is flexible since it is a retract of $\M$. Moreover, the category of strong monoidal functors $\Delta_+\to\C$ is \emph{equivalent} to the category of monoids in $\C$.    
 \end{exmp}
 
+We can extend this to non-strict monoidal categories: there exists a flexible
+monoidal category $\tilde{\cM}$ which is free on a monoid. By MacLane's
+coherence theorem, there exists a strict monoidal category $\tilde{\cM}'$ and a
+monoidal equivalence $\tilde{\cM}'\rightarrow\tilde{\cM}$. It follows that there
+exists a monoid in $\tilde{\cM}'$ which is sent to a monoid isomorphic to the
+universal one. From the arguments above, we get a map
+$\Delta_+\rightarrow\tilde{\cM}'$ sending $([0],\sigma_0,\delta_{-1})$ to this
+monoid and thus an arrow $F\colon\Delta_+\rightarrow\tilde{\cM}'$ sending
+$([0],\sigma_0,\delta_{-1})$ to a monoid isomorphic to the universal one.
+
+On the other hand, from the universal mapping property we get
+$G\colon\tilde{\cM}\rightarrow\Delta_+$ sending the universal monoid to
+$([0],\sigma_0,\delta_{-1})$. The composite $FG$ is then isomorphic to a strict
+monoidal functor and it follows from the universal mapping property that
+$FG\cong\id_{\tilde{\cM}}$.
+
+Note that $\Delta_+$ has no non-identity isomorphisms, thus
+$GF\colon\Delta_+\rightarrow\Delta_+$ is strict and it sends
+$([0],\sigma_0,\delta_{-1})$ to itself, hence $GF=\id_{\Delta_+}$.
+
+Observe tat this does not imply that $\Delta_+$ is flexible since $F$ is not
+strict, however the argument shows that $\Delta_+$ is equivalent to
+$\tilde{\cM}$ in $T\Alg_P$, hence $T\Alg_P(\Delta_+,\cV)\simeq\Mon(\cV)$.
+
+
+\section{Flexible Monads}
+
+\begin{defn}
+    A $\kappa$-accessible 2-monad on a locally $\kappa$-presentable 2-category
+    is called flexible if it is a flexible algebra for the 2-monad for
+    $\kappa$-accessible 2-monads in $\cK$ with algebras $\Mnd_\kappa(\cK)$.
+\end{defn}
+
+\begin{prop}
+    If $T$ is a felxbile 2-monad on $\cK$, then any pseudo-$T$-algebra is
+    isomorphic to a strict $T$-algebra.
+\end{prop}
+\begin{proof}
+    Recall that $\Mnd_\kappa(\cK)$ is a coreflective subcategory in
+    $\Mnd(\cK)$, so there exists a monad $\langle A,A\rangle_\kappa$ in
+    $\Mnd_\kappa(\cK)$ s.t.\ we have a natural bijection between
+    $T\rightarrow\langle A,A\rangle$ and $T\rightarrow\langle A,A\rangle_\kappa$
+    for all $\kappa$-accessible $T$ and $A\in\cK$. This bijection extends to
+    pseudo-morphisms of monads (exercise), giving us a correspondance between
+    $T\leadsto\langle A,A\rangle$ and $T\leadsto\langle A,A\rangle_\kappa$.
+
+    It follows that for any flexible $T$ and any $\phi\colon T\leadsto\langle
+    A,A\rangle)\kappa$ there exists a strict monad morphism $\tilde{\phi}\colon
+    T\rightarrow\langle A,A\rangle_\kappa$ and an isomorpjism
+    $\tau\colon\phi\Rightarrow\tilde{\phi}$.
+
+    The monad morphism $\phi$ corresponds to $a\colon TA\rightarrow A$,
+    $\alpha\colon a\cdot Ta\Rightarrow a\cdot\mu_A$ and
+    $\alpha_0\colon\id_A\Rightarrow a\cdot\eta_A$, i.e.\ a pseudo $T$-algebra,
+    while $\tilde{\phi}$ corresponds to a strict $T$-algebra structure
+    $\tilde{a}\colon TA\rightarrow A$. The morphism $\tau$ vorresponds to
+    \[\begin{tikzcd}
+        TA & A \\
+        TA & A
+        \arrow[Rightarrow, no head, from=1-2, to=2-2]
+        \arrow[Rightarrow, no head, from=1-1, to=2-1]
+        \arrow["{\tilde{a}}", from=1-1, to=1-2]
+        \arrow["a"', from=2-1, to=2-2]
+        \arrow["\tau"', shorten <=8pt, shorten >=8pt, Rightarrow, from=2-1, to=1-2]
+    \end{tikzcd},\]
+    which is a morphism of pseudo $T$-algebras since the equations
+    \[\begin{tikzcd}[column sep=small]
+        & {T^2A} & {} & TA &&&& {T^2A} && TA \\
+        {T^2A} && TA && A & {=} & {T^2A} && TA && A \\
+        & TA && A &&&& TA && A
+        \arrow[Rightarrow, no head, from=2-1, to=1-2]
+        \arrow[""{name=0, anchor=center, inner sep=0}, "{\mu_A}"{description}, from=1-2, to=2-3]
+        \arrow["{\mu_A}"', from=2-1, to=3-2]
+        \arrow[""{name=1, anchor=center, inner sep=0}, Rightarrow, no head, from=3-2, to=2-3]
+        \arrow["{\tilde{a}}"', from=3-2, to=3-4]
+        \arrow["a"{description}, from=2-3, to=2-5]
+        \arrow[""{name=2, anchor=center, inner sep=0}, "a", from=1-4, to=2-5]
+        \arrow[""{name=3, anchor=center, inner sep=0}, Rightarrow, no head, from=3-4, to=2-5]
+        \arrow["Ta", from=1-2, to=1-4]
+        \arrow["{=}"{description}, draw=none, from=2-1, to=2-3]
+        \arrow[""{name=4, anchor=center, inner sep=0}, "{\mu_A}"', from=2-7, to=3-8]
+        \arrow[Rightarrow, no head, from=1-8, to=2-7]
+        \arrow[Rightarrow, no head, from=2-11, to=3-10]
+        \arrow["a", from=1-10, to=2-11]
+        \arrow[""{name=5, anchor=center, inner sep=0}, "Ta", from=1-8, to=1-10]
+        \arrow[""{name=6, anchor=center, inner sep=0}, "{T\tilde{a}}"{description}, from=2-7, to=2-9]
+        \arrow[Rightarrow, no head, from=2-9, to=1-10]
+        \arrow[""{name=7, anchor=center, inner sep=0}, "{\tilde{a}}"{description}, from=2-9, to=3-10]
+        \arrow["{\tilde{a}}"', from=3-8, to=3-10]
+        \arrow["\tau"', shorten <=13pt, shorten >=13pt, Rightarrow, from=1-10, to=3-10]
+        \arrow["{=}"{description}, Rightarrow, draw=none, from=0, to=2]
+        \arrow["{=}"{description}, Rightarrow, draw=none, from=1, to=3]
+        \arrow["{=}"{description}, Rightarrow, draw=none, from=4, to=7]
+        \arrow["T\tau"', shorten <=14pt, shorten >=14pt, Rightarrow, from=5, to=6]
+    \end{tikzcd}\]
+    and
+    \[\begin{tikzcd}
+        & A &&&&&& A \\
+        A && TA && A & {=} & A &&& A \\
+        & TA && A &&&& TA & A
+        \arrow[""{name=0, anchor=center, inner sep=0}, "{\tilde{a}}"', from=3-2, to=3-4]
+        \arrow[""{name=1, anchor=center, inner sep=0}, "a"{description}, from=2-3, to=2-5]
+        \arrow[""{name=2, anchor=center, inner sep=0}, curve={height=-12pt}, Rightarrow, no head, from=1-2, to=2-5]
+        \arrow["{\eta_A}"{description}, from=1-2, to=2-3]
+        \arrow[Rightarrow, no head, from=3-4, to=2-5]
+        \arrow[Rightarrow, no head, from=2-3, to=3-2]
+        \arrow["{\eta_A}"', from=2-1, to=3-2]
+        \arrow["{=}"{description}, draw=none, from=2-1, to=2-3]
+        \arrow[Rightarrow, no head, from=1-2, to=2-1]
+        \arrow[""{name=3, anchor=center, inner sep=0}, "{\eta_A}"', curve={height=6pt}, from=2-7, to=3-8]
+        \arrow["{\tilde{a}}"', from=3-8, to=3-9]
+        \arrow[Rightarrow, no head, from=2-10, to=3-9]
+        \arrow[Rightarrow, no head, from=1-8, to=2-7]
+        \arrow[""{name=4, anchor=center, inner sep=0}, curve={height=-6pt}, Rightarrow, no head, from=1-8, to=2-10]
+        \arrow[""{name=5, anchor=center, inner sep=0}, curve={height=-6pt}, Rightarrow, no head, from=2-7, to=3-9]
+        \arrow["{\alpha_0}"', shorten <=7pt, shorten >=7pt, Rightarrow, from=2, to=2-3]
+        \arrow["\tau"', shorten <=14pt, shorten >=14pt, Rightarrow, from=1, to=0]
+        \arrow[""{name=6, anchor=center, inner sep=0}, "{=}"{description}, Rightarrow, draw=none, from=5, to=3]
+        \arrow["{=}"{description}, draw=none, from=4, to=6]
+    \end{tikzcd}\]
+    hold.
+\end{proof}
+
+\begin{rmk}
+    For $\kappa$-accessible 2-monads on locally $\kappa$-presentable
+    2-categories we always have a bijection between $T\leadsto\langle
+    A,A\rangle_\kappa$ and $QT\rightarrow\langle A,A\rangle_\kappa$, so pseudo
+    $T$-algebras are strict $QT$-algebras. In this case we can work only with
+    strict algebras without any loss of generality. Similarly, lax $T$-algebras
+    correspond to strict $Q^LT$-algebras.
+\end{rmk}
+
+\begin{exmp}
+    The 2-monad for (braided/symmetric) monoidal pseudomonoids is flexible and
+    the 2-monads for conical (co)limits of some shape are flexible, which is
+    immediate from their presentations.
+\end{exmp}
+
+\begin{exmp}
+    The 2-monad for strict monoidal categories is not flexible. Indeed, each
+    monoidal category gives rise to a pseudo $T$-algebra, where $T$ is a strict
+    monoid 2-monad on $\Cat$, via $\Sigma\cM^{\times n}\rightarrow\cM$, with
+    $\cM^{\times n}\rightarrow\cM$ given by $(M_1,\ldots,M_n)\mapsto((M_1\otimes
+    M_2)\otimes\cdots)$ and $\alpha,\alpha_0$ for $(TM,a,\alpha,\alpha_0)$ given
+    by the coherence theorem. This is in general not isomorphic via
+    an identity-on-objects morphism to a strict monoidal category.
+\end{exmp}
+
+\begin{prop}
+    If $T$ is a flexible 2-monad on $\cK$, then idempotents in $T\Alg_P$ split,
+    i.e.\ the equalizer of an idempotent $e$ and the identity exists and is
+    computed as in $\cK$.
+\end{prop}
+\begin{proof}
+    By a previous proposition, the inclusion $T\Alg_P\rightarrow PsT\Alg$ is an
+    equivalence of $\Cat$-enriched categories. It suffices to show that
+    idempotents in $PsT\Alg$ split, for then any strict $T$-algebra isomorphic
+    to this splitting gives a splitting in $T\Alg_P$.
+
+    For the splitting in $PsT\Alg$, we can work with an arbitrary 2-monad.
+
+    Let then $(e,\overline{e})\colon(A,a)\rightarrow(A,a)$ be an idempotent in
+    $T\Alg_P$ and $s\colon B\rightarrow A$ be the the splitting of $e$ in $\cK$.
+    From $e^2=e$ we get $r\colon A\rightarrow B$ s.t.\ $s\cdot r=e$ and $s\cdot
+    r\cdot s=e\cdot s=s$, thus $r\cdot s=\id_B$. We define $b\colon
+    TB\rightarrow B$ as $TB\xrightarrow{Ts}TA\xrightarrow{a}A\xrightarrow{r}B$,
+    \[\begin{tikzcd}
+        {\beta_0} & {=} & B & A &&& {=} & {1_{\id_B}} \\
+        && TB & TA & A & B
+        \arrow["r"', from=2-5, to=2-6]
+        \arrow["a"', from=2-4, to=2-5]
+        \arrow["Ts"', from=2-3, to=2-4]
+        \arrow[""{name=0, anchor=center, inner sep=0}, "{\eta_B}"', from=1-3, to=2-3]
+        \arrow[""{name=1, anchor=center, inner sep=0}, "{\eta_A}"{description}, from=1-4, to=2-4]
+        \arrow["s", from=1-3, to=1-4]
+        \arrow[""{name=2, anchor=center, inner sep=0}, curve={height=-6pt}, Rightarrow, no head, from=1-4, to=2-5]
+        \arrow["{=}"{description}, Rightarrow, draw=none, from=0, to=1]
+        \arrow["{=}"{description}, Rightarrow, draw=none, from=2, to=2-4]
+    \end{tikzcd}\]
+    and
+    \[\begin{tikzcd}
+        \beta & {=} & {T^2B} & {T^2A} & TA & TB \\
+        && TB & TA & A & TA \\
+        &&&&& A \\
+        &&&&& B
+        \arrow[""{name=0, anchor=center, inner sep=0}, "{\mu_B}"', from=1-3, to=2-3]
+        \arrow[""{name=1, anchor=center, inner sep=0}, "{\mu_A}"{description}, from=1-4, to=2-4]
+        \arrow[""{name=2, anchor=center, inner sep=0}, "e"', from=2-5, to=3-6]
+        \arrow["a", from=2-6, to=3-6]
+        \arrow["r", from=3-6, to=4-6]
+        \arrow["Ts", from=1-6, to=2-6]
+        \arrow[""{name=3, anchor=center, inner sep=0}, "a"{description}, from=1-5, to=2-5]
+        \arrow["Tr", from=1-5, to=1-6]
+        \arrow[""{name=4, anchor=center, inner sep=0}, "Te"{description}, from=1-5, to=2-6]
+        \arrow["a"', from=2-4, to=2-5]
+        \arrow["Ta", from=1-4, to=1-5]
+        \arrow["{T^2s}", from=1-3, to=1-4]
+        \arrow["Ts"', from=2-3, to=2-4]
+        \arrow["{=}"{description}, Rightarrow, draw=none, from=4, to=1-6]
+        \arrow["{\overline{e}}"', shorten <=9pt, shorten >=9pt, Rightarrow, from=4, to=2]
+        \arrow["{=}"{description}, Rightarrow, draw=none, from=0, to=1]
+        \arrow["{=}"{description}, Rightarrow, draw=none, from=1, to=3]
+    \end{tikzcd}.\]
+    We leave checking that $(B,b,\beta,\beta_0)$ is an equalizer of
+    $(e,\overline{e})$ and $\id_A$ in $PsT\Alg$ as an exercis as an exercise.
+\end{proof}
+
+\begin{rmk}
+    The above proposition, combined with our previous results on limits in
+    $T\Alg_P$, shows that $T\Alg_P$ has products, inserters, equifiers and
+    splittings of idempotents whenever $T$ is flexible. Conversely, the
+    2-category $T\Flex$ (which is biequivalent to $T\Alg_P$) has the
+    corresponding colimits for all accessible $T$. This naturally leads to the
+    question:
+    \center{which (co)limits can we build from these ingredients?}
+\end{rmk}
+
+
+\section{Flexible Colimits}
+
+\begin{defn}
+    A weight $W\in[\cA,\Cat]$ is called flexible if it is a flexible algebra for
+    the 2-monad arising from the adjunction $\begin{tikzcd}
+	{[\cA,\Cat]} & {[\Ob(\cA),\Cat]}
+	\arrow[""{name=0, anchor=center, inner sep=0}, shift right=2, from=1-1, to=1-2]
+	\arrow[""{name=1, anchor=center, inner sep=0}, shift right=1, from=1-2, to=1-1]
+	\arrow["\dashv"{anchor=center, rotate=-90}, draw=none, from=1, to=0]
+    \end{tikzcd}$. The colimits of lexible weights are called flexible
+    (co)limits.
+\end{defn}
+
+\begin{defn}
+    Let $D\colon\cA\rightarrow\cK$ be a small diagram in a 2-category $\cK$,
+    $W\colon\cA\rightarrow\Cat$ any weight. A $W$-weighted lax limit (resp.\
+    pseudo limit) is a representing object $\{W,D\}_L$ (resp.\ $\{W,D\}_P$) for
+    the 2-functor $C\mapsto [\cA,\Cat]_L(W,\cK(C,D))$ (resp.\
+    $[\cA,\Cat]_P(W,\cK(C,D))$. In other words, we have a 2-natural isomorphism
+    $\cK(C,\{W,D\}_L)\cong[\cA,\Cat]_L(W,\cK(C,D))$ (resp.\
+    $\cK(C,\{W,D\}_P)\cong[\cA,\Cat]_P(W,\cK(C,D))$).
+
+    There is also an analogous notion of colax limits.
+
+    The notions of lax/pseudo/colax $W$-weighted colimits (e.g.\
+    $W\odot^P_\cA D$) is defined dually in $\cK^{\op}$.
+\end{defn}
+
+\begin{exmp}
+    Let $\cA=\{0\rightarrow 1\leftarrow 2\}$,
+    $D=A\xrightarrow{f}B\xleftarrow{g}C$ in $\cK$, $W=\Delta^1$. A
+    pseudo-natural transformation $\Delta^1\rightarrow\cK(X,D-)$ amounts to
+    three 1-cells and two invertible 2-cells
+    \[\begin{tikzcd}
+        X & C \\
+        A & B
+        \arrow["f"', from=2-1, to=2-2]
+        \arrow["g", from=1-2, to=2-2]
+        \arrow["{k_2}", from=1-1, to=1-2]
+        \arrow["{k_0}"', from=1-1, to=2-1]
+        \arrow[""{name=0, anchor=center, inner sep=0}, "{k_1}"{description}, from=1-1, to=2-2]
+        \arrow["\cong"{description, pos=0.3}, Rightarrow, draw=none, from=1-2, to=0]
+        \arrow["\cong"{description, pos=0.3}, Rightarrow, draw=none, from=2-1, to=0]
+    \end{tikzcd}\]
+    and the pseudo pullback is the universal such diagram.
+
+    Note that this is similar to the iso-comma object, but it is not isomorphic
+    to it: the two objects are just equivalent.
+\end{exmp}
+
 \backmatter
 \end{document}
