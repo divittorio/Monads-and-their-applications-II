@@ -2740,7 +2740,7 @@ need the notion of flexible algebras. This, in turn, requires the existence of
     $(f,\overline{f})\Rightarrow(f',\overline{f'})$.
 \end{proof}
 
-\section{Codescent objects}
+\section{Codensity objects}
 
 To be moved elsewhere. This section fills a previous gap.
 
@@ -3138,28 +3138,28 @@ Since $([0],\sigma_0,\delta_{-1})$ is a monoid in $\Delta_+$, there exists a $G\
 \end{exmp}
 
 We can extend this to non-strict monoidal categories: there exists a flexible
-monoidal category $\widetilde{\cM}$ which is free on a monoid. By MacLane's
-coherence theorem, there exists a strict monoidal category $\widetilde{\cM}'$ and a
-monoidal equivalence $\widetilde{\cM}'\rightarrow\widetilde{\cM}$. It follows that there
-exists a monoid in $\widetilde{\cM}'$ which is sent to a monoid isomorphic to the
+monoidal category $\tilde{\cM}$ which is free on a monoid. By MacLane's
+coherence theorem, there exists a strict monoidal category $\tilde{\cM}'$ and a
+monoidal equivalence $\tilde{\cM}'\rightarrow\tilde{\cM}$. It follows that there
+exists a monoid in $\tilde{\cM}'$ which is sent to a monoid isomorphic to the
 universal one. From the arguments above, we get a map
-$\Delta_+\rightarrow\widetilde{\cM}'$ sending $([0],\sigma_0,\delta_{-1})$ to this
-monoid and thus an arrow $F\colon\Delta_+\rightarrow\widetilde{\cM}'$ sending
+$\Delta_+\rightarrow\tilde{\cM}'$ sending $([0],\sigma_0,\delta_{-1})$ to this
+monoid and thus an arrow $F\colon\Delta_+\rightarrow\tilde{\cM}'$ sending
 $([0],\sigma_0,\delta_{-1})$ to a monoid isomorphic to the universal one.
 
 On the other hand, from the universal mapping property we get
-$G\colon\widetilde{\cM}\rightarrow\Delta_+$ sending the universal monoid to
+$G\colon\tilde{\cM}\rightarrow\Delta_+$ sending the universal monoid to
 $([0],\sigma_0,\delta_{-1})$. The composite $FG$ is then isomorphic to a strict
 monoidal functor and it follows from the universal mapping property that
-$FG\cong\id_{\widetilde{\cM}}$.
+$FG\cong\id_{\tilde{\cM}}$.
 
 Note that $\Delta_+$ has no non-identity isomorphisms, thus
 $GF\colon\Delta_+\rightarrow\Delta_+$ is strict and it sends
 $([0],\sigma_0,\delta_{-1})$ to itself, hence $GF=\id_{\Delta_+}$.
 
-Observe that this does not imply that $\Delta_+$ is flexible since $F$ is not
+Observe tat this does not imply that $\Delta_+$ is flexible since $F$ is not
 strict, however the argument shows that $\Delta_+$ is equivalent to
-$\widetilde{\cM}$ in $T\Alg_P$, hence $T\Alg_P(\Delta_+,\cV)\simeq\Mon(\cV)$.
+$\tilde{\cM}$ in $T\Alg_P$, hence $T\Alg_P(\Delta_+,\cV)\simeq\Mon(\cV)$.
 
 
 \section{Flexible Monads}
@@ -3171,7 +3171,7 @@ $\widetilde{\cM}$ in $T\Alg_P$, hence $T\Alg_P(\Delta_+,\cV)\simeq\Mon(\cV)$.
 \end{defn}
 
 \begin{prop}
-    If $T$ is a flexible 2-monad on $\cK$, then any pseudo-$T$-algebra is
+    If $T$ is a felxbile 2-monad on $\cK$, then any pseudo-$T$-algebra is
     isomorphic to a strict $T$-algebra.
 \end{prop}
 \begin{proof}
@@ -3184,15 +3184,15 @@ $\widetilde{\cM}$ in $T\Alg_P$, hence $T\Alg_P(\Delta_+,\cV)\simeq\Mon(\cV)$.
     $T\leadsto\langle A,A\rangle$ and $T\leadsto\langle A,A\rangle_\kappa$.
 
     It follows that for any flexible $T$ and any $\phi\colon T\leadsto\langle
-    A,A\rangle)_\kappa$ there exists a strict monad morphism $\tilde{\phi}\colon
-    T\rightarrow\langle A,A\rangle_\kappa$ and an isomorphism
+    A,A\rangle)\kappa$ there exists a strict monad morphism $\tilde{\phi}\colon
+    T\rightarrow\langle A,A\rangle_\kappa$ and an isomorpjism
     $\tau\colon\phi\Rightarrow\tilde{\phi}$.
 
     The monad morphism $\phi$ corresponds to $a\colon TA\rightarrow A$,
     $\alpha\colon a\cdot Ta\Rightarrow a\cdot\mu_A$ and
     $\alpha_0\colon\id_A\Rightarrow a\cdot\eta_A$, i.e.\ a pseudo $T$-algebra,
     while $\tilde{\phi}$ corresponds to a strict $T$-algebra structure
-    $\tilde{a}\colon TA\rightarrow A$. The morphism $\tau$ corresponds to
+    $\tilde{a}\colon TA\rightarrow A$. The morphism $\tau$ vorresponds to
     \[\begin{tikzcd}
         TA & A \\
         TA & A
@@ -3340,8 +3340,8 @@ $\widetilde{\cM}$ in $T\Alg_P$, hence $T\Alg_P(\Delta_+,\cV)\simeq\Mon(\cV)$.
         \arrow["{=}"{description}, Rightarrow, draw=none, from=0, to=1]
         \arrow["{=}"{description}, Rightarrow, draw=none, from=1, to=3]
     \end{tikzcd}.\]
-    We leave to check that $(B,b,\beta,\beta_0)$ is an equalizer of
-    $(e,\overline{e})$ and $\id_A$ in $PsT\Alg$ as an exercise.
+    We leave checking that $(B,b,\beta,\beta_0)$ is an equalizer of
+    $(e,\overline{e})$ and $\id_A$ in $PsT\Alg$ as an exercis as an exercise.
 \end{proof}
 
 \begin{rmk}
@@ -3360,11 +3360,11 @@ $\widetilde{\cM}$ in $T\Alg_P$, hence $T\Alg_P(\Delta_+,\cV)\simeq\Mon(\cV)$.
 \begin{defn}
     A weight $W\in[\cA,\Cat]$ is called flexible if it is a flexible algebra for
     the 2-monad arising from the adjunction $\begin{tikzcd}
-	{[\cA,\Cat]} & {[\Ob(\cA),\Cat].}
+	{[\cA,\Cat]} & {[\Ob(\cA),\Cat]}
 	\arrow[""{name=0, anchor=center, inner sep=0}, shift right=2, from=1-1, to=1-2]
 	\arrow[""{name=1, anchor=center, inner sep=0}, shift right=1, from=1-2, to=1-1]
 	\arrow["\dashv"{anchor=center, rotate=-90}, draw=none, from=1, to=0]
-    \end{tikzcd}$ The (co)limits of flexible weights are called flexible
+    \end{tikzcd}$. The colimits of lexible weights are called flexible
     (co)limits.
 \end{defn}
 
@@ -3404,6 +3404,161 @@ $\widetilde{\cM}$ in $T\Alg_P$, hence $T\Alg_P(\Delta_+,\cV)\simeq\Mon(\cV)$.
     Note that this is similar to the iso-comma object, but it is not isomorphic
     to it: the two objects are just equivalent.
 \end{exmp}
+
+The following proposition shows that pseudo/lax limits do not give a new notion
+of limits: they still are weighted limits, but for a different weight.
+
+\begin{prop}
+    The lax (resp.\ pseudo) limit of a 2-functor $D\colon\cA\rightarrow\cK$
+    weighted by $W\colon\cA\rightarrow\Cat$ is given by the $Q^LW$-weighted
+    colimit of $D$ (resp.\ $QW$-weighted).
+\end{prop}
+\begin{proof}
+    This follows fomr the defining isomorphism
+    $[\cA,\Cat]_L(W,F)\cong[\cA,\Cat](Q^L,F)$ by specializing to the case
+    $F=\cK(C,D-)$.
+\end{proof}
+
+\begin{prop}
+    If $\cK$ has PIE-limits, then it has all lax and all pseudo limits.
+\end{prop}
+\begin{proof}
+    We know that $QW$ and $Q^LW$ can be built as iso- or lax codescent objects
+    of free algebras and those can in turn be built from coinserters and
+    coequifiers, so it remains to check that the $W$-weighted limit exists if
+    $W$ is free on a collection, which we prove in the next lemma.
+\end{proof}
+
+\begin{lemma}
+    Let $\cK$ be a 2-category with PIE-limits. Then the $W$-weighted limit
+    exists for all free algebras $W\in[\cA,\Cat]$.
+\end{lemma}
+\begin{proof}
+    First note that the limit of $\cA(a,-)$ always exists since
+    $\{\cA(a,-),D\}\cong Da$ by Yoneda. Moreover, $\cA(a,-)$ is the free algebra
+    on the collection $(\delta_a)_b=\emptyset$ if $b\neq a$, $=*$ if $b=a$ again
+    by Yoneda. The class of weights $W$ s.t.\ $\{W,D\}$ exists is closed under
+    coproducts, coinserters and coequifiers since $\cK$ has PIE-limits, which
+    follows from $\{\colim W_i,D\}\cong\lim\{W_i,D\}$. Moreover, the left
+    adjoint $T\colon [\Ob\cA,\Cat]\rightarrow[\cA,\Cat]$ preserves colimits, so
+    the class of collections $(C_b)_{b\in\cA}$ s.t.\ $T(C_b)_{b\in\cA}$-weighted
+    limits exist is also closed under coproducts, coinserters and coequifiers.
+
+    We have reduced the problem to showing that the closure of the $\delta_a$
+    under PIE-colimits is all of $[\Ob\cA,\Cat]$. Using coproducts we can reduce
+    to collections concentrated in a single ``degree''. This reduces the problem
+    to the case $\Ob\cA=*$, i.e.\ $[\Ob\cA,\Cat]\cong\Cat$.
+
+    Every category can be written as a lax codescent object of its nerve,
+    considered as a diagram of concrete categories. Clearly discrete categories
+    are coproducts of the terminal category, so $*$ does indeed generate $\Cat$
+    under PIE-colimits.
+\end{proof}
+
+\begin{cor}
+    If $\cK$ has PIE-limits, $T\colon\cK\rightarrow\cK$ is a 2-monad, then
+    $T\Alg_P$ has all lax and pseudo limits.
+\end{cor}
+\begin{proof}
+    We have shown that $T\Alg_P$ has PIE-limits.
+\end{proof}
+
+\begin{thm}
+    Let $\cK$ be a 2-category with splittings of idempotents. Then $\cK$ has all
+    flexible limits. If $\cK'$ is another 2-category with the same limits and
+    $F\colon\cK\rightarrow\cK'$ is a 2-functor, which preserves PIE-limits (and
+    splitting of idempotents, which is automatic), then $F$ preserves all
+    flexible limits.
+\end{thm}
+\begin{proof}
+    From the lemma we know that $\{TC,D\}$ exists for all diagrams
+    $D\colon\cA\rightarrow\cK$ and all collections
+    $C=(C_b)_{b\in\cA}\in[\Ob\cA,\Cat]$, where $T$ denotes the 2-monad for
+    $[\cA,\Cat]$. Since iso-descent objects can be built from coinserters and
+    coequifiers, it follows that $\{QW,D\}$ exists for all weights $W$.
+
+    Finally, using splittings of idempotents, we find that $\{W,D\}$ exists for
+    all flexible $W$: indeed, recalling that $W$ is a retract of $QW$ we can
+    write it as a (co)splitting of an idempotent on $QW$.
+
+    Note that the proof so far actually shows that the flexible weights in
+    $[\cA,\Cat]$ are the closure of the representables under PIE colimits and
+    (co)splittings of idempotents: the argument above shows one inclusion, while
+    the other follows from the fact that $T\Flex\subset T\Alg_S$ is closed under
+    PIE-colimits and splittings of idempotents.
+
+    To prove the second claim, we consider the class of all weights
+    $W\in[\cA,\Cat]$ (for a fixed $\cA$) such that for all diagrams
+    $D\colon\cA\rightarrow\cK$ the comparison morphism
+    $F\{W,D\}\xrightarrow{\overline{F}}\{W,FD\}$ is an isomorphism. This
+    contains the representables $\cA(a,-)$ since both sides of the comparison
+    map are then $FDa$ (details left as an exercise) and the class is closed
+    under PIE-colimits and splitting of idempotents because $F$ preserves the
+    corresponding limits by assumption. Since the closure of representables is
+    the class of all flexible weights, it follows that $F$ preserves flexible
+    limits.
+\end{proof}
+
+\begin{rmk}
+    In the proof we have seen that flexible weights are precisely the closure of
+    the representables under PIE-colimits and (co)splittings of idempotents. The
+    second part of the theorem is purely a formal consequence of this.
+\end{rmk}
+
+\begin{cor}
+    Let $T$ be an accessible 2-monad on a complete and cocomplete 2-category
+    $\cK$. Then $T\Flex$ is closed in $T\Alg_S$ under all flexible colimits. In
+    particular, flexible colimits of flexible monads are flexible and flexible
+    colimits of flexible weights are flexible.
+\end{cor}
+\begin{proof}
+    The theorem implies that $T\Flex$ has all flexible colimits and the
+    inclusion $T\Flex\rightarrow T\Alg_S$ preserves them. This simply means that
+    a flexible colimit of lexible algebras, computed in $T\Alg_S$, is again
+    flexible.
+\end{proof}
+
+\begin{cor}
+    The weights for products, inserters, equifiers and splittings if idempotents
+    are all flexible.
+\end{cor}
+\begin{proof}
+    We know that representable weights are free, hence flexible. The Yoneda
+    isomorphism $W\odot_\cA Y\cong W$ shows that $W$ is the $W$-weighted colimit
+    of flexible weights. In particular, the weight for inserters can be written
+    as coinserter of flexible weights, so it is flexible by the theorem that
+    $T\Flex$ is closed under coinserters. The other weights follow in the same
+    way.
+\end{proof}
+We can summarize our results about limits in $T\Alg_P$ as follows:
+
+\begin{prop}
+    If $\cK$ has PIE-limits, then so does $T\Alg_P$ and they are preserved by
+    $U_P\colon T\Alg_P\rightarrow\cK$. This class includes all pseudo and lax
+    limits. If $\cK$ is locally $\kappa$-presentable and $T$ is flexible, then
+    $T\Alg_P$ has all flexible limits and they are preserved by $U_P$.
+\end{prop}
+\begin{proof}
+    We proved the statements about pseudo/lax limits above. The second statement
+    follows from the fact that $T\Alg_P$ has splittings of idempotents if $T$ is
+    flexible. $U_P$ preserves them, so the claim follows from the above theorem.
+\end{proof}
+
+\begin{rmk}
+    Even though $T\Flex$ has all flexible colimits, the same is not true for the
+    biequivalent 2-category $T\Alg_P$.
+\end{rmk}
+
+\begin{exmp}
+    Consider the 2-monad $T$ on $\Cat$ with $T\Alg_P=\Lex$, with
+    finitely complete categories and finite limit preserving (i.e.\ left
+    exact) functors. If $\Lex$ had flexible limits, it would have a pseudo
+    initial object, but any pseudo initial object is a strict initial object and
+    $\Lex$ has no such thing: the two functors
+    $c_0,c_1\colon\cA\rightarrow\{0\cong 1\}$ are left exact and distinct for
+    all finitely complete (in fact all non-empty) $\cA$.
+\end{exmp}
+
 
 \backmatter
 \end{document}
