@@ -3558,7 +3558,147 @@ We can summarize our results about limits in $T\Alg_P$ as follows:
     $c_0,c_1\colon\cA\rightarrow\{0\cong 1\}$ are left exact and distinct for
     all finitely complete (in fact all non-empty) $\cA$.
 \end{exmp}
-
-
+\section{Weak limits and bilimits}
+\begin{defn}
+Let $\A,\B$ be bicategories, $W\colon\A\to\Cat$ and $D\colon\A\to\B$ pseudofunctors. A \emph{$W$-weighted bilimit} of $D$ (also called \emph{weak limit} or \emph{bicategorical limit}) is an object $\{W,D\}_b$ with a pseudonatural equivalence 
+$$\B(B,\{W,D\}_b)\simeq \text{Ps}[\A,\Cat](W,\B(B,D-))$$
+of categories. The notion of bicolimit is defined dually in $\B^{\op}$.
+\end{defn}
+\begin{exmp}
+    A bi-initial object is an object $I\in\B$ s.t.\ each $\B(I,B)$ is equivalent to the terminal category. we have Ps$[\A,\B]=*$, so Ps$[\A,\B](W,\B(D,-))\simeq *$ for all $B$ (NOT SURE ABOUT THIS, I THINK IT SHOULD BE: Ps$[A,\Cat](W,\B(D-,B))\simeq\B(I,B)\simeq *$ for all $B$)  
+\end{exmp}
+Note that $\Lex$ does have a bi-initial object given by $*$, since any left exact functor $*\to\C$ sends $*$ to a terminal object and all terminal objects are uniquely isomorphic.
+\begin{prop}
+    If $\A, \K$ are $2$-categories, $W\colon\A\to\Cat$, $D\colon\A\to\K$ is a $2$-functor and the pseudolimit of $D$ weighted by $W$ exists, then $\{W,D\}_p$ is a bilimit.
+\end{prop}
+\begin{proof}
+    Note that $[\A,\Cat]_p\subseteq\text{Ps}[\A,\Cat]$ is a full sub-2-category, so
+    $$\text{Ps}[\A,\Cat](W,\K(B,D-))\simeq [\A,\Cat]_p(W,\K(B,D-))$$
+    under our assumptions. Clearly any $2$-natural isomorphism is in particular a pseudonatural equivalence.
+\end{proof}
+From the bicategorical Yoneda lemma it follows that bilimits are unique up to essentially unique equivalence. Thus in the above situation any bilimit is equivalent to the pseudolimit.
+\begin{rmk}
+    In general $\{W,D\}\not\simeq\{W,D\}_b$. For example let $W=\Delta_1$ be the conical weight on the span category. The diagram 
+    \[\begin{tikzcd}
+	& {*} \\
+	{*} & {{\{0\cong1\}}}
+	\arrow[from=1-2, to=2-2]
+	\arrow[from=2-1, to=2-2]
+\end{tikzcd}\] 
+in $\Cat$ has $\{W,D\}=\empty$, but the diagram 
+\[\begin{tikzcd}
+	{*} & {*} \\
+	{*} & {{\{0\cong1\}}}
+	\arrow["1", from=1-2, to=2-2]
+	\arrow["0"', from=2-1, to=2-2]
+	\arrow[Rightarrow, no head, from=1-1, to=1-2]
+	\arrow[Rightarrow, no head, from=1-1, to=2-1]
+	\arrow[""{name=0, anchor=center, inner sep=0}, "1", from=1-1, to=2-2]
+	\arrow["\cong"{marking}, Rightarrow, draw=none, from=2-1, to=0]
+	\arrow["{=}"{description}, shift right=2, Rightarrow, draw=none, from=0, to=1-2]
+\end{tikzcd}\]
+defines a pseudocone, so $\{W,D\}_p\simeq\{W,D\}_b$ is \emph{not} empty.
+\end{rmk}
+\begin{prop}
+Let $\K$ be a $2$-category with flexible limits, $\A$ be a $2$-category and $W\colon\A\to\Cat$, $D\colon\A\to\K$ be $2$-functors. If $W$ is flexible then $\{W,D\}\simeq \{W,D\}_b$. In other words, flexible limits are bilimits.
+\end{prop}
+\begin{proof}
+    Since $e_W\colon QW\to W$ is a surjective equivalence in $[\A,\Cat]$, it induces an equivalence
+    \begin{align*}
+        \K(C,\{W,D\})&\simeq [\A,\Cat](W,\K(C,D-))\\
+        &\overset{e_W^*}{\simeq} [\A,\Cat](QW, \K(C,D-))\\
+        &\simeq [\A,\Cat]_p(W,\K(C,D-))\\
+        &\simeq\K(C,\{W,D\}_p).
+    \end{align*}
+    Since pseudolimits are bilimits, the conclusion follows.
+\end{proof}
+Using this notion we can show that $T\Alg_p$ is weakly cocomplete.
+\begin{thm}
+    Let $\K$ be complete and cocomplete and $T$ an accessible $2$-monad. Let $W\colon\A\to\Cat$, $D\colon\A\to T\Alg_p$ be $2$-functors, with $\A$ small $2$-category. Then $W\copw_{\A}^p Q\circ D$ in $T\Flex$ is a bicolimit $W\copw_{\A}^b D$ of $D$ weighted by $W$ in $T\Alg_p$.
+\end{thm}
+\begin{proof}
+    Note that $W\copw_{\A}^p Q\circ D$ is given by $Q(W)\copw_{\A} Q\circ D$ (where the first $Q$ is the pseudomorphism classifier in $[\A,\Cat]$, while the second one is for $T\Alg_s$). Since $Q(W)$ is flexible, so is $W\copw_{\A}^p Q\circ D$. From this we get isomorphisms and equivalences as follows
+    \begin{align*}
+        T\Alg_p(W\copw_{\A}^p Q\circ D,\A) &\overset{\simeq}{\longleftarrow}T\Alg_s(W\copw_{\A}^p Q\circ D,\A)\\
+        &\cong [\A,\Cat]_p(W, T\Alg_s(Q\circ D-,\A))\\
+        &\cong [\A,\Cat]_p(W,T\Alg_p(D-,\A))
+    \end{align*}
+    which are $2$-natural in $\A$. The first one has a pseudonatural inverse, so $W\copw_{\A}^pQ\circ D$ is indeed a bicolimit of $D$ weighted by $W$.
+\end{proof}
+\begin{cor}
+In the above situation, $T\Alg_p$ has \emph{all} small bilimits and bicolimits.
+\end{cor}
+\begin{proof}
+    The theorem shows that $T\Alg_p$ has bicategorical coproducts, bicoequalizers and bicopowers by small categories, since the diagrams for all these can be chosen to be strict $2$-categories and $2$-functors. Ross Street showed in the \emph{Errata to ``Filtrations in bicategories''} that these can be used to construct \emph{all} small bicolimits. The claim about limits follows analogously (we have all pseudolimits!).
+\end{proof}
+We have the following result about preservation of bilimits.
+\begin{prop}
+Any biequivalence preserves bilimits and bicolimits.
+\end{prop}
+\begin{proof}
+    The usual proof ``categorifies'': given a biequivalence $F\colon\K\to\mathcal{L}$, $D\colon\A\to\K$ a diagram, $W\colon\A\to\Cat$ a weight, we have 
+\begin{align*}
+    \mathcal{L}(X, F\{W,D\}_b)&\simeq\mathcal{L}(FY, F\{W,D\}_b) && \text{($F$ essentially surjective)}\\
+    &\simeq \K(Y,\{W,D\}_b)
+        && \text{($F$ equivalence on Hom-categories)}\\
+     &\simeq \text{Ps}[\A,\Cat](W,\K(Y,D-))\\
+     &\simeq \text{Ps}[\A,\Cat](W,\mathcal{L}(FY,FD-))\\
+     &\simeq\text{Ps}[\A,\Cat](W,\mathcal{L}(X,FD-))
+\end{align*}
+so $F\{W,D\}_b\simeq\{W,FD\}_b$ by bicategorical Yoneda.
+\end{proof}
+\begin{rmk}
+    More generally, left biadjoints preserve bicolimits and right biadjoints preserve bilimits.
+\end{rmk}
+\begin{cor}
+Each flexible colimit in $T\Flex$ is a bicolimit in $T\Alg_p$.
+\end{cor}
+\begin{proof}
+    We know that flexible colimits are bicolimits, so they are preserved by the biequivalence $T\Flex\to T\Alg_p$.
+\end{proof}
+\begin{exmp}
+    The diagram 
+    \[\begin{tikzcd}
+	{T^3A} & {T^2A} & TA & A
+	\arrow[shift left=2, from=1-1, to=1-2]
+	\arrow[shift right=2, from=1-1, to=1-2]
+	\arrow[from=1-1, to=1-2]
+	\arrow["Ta"', shift right=1, from=1-2, to=1-3]
+	\arrow["{\mu_A}", shift left=1, from=1-2, to=1-3]
+	\arrow["a", from=1-3, to=1-4]
+\end{tikzcd}\]
+exhibits $A$ as bicategorical iso-codescent object of \begin{align*}
+    \overline{\Delta_{\le 2}}&\to T\Alg_p\\
+    [n]&\mapsto T^{n+1}A.
+\end{align*}
+To see this note that $QA$ is the (strict) iso-codescent object of the diagonal in $T\Flex$, so $QA$ is also a bicategorical iso-codescent object in $T\Alg_p$. Composing with the equivalence $e_A\colon QA\to A$ in $T\Alg_p$, we obtain the above diagram. It is still a bicategorical iso-codescent object, since these are only defined up to equivalence. 
+\end{exmp}
+To summarize, we have shown that $U_p\colon T\Alg_p\to\K$ has many of the nice properties of $U\colon T\Alg\to\C$ of $1$-monads:
+\begin{enumerate}
+    \item[(i)] From the exercises we know that $U_p$ is ``conservative'', i.e.\ it reflects equivalences in $\K$.
+    \item[(ii)] If $\K$ is complete and cocomplete and $T$ is accessible, then $T\Alg_p$ is bicategorically complete and cocomplete.
+    \item[(iii)] The diagram   \[\begin{tikzcd}
+	{T^3A} & {T^2A} & TA & A
+	\arrow[shift left=2, from=1-1, to=1-2]
+	\arrow[shift right=2, from=1-1, to=1-2]
+	\arrow[from=1-1, to=1-2]
+	\arrow["Ta"', shift right=1, from=1-2, to=1-3]
+	\arrow["{\mu_A}", shift left=1, from=1-2, to=1-3]
+	\arrow["a", from=1-3, to=1-4]
+\end{tikzcd}\] 
+shows that each algebra is canonically a bicolimit of free algebras.
+\item[(iv)] The following lemma shows that $U_p\colon T\Alg_p\to\K$ also has a left biadjoint.
+\end{enumerate}
+\begin{lemma}
+    If $J\colon\A\to\B$ is a biequivalence with inverse $Q$ and $FJ\simeq\A(A,-)$, then $F\simeq\B(JA,-)$. In particular, we have $T\Alg_p(JTA,-)\simeq\K(A,U_p-)$. 
+\end{lemma}
+\begin{proof}
+    The second claim follows from the first. In fact, taking $F\cong \K(A,U_p-)$ yields $FJ\cong T\Alg_s(TA,-)$. For the first claim we have
+    $$B(JA,-)\simeq\A(QJA,Q-)\simeq\A(A,Q-)\simeq FJQ(-)\simeq F$$ 
+    since $QJ\simeq\id$ and $JQ\simeq\id$.
+\end{proof}
+\begin{rmk}
+    One can say a little more about this left biadjoint: it is given by the $2$-functor $JT$ and the functors $T\Alg_p(JTA,B)\to\K(A,U_pB)$ are surjective equivalences. This follows from Theorem $5.1$ in Blackwell-Kelly-Power's ``Two-dimensional monad theory''.
+\end{rmk}
 \backmatter
 \end{document}
