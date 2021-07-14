@@ -3700,5 +3700,85 @@ shows that each algebra is canonically a bicolimit of free algebras.
 \begin{rmk}
     One can say a little more about this left biadjoint: it is given by the $2$-functor $JT$ and the functors $T\Alg_p(JTA,B)\to\K(A,U_pB)$ are surjective equivalences. This follows from Theorem $5.1$ in Blackwell-Kelly-Power's ``Two-dimensional monad theory''.
 \end{rmk}
+
+We saw $U_p\colon T\Alg_p\to\K$ behaves very similar to $U\colon T\Alg\to\C$ for $1$-monads on a $1$-category $\C$, if we work up to equivalence everywhere. In practice, it is often convenient to work with the stricter structures such as $T\Flex$. For example, constructing the free finitely complete category with a group object on the free monoidal category with a monoid is harder to do if we only use bicolimits in $T\Alg_p$.
+\section{Coherence Theorems}
+A major theme of this course was the use of strict structures to study weak ones. A natural question we can ask is the following: \emph{under what conditions on the $2$-monad $T$ is every pseudo $T$-algebra equivalent to a strict one?}
+
+We have shown that this is true for flexible $T$, but this is not necessary: for example MacLane's coherence theorem implies that the $2$-monad for strict monoidal categories also has this property. 
+
+In the case where $\K$ is locally presentable and $T$ accessible, we can make this more precise.
+
+Let $T' = QT$ be the pseudomorphism classifier of $T$ in $2\mbox{-}\Mnd_{\kappa}(\K)$. Then we have an equivalence $e_T\colon T'\to T$ in $2\mbox{-}\Mnd_{\kappa}(\K)_p$ and an isomorphism of $2$-categories $PsT\Alg\cong T'\Alg_p$. Moreover $e_T^*\colon T\Alg_s\to T'\Alg_s$ has a left $2$-adjoint $(e_T)_*$. Since 
+$$T\Alg_s\to T'\Alg_s\xrightarrow{J}T'\Alg_p$$
+corresponds to the natural inclusion $T\Alg_s\to PsT\Alg$, this inclusion has a left $2$-adjoint $(e_T)_*Q$.
+\begin{defn}
+We say that the full coherence theorem holds for $T$ if the unit of the above adjunction is an equivalence in $PsT\Alg$. In this case every pseudo T-algebra is canonically equivalent to a strict one. 
+\end{defn}
+Proving this coherence theorem is possible if we make some additional assumptions on $T$, for example that $T$ preserves certain iso-codescent objects. Generalizing slightly, we can consider an arbitrary monad morphism $\varphi\colon S\to T$ (instead of $e_T\colon T'\to T$). 
+
+\begin{prop}
+Let $\K$ be complete and cocomplete, $S,T$ accessible. If both $S$ and $T$ preserve iso-codescent objects of reflexive coherence data (keeping track of the degeneracies), then the unit of the $2$-adjunction 
+\[\begin{tikzcd}
+	{T\Alg_s} & {S\Alg_s} & {S\Alg_p}
+	\arrow["{\varphi^*}", shift left=2, from=1-1, to=1-2]
+	\arrow["{\varphi_*}", shift left=2, from=1-2, to=1-1]
+	\arrow["J", shift left=2, from=1-2, to=1-3]
+	\arrow["Q", shift left=2, from=1-3, to=1-2]
+\end{tikzcd}\]
+is an equivalence if and only if each $\varphi_K\colon SK\to TK$ is an equivalence in $\K$.
+\end{prop}
+\begin{proof}
+    The unit is given by the composition $A\xrsquigarrow{\eta_A}JQA\xrightarrow{J\eta_{QA}}\varphi^*\varphi_* QA$ so this is an equivalence for every $A$ if and only if each $\eta_{QA}$ is an equivalence. Since both $S,T$ preserve iso-codescent objects of reflexive codescent data, so do $U_s$ and $\varphi^*$. Since these are flexible colimits and $QA$ \emph{is} such an iso-codescent object of a reflexive codescent datum where each algebra is free, it suffices to check that $\eta_{SK}\colon SK\to\varphi^*\varphi_*SK$ is an equivalence in $S\Alg_p$ for all $K\in\K$. This unit is up to isomorphism given by $SK\xrightarrow{\varphi_K}\varphi^* TK$, which is an equivalence in $\K$ by assumption, hence an equivalence in $S\Alg_p$. The converse follows, since $SK$ is a retract of $QSK$ in $S\Alg_s$, so unit equiv.\ $\Rightarrow$ $\eta_{QSK}$ equiv.\ $\Rightarrow$ $\eta_{SK}$ equiv.\ $\Rightarrow$ $\varphi_K$ equiv.  
+\end{proof}
+\begin{prop}
+Let $\K$ be a locally $\kappa$-presentable $2$-category and $F\colon\K\to\K$ a $\kappa$-accessible $2$-functor. If $F$ preserves $W$-weighted colimits for some weight $W$, then so does the free $\kappa$-accessible $2$-monad $T(F)\colon\K\to\K$ on $F$.      
+\end{prop}
+\begin{proof}
+    The underlying $2$-functor of $T(F)$ is given as colimit of the chains $X_\beta, \beta<\kappa$ defined by $X_0=\id_{\K}$, $X_{\beta+1}=\id_{\K}+F\circ X_{\beta}$, $X_{\alpha}=\colim_{\beta<\alpha}X_{\beta}$ for limit ordinals (Kelly). By transfinite induction we see that each $X_{\beta}$ preserves $W$-weighted colimits.
+\end{proof}
+\begin{defn}
+A weight $W$ is called sifted, if $W\copw_{\A}-\colon [\A,\Cat]\to\Cat$ preserves finite products.
+\end{defn}
+Using this, one can show that the left Kan extension of $W$ along the diagonal $\Delta\colon\A\to\A\times\A$ is $W\times W$ (pointwise product). This implies the usual diagonal lemma for sifted colimits and therefore that $X\hookrightarrow F(X,X)$ preserves $W$-colimits if both $F(-,X)$ and $F(X,-)$ preserves $W$-colimits for each fixed $X$.
+
+Using this we can prove the following
+
+\begin{lemma}
+    If $D\colon\A\to2\mbox{-}\Mnd_{\kappa}(\K)$ is a diagram s.t.\ each $D_a$ preserves $W$-weighted colimits and $W\colon\A^{\op}\to\Cat$ is sifted, then $W\copw_{\A}D$ in $2\mbox{-}\Mnd_{\kappa}(\K)$ also preserves $W$-weighted colimits. More precisely this colimit is preserved by $2\mbox{-}\Mnd_{\kappa}(\K)\to[\K,\K]_{\kappa}$. This can be done, since $W\copw_{\A}D\circ W\copw_{\A} D$ is the $W$-weighted colimit of the diagonal $a\mapsto D_a\circ D_a$ (by our assumption that $W$ is sifted). To check associativity one uses the fact that this also holds true for the triple composite.  
+\end{lemma} 
+\begin{rmk}
+    A more conceptual argument is possible if the $\{W\}$-cocontinuous $\kappa$-accessible endo-$2$-functors are coreflective in $[\K,\K]_{\kappa}$, for when we get a monoidal $2$-adjunction, which lifts to $2$-categories of monoids: thus the inclusion
+    $$2\mbox{-}\Mnd_{\{W\}\text{cocts}}(\K)\to 2\mbox{-}\Mnd_{\kappa}(\K)$$
+    has a right adjoint, so all colimits are preserved by this inclusion. This holds in many cases of interest and it always holds, if we assume Vop\v{e}nka's principle.
+\end{rmk}
+Some examples of sifted colimits are lax/iso codescent objects of reflexive codescent data and reflexive inverters \[\begin{tikzcd}
+	\bullet & \bullet & \bullet & {1_{\id}}
+	\arrow["r", from=1-1, to=1-2]
+	\arrow[""{name=0, anchor=center, inner sep=0}, curve={height=-12pt}, from=1-2, to=1-3]
+	\arrow[""{name=1, anchor=center, inner sep=0}, curve={height=12pt}, from=1-2, to=1-3]
+	\arrow["{=}"{description}, draw=none, from=1-3, to=1-4]
+	\arrow[shorten <=3pt, shorten >=3pt, Rightarrow, from=0, to=1]
+\end{tikzcd}\]
+\begin{cor}
+If the $\kappa$-accessible $2$-monad $T$ preserves reflective codescent objects, then so does $QT=T'$.
+\end{cor}
+\begin{proof}
+    Combine the proposition and the lemma: $QT$ is a reflective iso-codescent object of a diagram of iterated free monads on $T$.
+\end{proof} 
+\begin{thm}
+    The full coherence theorem holds for accessible $2$-monads on a locally presentable $\K$, which preserve iso-codescent objects of reflexive codescent data.
+\end{thm}
+\begin{proof}
+    $T'=QT$ and $T$ preserves reflexive iso-codescent objects, so we only need to show that $(e_T)_K\colon T'K\to TK$ is an equivalence in $\K$. This follows from the fact that $e_T$ is a surjective equivalence in $2\mbox{-}\Mnd_{\kappa}(\K)_p$, so in particular an equivalence in $[\K,\K]_{\kappa}.$
+    \end{proof}
+\begin{rmk}
+    A more direct argument is given by Lack in ``Codescent objects and coherence'' without using locally presentable categories, but a weaker form of codescent diagrams.
+\end{rmk}
+Applying these arguments to the $2$-monads for strict monoids and pseudomonoids we can reduce the coherence theorem for such to the case of free (pseudo-)monoids. 
+
+Let $\K$ be a locally $\kappa$-presentable $2$-category with a monoidal structure s,t,\ $-\otimes-$ preserves $\kappa$-filtered colimits in each variable. Let $T$ be the $2$-monad for strict monoids, $S$ the $2$-monad for pseudomonoids. Assume that $-\otimes-$ preserves iso-codescent objects of reflexive codescent diagrams (or maybe even all sifted colimits). Finally, assume that the $F$-cocontinuous endo-$2$-functors in $[\K,\K]_{\kappa}$ are coreflective for $F=$ \{refl.\ iso-codescent sifted\}. It follows that both $S$ and $T$ preserve iso-codescent objects of reflective codescent diagrams. This is for example the case for $F=$ \{sifted\} , $\K=\Cat/\Cat^{X\times X}$. Showing that each pseudomonoid is equivalent to a strict one now boils down to checking that each $Sk\to TK$ is an equivalence in $\K$. In the case of $\Cat/\Cat^{X\times X}$ we can reduce further to levelwise finite discrete categories. This follows from the fact that each category is the lax codescent object of its nerve, considered as a diagram of discrete categories. So we have reduced the coherence theorem to checking that the natural strong monoidal functor from the free monoidal category on $\{1,\dots,n\}$ (which is simply the discrete category on the free monoid on $\{1,\dots,n\}$) is an equivalence. As in the case of the universal property of $\Delta_+$, the hard part is constructing the strong monoidal functor $T\{1,\dots,n\}\to S\{1,\dots,n\}$. Writing $A_i$ for the object corresponding to $i$, we can send a word in the $A_i$ to the corresponding word with ``leftmost'' bracketing (empty word $\mapsto$ unit). Using associators and unitors, it is possible to write down the data of a monoidal functor on this. Checking that this is monoidal is the essence of MacLane's coherence theorem. 
+
+Question: Is every monoidal $\V$-category ($\V$ lfp cosmos) equivalent to a strict monoidal $\V$-category? 
 \backmatter
 \end{document}
